@@ -1,0 +1,13 @@
+20-11-2016 11:58:53 Executon start
+Poblem characteristics:
+	 Num airports: 5
+	 Num flights: 20
+	 Num sectors: 44
+	 Num trajectories: 702
+	 Num waypoints: 204
+20-11-2016 11:58:53 Problem initialization
+20-11-2016 11:58:56 Initialization finished
+20-11-2016 11:58:56 Calculating first iteration
+20-11-2016 11:58:56 Step 1. Set up flights in random order
+20-11-2016 11:58:56 Step 2. trying to interchange flights
+20-11-2016 11:58:56 Execution finished
