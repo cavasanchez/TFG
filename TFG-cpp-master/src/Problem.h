@@ -13,6 +13,7 @@
 #include "Flight.h"
 #include "WaypointRoute.h"
 #include "Heuristic.h"
+#include "Constants.h"
 #include <vector>
 #include <ctime>
 #include <fstream>
@@ -25,9 +26,10 @@
 
 using namespace std;
 
-
 class Problem {
 public:
+	Problem();
+
 	Problem(int numAirports, int numSectors, int numTrajectories, int numWaypoints, int numFlights);
 
 	int getNumAirports() const {
@@ -88,6 +90,7 @@ public:
 	void createOrderFlights();
 	void updateTimes();
 	void getInitialOverloadSectors();
+	void getShortestRoutes();
 	void initialValidations();
 	void interchangeFlights();
 
@@ -101,8 +104,11 @@ public:
 
 	void Djistra(Flight *flight, int option);
 	int sectorHasSpace(int inTime);
-	void updateTimeSector(vector <int> PathIdWaypointsRoute, int size, Flight *flight);
+	void updateTimeSector(vector<int> PathIdWaypointsRoute, int size, Flight *flight);
 	int isWaypointRouteInList(WaypointRoute **list, int idFather, int inTime, int sizeList);
+	void initialFlightsTakeOff();
+
+
 
 private:
 
@@ -115,9 +121,8 @@ private:
 	Sector **_listSectors;
 	TimeMoment **_timeMomentlist;
 	Flight **_listFlights;
-	const static int OPTION_ONLY_OVERLOAD_SECTORS = 0;
-	const static int OPTION_SHORTEST_PATH = 1;
-	std::vector<int> orderFlights;
+
+	std::vector<int> _orderFlights;
 	std::vector<int> _initialOverload;
 	int _iteration;
 	ofstream _log;

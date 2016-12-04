@@ -1,13 +1,11 @@
-20-11-2016 11:58:53 Executon start
+05-12-2016 12:18:03 Executon start
 Poblem characteristics:
 	 Num airports: 5
 	 Num flights: 20
 	 Num sectors: 44
 	 Num trajectories: 702
 	 Num waypoints: 204
-20-11-2016 11:58:53 Problem initialization
-20-11-2016 11:58:56 Initialization finished
-20-11-2016 11:58:56 Calculating first iteration
-20-11-2016 11:58:56 Step 1. Set up flights in random order
-20-11-2016 11:58:56 Step 2. trying to interchange flights
-20-11-2016 11:58:56 Execution finished
+05-12-2016 12:18:03 Problem initialization
+05-12-2016 12:18:07 Initialization finished
+05-12-2016 12:18:07 Calculating shortest paths
+05-12-2016 12:18:07 Step 1. Take of flights in random order

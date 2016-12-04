@@ -154,9 +154,9 @@ private:
 
 	/*
 	 * STATUS VUELO:
-	 * 0=sin salir
-	 * 1=en vuelo
-	 * 2=llegó en tiempo
+	 * 0= sin salir
+	 * 1= llegó en tiempo
+	 * 2= llega con delay
 	 * 3= cancelado
 	 */
 

@@ -21,7 +21,6 @@
 #include <sstream>
 #include <string>
 #include "Flight.h"
-#include "Djistra.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -34,8 +33,13 @@
 #include <utility> // for pair
 #include <algorithm>
 #include <iterator>
+
+#include "Pathfinder.h"
 #include "Utilities.h"
 
+Problem::Problem() {
+
+}
 Problem::Problem(int numAirports, int numSectors, int numTrajectories, int numWaypoints, int numFlights) {
 	_numAirports = numAirports;
 	_numSectors = numSectors;
@@ -69,22 +73,40 @@ void Problem::inizializeProblem() {
 
 }
 
+/**
+ * Find flights with no problems and remove it from problem
+ */
 void Problem::initialValidations() {
 	cout << "busca los unconnected" << endl;
 	this->getFlightsUnconnected();
 
-	cout << "busca los sobrecargados iniciales" << endl;
-	this->getInitialOverloadSectors();
+	cout << "calcula el camino más corto para cada vuelo" << endl;
+	this->getShortestRoutes();
 
-//	cout << "asigna heurístico" << endl;
-//	this->assignHeuristcs();
+//	cout << "busca los sobrecargados iniciales" << endl;
+//	this->getInitialOverloadSectors();
 
-	for (int i = 0; i < 15; i++) {
-		cout << "****EN " << i << endl;
-		printArrayInt(_timeMomentlist[i]->getNumFlightsSector(), this->getNumSectors());
+//	for (int i = 0; i < 15; i++) {
+//		cout << "****EN " << i << endl;
+//		printArrayInt(_timeMomentlist[i]->getNumFlightsSector(), this->getNumSectors());
+//	}
+}
+
+void Problem::getShortestRoutes() {
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		Djistra(_listFlights[i], OPTION_SHORTEST_PATH);
 	}
 }
 
+/**
+ * Step 1: take off flights in random order. No alternative ways and no delays considered
+ */
+void Problem::initialFlightsTakeOff() {
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		int currentPosition = this->_orderFlights[i];
+		Djistra(_listFlights[currentPosition], OPTION_ONLY_INITIAL_SOLUTION);
+	}
+}
 /**
  * Try to interchange a bad flight to
  */
@@ -102,7 +124,7 @@ void Problem::createOrderFlights() {
 
 	// using built-in random generator:
 	std::random_shuffle(myvector.begin(), myvector.end());
-	this->orderFlights = myvector;
+	this->_orderFlights = myvector;
 
 	// print out content:
 	std::cout << "my vector contains:";
@@ -310,34 +332,34 @@ void Problem::createWaypoints() {
 
 }
 
-void Problem::calculateAllShortestPath() {
-	for (int i = 0; i < this->getNumFlights(); i++) {
-		if (_listFlights[i]->getStatus() == 0)
-			Djistra(_listFlights[i], OPTION_ONLY_OVERLOAD_SECTORS);
-	}
-}
+//void Problem::calculateAllShortestPath() {
+//	for (int i = 0; i < this->getNumFlights(); i++) {
+//		if (_listFlights[i]->getStatus() == 0)
+//			Djistra(_listFlights[i], OPTION_ONLY_OVERLOAD_SECTORS);
+//	}
+//}
 
-void Problem::getInitialOverloadSectors() {
-	for (int i = 0; i < this->getNumFlights(); i++) {
-		Djistra(_listFlights[i], OPTION_SHORTEST_PATH);
-	}
-
-	std::vector<int> sectorsToAvoid;
-	std::vector<int> totalChargeAllTimes(this->getNumSectors(), 0);
-	for (int i = 0; i < 50; i++) {
-
-		for (int j = 0; j < this->getNumSectors(); j++) {
-			// if in some moment is overload
-			if (_timeMomentlist[i]->getNumFlightsSector()[j] > 1) {
-				sectorsToAvoid.push_back(_timeMomentlist[i]->getNumFlightsSector()[j]);
-			}
-			totalChargeAllTimes[j] += _timeMomentlist[i]->getNumFlightsSector()[j];
-		}
-	}
-	_initialOverload = totalChargeAllTimes;
-	for (std::vector<int>::const_iterator i = totalChargeAllTimes.begin(); i != totalChargeAllTimes.end(); ++i)
-		std::cout << *i << ' ';
-}
+//void Problem::getInitialOverloadSectors() {
+//	for (int i = 0; i < this->getNumFlights(); i++) {
+//		Djistra(_listFlights[i], OPTION_SHORTEST_PATH);
+//	}
+//
+//	std::vector<int> sectorsToAvoid;
+//	std::vector<int> totalChargeAllTimes(this->getNumSectors(), 0);
+//	for (int i = 0; i < 50; i++) {
+//
+//		for (int j = 0; j < this->getNumSectors(); j++) {
+//			// if in some moment is overload
+//			if (_timeMomentlist[i]->getNumFlightsSector()[j] > 1) {
+//				sectorsToAvoid.push_back(_timeMomentlist[i]->getNumFlightsSector()[j]);
+//			}
+//			totalChargeAllTimes[j] += _timeMomentlist[i]->getNumFlightsSector()[j];
+//		}
+//	}
+//	_initialOverload = totalChargeAllTimes;
+//	for (std::vector<int>::const_iterator i = totalChargeAllTimes.begin(); i != totalChargeAllTimes.end(); ++i)
+//		std::cout << *i << ' ';
+//}
 
 void Problem::getFlightsUnconnected() {
 	std::vector<string> allWaypointsRoute;
@@ -396,12 +418,11 @@ vector<string> Problem::getUniqueWaypointsRouteByFlight(Flight *flight) {
 }
 
 //Actualizar el nº de vuelos por sector en tiempo t
-void Problem::updateTimeSector(vector <int> PathIdWaypointsRoute, int numWaypointsFlight, Flight *flight) {
+void Problem::updateTimeSector(vector<int> PathIdWaypointsRoute, int numWaypointsFlight, Flight *flight) {
 	int lastInstantFlight = 0;
 	int idOldSectorToUpdate = 0;
 	for (int i = 1; i < numWaypointsFlight; i++) {
 		WaypointRoute *currentWR = flight->getListWaypointsRoute()[PathIdWaypointsRoute[i]];
-
 		//if is waypoint end (1), stop
 		if (currentWR->getId() == 1) {
 			break;
@@ -410,7 +431,9 @@ void Problem::updateTimeSector(vector <int> PathIdWaypointsRoute, int numWaypoin
 		else {
 
 			int newInstantFlight = currentWR->getInTime();
+
 			string nameSector = currentWR->getWaypointFather()->getSector1();
+
 			int idSectorToUpdate = this->getIdSectorByName(nameSector);
 
 //			cout << "En el instante " << newInstantFlight << " estoy en el "
@@ -435,6 +458,7 @@ void Problem::updateTimeSector(vector <int> PathIdWaypointsRoute, int numWaypoin
 
 // update timeMomentList in periods flight is traveling between waypoints
 void Problem::updateTimesBetweenWaypoints(int lastInstantFlight, int newInstantFlight, int idOldSectorToUpdate) {
+
 	for (int i = lastInstantFlight + 1; i < newInstantFlight; i++) {
 		//	cout << "*********En el instante " << i << " ++ en sector" << idOldSectorToUpdate << endl;
 		_timeMomentlist[i]->getNumFlightsSector()[idOldSectorToUpdate]++;
@@ -454,7 +478,7 @@ int Problem::sectorIsFreeAtTime(int time, string sectorName) {
 int Problem::conditionDjistraByOption(int option, int inTime, string sectorWaypointRoute, int isAirport) {
 	int resultCondition = 0;
 	switch (option) {
-		case OPTION_ONLY_OVERLOAD_SECTORS:
+		case OPTION_ONLY_INITIAL_SOLUTION:
 			resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute) || isAirport);
 			break;
 

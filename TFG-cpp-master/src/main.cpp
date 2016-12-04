@@ -34,8 +34,6 @@ int main() {
 	int numTrajectories = linesFile("./Resources/medium1/trajectories.csv");
 	int numWaypoints = linesFile("./Resources/medium1/waypoints.csv");
 
-
-
 	Problem *p = new Problem(numAirports, numSectors, numTrajectories, numWaypoints, numFlights);
 
 	//USAR EL PRINT DATA DE AUX
@@ -51,15 +49,14 @@ int main() {
 	p->inizializeProblem();
 	log << writeInLog("Initialization finished");
 
-	log << writeInLog("Calculating first iteration");
+	log << writeInLog("Calculating shortest paths");
 	p->initialValidations();
 
-	log << writeInLog("Step 1. Set up flights in random order");
-	//p->calculateAllShortestPath();
-
+	log << writeInLog("Step 1. Take of flights in random order");
+	p->initialFlightsTakeOff();
 
 	log << writeInLog("Step 2. trying to interchange flights");
-	p->interchangeFlights();
+	// p->interchangeFlights();
 	log << writeInLog("Execution finished");
 	log.close();
 
