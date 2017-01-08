@@ -11,6 +11,7 @@
 #include "Problem.h"
 #include "Waypoint.h"
 #include <fstream>
+#include <list>
 
 int linesFile(char* route);
 void printProblemData(std::ofstream log, Problem *p);
@@ -25,9 +26,11 @@ std::string writeInLog(std::string text);
 
 void printVectorString(vector<string> vectorStrings);
 void printVectorInt(vector<int> vectorInts);
+vector<int> createVectorFromList(list<int> path);
 
 vector<string> removeDuplicatesVectorString(vector<string> vectorStrings);
 vector<string> joinVectorString(vector<string> vectorA, vector<string> vectorB, vector<string> &finalVector);
 vector<int> arrayIntToVector(int *array);
+int** initializeMatrixRoutes();
 
 #endif /* UTILITIES_H_ */

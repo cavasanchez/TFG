@@ -135,6 +135,14 @@ public:
 		_intialSolution = intialSolution;
 	}
 
+	int getTimeFinish() const {
+		return _timeFinish;
+	}
+
+	void setTimeFinish(int timeFinish) {
+		_timeFinish = timeFinish;
+	}
+
 private:
 	int _id;
 	int _timeStart;
@@ -145,19 +153,21 @@ private:
 	int _idWaypointEnd;
 	int _status;
 	int _numRoutes;
+	int _timeFinish;
 	std::string *_listNameWaypoints;
 	WaypointRoute **_listWaypointsRoute;
 	int _numWaypointsRoute;
 	Heuristic* _heuristic;
 	std::vector<int> _intialSolution;	// in waypointsRouteId
 	std::vector<int> _currentSolution;	//
+	std::vector<Flight> _flightInterchangeCandidates;
 
 	/*
 	 * STATUS VUELO:
 	 * 0= sin salir
 	 * 1= llegó en tiempo
 	 * 2= llega con delay
-	 * 3= cancelado
+	 * -1= cancelado
 	 */
 
 };

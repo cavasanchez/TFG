@@ -7,15 +7,14 @@
 
 #include "Utilities.h"
 
-#include <stddef.h>
-#include <cstdio>
-#include <iostream>
-#include <string>
 #include <stdlib.h>
 #include <algorithm>    // std::sort
+#include <cstdio>
+#include <ctime>
+#include <iterator>
+#include <string>
+#include <vector>
 
-#include "Problem.h"
-#include "Waypoint.h"
 
 int linesFile(char* route) {
 	int numLines = 0;
@@ -116,5 +115,30 @@ vector<int> arrayIntToVector(int *array) {
 	exit(1);
 
 	return (std::vector<int>(array, array + sizeof array / sizeof array[0]));
+}
+
+int** initializeMatrixRoutes() {
+	int size = 1000;
+	int **matrix = (int **) malloc(size * sizeof(int*));
+	for (int i = 0; i < size; i++) {
+		matrix[i] = (int *) malloc(size * sizeof(int));
+	}
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			matrix[i][j] = -1;
+		}
+	}
+	return matrix;
+}
+
+vector<int> createVectorFromList(list<int> path) {
+	vector<int> solution;
+	int sizeList = path.size();
+	for (int i = 0; i < sizeList; i++) {
+		int currentValue = path.front();
+		path.pop_front();
+		solution.push_back(currentValue);
+	}
+	return solution;
 }
 

@@ -56,7 +56,7 @@ int main() {
 	p->initialFlightsTakeOff();
 
 	log << writeInLog("Step 2. trying to interchange flights");
-	// p->interchangeFlights();
+	p->interchangeFlights();
 	log << writeInLog("Execution finished");
 	log.close();
 

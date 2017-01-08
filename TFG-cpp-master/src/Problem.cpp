@@ -26,6 +26,7 @@
 #include <string>
 #include <list>
 #include <cstdlib>      // std::rand, std::srand
+#include <algorithm>    // std::for_each
 
 #include <limits> // for numeric_limits
 
@@ -39,6 +40,10 @@
 
 Problem::Problem() {
 
+}
+
+Problem::~Problem() {
+	// TODO Auto-generated destructor stub
 }
 Problem::Problem(int numAirports, int numSectors, int numTrajectories, int numWaypoints, int numFlights) {
 	_numAirports = numAirports;
@@ -81,7 +86,7 @@ void Problem::initialValidations() {
 	this->getFlightsUnconnected();
 
 	cout << "calcula el camino más corto para cada vuelo" << endl;
-	this->getShortestRoutes();
+	this->getInitialShortestRoutes();
 
 //	cout << "busca los sobrecargados iniciales" << endl;
 //	this->getInitialOverloadSectors();
@@ -92,10 +97,15 @@ void Problem::initialValidations() {
 //	}
 }
 
-void Problem::getShortestRoutes() {
+void Problem::getInitialShortestRoutes() {
 	for (int i = 0; i < this->getNumFlights(); i++) {
 		Djistra(_listFlights[i], OPTION_SHORTEST_PATH);
 	}
+
+//PRUEBAS
+	Djistra(_listFlights[0], OPTION_SHORTEST_PATH);
+	Djistra(_listFlights[13], OPTION_SHORTEST_PATH);
+
 }
 
 /**
@@ -108,9 +118,19 @@ void Problem::initialFlightsTakeOff() {
 	}
 }
 /**
- * Try to interchange a bad flight to
+ * Try to interchange a bad
  */
 void Problem::interchangeFlights() {
+	//Step 1: create candidates for each flight in time
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		//flights set as ok
+		if (_listFlights[i]->getStatus() == 1) {
+			createFlightCandidatesInterchange(_listFlights[i]);
+		}
+	}
+
+	//Step2: try to get a better solution interchangin flights
+	//tryInterchageFlights();
 
 }
 
@@ -212,6 +232,7 @@ int Problem::getIdSectorByName(std::string name) {
 			break;
 		}
 	}
+
 	return id;
 }
 
@@ -266,10 +287,11 @@ void Problem::createSectors() {
 			++i;
 		}
 
-		Sector *newSector = new Sector(cont, array[0], 1);
+		Sector *newSector = new Sector(cont, (array[0]), 1);
 		_listSectors[cont] = newSector;
 		cont++;
 	}
+
 	fe.close();
 }
 int Problem::nameInList(string nameWay, Waypoint **waypoints, int cont) {
@@ -312,7 +334,6 @@ void Problem::createWaypoints() {
 			Waypoint *newWaypoint = new Waypoint(cont, array[0], array[1]);
 			if (array[0][0] == 'A') {
 				newWaypoint->setIsAirport(1);
-				cout << array[0] << " es aeropuerto" << endl;
 			}
 			_listWaypoints[cont] = newWaypoint;
 
@@ -379,7 +400,6 @@ void Problem::getFlightsUnconnected() {
 		}
 	}
 	cout << endl;
-	//printVectorString(allWaypointsRoute);
 }
 //Return if all waypoints route of flight only appears once in allWaypointsRoute
 bool Problem::flightIsUnconnected(vector<string> allWaypointsRoute, vector<string> flightWaypointsRoute) {
@@ -418,42 +438,20 @@ vector<string> Problem::getUniqueWaypointsRouteByFlight(Flight *flight) {
 }
 
 //Actualizar el nº de vuelos por sector en tiempo t
-void Problem::updateTimeSector(vector<int> PathIdWaypointsRoute, int numWaypointsFlight, Flight *flight) {
-	int lastInstantFlight = 0;
-	int idOldSectorToUpdate = 0;
-	for (int i = 1; i < numWaypointsFlight; i++) {
+void Problem::updateTimeSector(vector<int> PathIdWaypointsRoute, Flight *flight) {
+	for (int i = 1; i < PathIdWaypointsRoute.size(); i++) {
 		WaypointRoute *currentWR = flight->getListWaypointsRoute()[PathIdWaypointsRoute[i]];
-		//if is waypoint end (1), stop
-		if (currentWR->getId() == 1) {
-			break;
+		WaypointRoute *previousWR = flight->getListWaypointsRoute()[PathIdWaypointsRoute[i - 1]];
+
+		for (int j = previousWR->getInTime(); j < currentWR->getInTime(); j++) {
+
+			string nameSector = previousWR->getWaypointFather()->getSector1();
+			int idSector = getIdSectorByName(nameSector);
+//			cout << "añado 1 al sector" << nameSector << " del wr " << previousWR->getId() << " en instante " << j
+//					<< endl;
+			_timeMomentlist[i]->getNumFlightsSector()[idSector]++;
 		}
-
-		else {
-
-			int newInstantFlight = currentWR->getInTime();
-
-			string nameSector = currentWR->getWaypointFather()->getSector1();
-
-			int idSectorToUpdate = this->getIdSectorByName(nameSector);
-
-//			cout << "En el instante " << newInstantFlight << " estoy en el "
-//					<< flight->getListWaypointsRoute()[idPaths[i]]->getCompleteName() << " y sectores"
-//					<< idSectorToUpdate << endl;
-
-			//update times between waypoints
-			this->updateTimesBetweenWaypoints(lastInstantFlight, newInstantFlight, idOldSectorToUpdate);
-
-			lastInstantFlight = newInstantFlight;
-			idOldSectorToUpdate = idSectorToUpdate;
-//			cout << "*********En el instante " << newInstantFlight << " ++ en sector" << idSectorToUpdate << endl;
-
-			//airpots has no capacity
-			if (!currentWR->isAirport())
-				_timeMomentlist[newInstantFlight]->getNumFlightsSector()[idSectorToUpdate]++;
-		}
-
 	}
-
 }
 
 // update timeMomentList in periods flight is traveling between waypoints
@@ -464,7 +462,6 @@ void Problem::updateTimesBetweenWaypoints(int lastInstantFlight, int newInstantF
 		_timeMomentlist[i]->getNumFlightsSector()[idOldSectorToUpdate]++;
 
 	}
-
 }
 
 int Problem::sectorIsFreeAtTime(int time, string sectorName) {
@@ -491,10 +488,8 @@ int Problem::conditionDjistraByOption(int option, int inTime, string sectorWaypo
 
 void Problem::createRoutes(Flight *flight) {
 	int newPosition = 2;
-	int size = 1000;
 	int numWaypoints = flight->getAllWaypointsFlight();
-//	cout << "el flight con id " << flight->getId() << " tiene " << numWaypoints << endl;
-	WaypointRoute **waypointsRoute = new WaypointRoute*[size];
+	WaypointRoute **waypointsRoute = new WaypointRoute*[1000];
 
 	int cont = 0;
 	string seqArray[numWaypoints];
@@ -502,26 +497,13 @@ void Problem::createRoutes(Flight *flight) {
 	string timesMin[numWaypoints];
 	string timesMax[numWaypoints];
 
-//2 por el start y el end
+	//2 por el start y el end
 	int num = 2;
-	int **matrix = (int **) malloc(size * sizeof(int*));
-
-	for (int i = 0; i < size; i++) {
-		matrix[i] = (int *) malloc(size * sizeof(int));
-
-	}
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++) {
-			matrix[i][j] = -1;
-
-		}
-	}
+	int **matrix = initializeMatrixRoutes();
 
 	//Creamos nodos inicio y fin
 	WaypointRoute *start = new WaypointRoute(0, flight->getTimeStart(), getWaypointById(flight->getIdWaypointStart()));
-
 	WaypointRoute *end = new WaypointRoute(1, 0, getWaypointById(flight->getIdWaypointEnd()));
-
 	waypointsRoute[0] = start;
 	waypointsRoute[1] = end;
 
@@ -564,7 +546,6 @@ void Problem::createRoutes(Flight *flight) {
 	int numWaypointsList = newPosition;
 
 	for (int numRoutes = 0; numRoutes < flight->getNumRoutes(); numRoutes++) {
-		//cout << "RONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
 		for (int i = 1; i < numWaypoints; i++) {
 
 			string actualSeq = seqArray[i];
@@ -586,57 +567,31 @@ void Problem::createRoutes(Flight *flight) {
 
 					if (waypointsRoute[j]->getWaypointFather()->getId()
 							== this->getIdWaypointByName(pointsArray[i - 1])) {
-//
-//						cout << "NUEVO NODO DE SALIDA DETECTADO: el " << j
-//								<< endl;
-//						cout << "En la lista hay " << numWaypointsList
-//								<< " nodos" << endl;
 
-//Creo un nodo por cada posible tiempo
+						//Creo un nodo por cada posible tiempo
 						int timeMax = atoi(timesMax[i].c_str());
 						int timeMin = atoi(timesMin[i].c_str());
 
 						for (int times = timeMin; times <= timeMax; times++) {
-
-//							cout << "Miro si existe un WR con padre "
-//									<< pointsArray[i] << " y time del padre "
-//									<< times + waypointsRoute[j]->getInTime()
-//									<< endl;
-
+							int currentPostion = times + waypointsRoute[j]->getInTime();
 							int position = isWaypointRouteInList(waypointsRoute, getIdWaypointByName(pointsArray[i]),
-									times + waypointsRoute[j]->getInTime(), numWaypointsList);
+									currentPostion, numWaypointsList);
 							if (position == -1) {
-//								cout << "---->Creo un waypoint con id "
-//										<< numWaypointsList << "y intime "
-//										<< times
-//												+ waypointsRoute[j]->getInTime()
-//										<< " y padre "
-//										<< getWaypointById(
-//												getIdWaypointByName(
-//														pointsArray[i]))->getId()
-//										<< endl;
-
 								WaypointRoute *w = new WaypointRoute(numWaypointsList,
 										times + waypointsRoute[j]->getInTime(),
 										getWaypointById(getIdWaypointByName(pointsArray[i])));
 								waypointsRoute[numWaypointsList] = w;
 
-//								cout << "pongo un " << atoi(timesMin[i].c_str())
-//										<< " en " << waypointsRoute[j]->getId()
-//										<< "," << numWaypointsList << endl;
-								matrix[numWaypointsList][waypointsRoute[j]->getId()] = atoi(timesMin[i].c_str());
+								matrix[numWaypointsList][waypointsRoute[j]->getId()] = timeMin;
 								numWaypointsList++;
-							} else {
-//								cout << "-->WAYPOINT YA EXISTENTE" << endl;
-//								cout << "pongo un " << atoi(timesMin[i].c_str())
-//										<< " en " << waypointsRoute[j]->getId()
-//										<< "," << position << endl;
-								matrix[position][waypointsRoute[j]->getId()] = atoi(timesMin[i].c_str());
+							}
+							//Waypoint already exists
+							else {
+								matrix[position][waypointsRoute[j]->getId()] = timeMin;
 							}
 
 						}
 					}
-
 				}
 
 				actualPoint = pointsArray[i + 1];
@@ -650,10 +605,15 @@ void Problem::createRoutes(Flight *flight) {
 		}
 	}
 
-//Unir los destino prima al aeropuerto
+	this->setProblemRouteAttributes(flight, matrix, numWaypointsList, waypointsRoute);
+}
+
+void Problem::setProblemRouteAttributes(Flight *flight, int **matrix, int numWaypointsList,
+		WaypointRoute **waypointsRoute) {
+
+	//Unir los destino prima al aeropuerto
 	for (int v = 0; v < numWaypointsList; v++) {
 		if (waypointsRoute[v]->getWaypointFather()->getId() == flight->getIdWaypointEnd() && v != 1) {
-
 			matrix[1][v] = 0;
 		}
 	}
@@ -663,19 +623,11 @@ void Problem::createRoutes(Flight *flight) {
 				matrix[i][j] = 1000;
 
 			}
-
 		}
-
 	}
-//	cout << " vuelo " << flight->getId() << endl;
-//	cout << "EL TAMAÑO ES :" << numWaypointsList << endl;
 	flight->setNumWaypointsRoute(numWaypointsList);
-//	cout << "el retardo del vuelo es de " << flight->getGroundDelay() << endl;
-//	cout << "rutas " << flight->getNumRoutes() << endl;
-//	printMatrixInt(matrix, flight->getNumWaypointsRoute());
 	flight->setRoutes(matrix);
 	flight->setListWaypointsRoute(waypointsRoute);
-
 }
 
 int Problem::isWaypointRouteInList(WaypointRoute **list, int idFather, int inTime, int sizeList) {
@@ -685,9 +637,79 @@ int Problem::isWaypointRouteInList(WaypointRoute **list, int idFather, int inTim
 			position = i;
 			break;
 		}
-
 	}
-//cout << "SACO " << position << endl;
 	return position;
+}
+
+bool Problem::solutionHasValidSectors(vector<int> vectorWaypointsRoute, Flight *flight) {
+	bool result = true;
+
+	for (int i = 1; i < vectorWaypointsRoute.size(); i++) {
+		WaypointRoute *currentWR = flight->getListWaypointsRoute()[vectorWaypointsRoute[i]];
+		WaypointRoute *previousWR = flight->getListWaypointsRoute()[vectorWaypointsRoute[i - 1]];
+
+		for (int j = previousWR->getInTime(); j < currentWR->getInTime(); j++) {
+			string nameSector = previousWR->getWaypointFather()->getSector1();
+			int idSector = getIdSectorByName(nameSector);
+//			cout << "miro si está libre el sector" << nameSector << " del wr " << previousWR->getId() << " en instante "
+//					<< j << endl;
+			int flightsInSector = _timeMomentlist[i]->getNumFlightsSector()[idSector];
+			if (flightsInSector > 0) {
+				result = false;
+//				cout << "OCUOPADO" << endl;
+				break;
+			}
+		}
+	}
+
+	return result;
+}
+
+void Problem::createFlightCandidatesInterchange(Flight *flight) {
+	std::vector<Flight> candidates;
+	//foreach canceled flight, check if share at least one WR on same time
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		Flight *currentFlight = _listFlights[i];
+		if (_listFlights[i]->getStatus() == -1) {
+			bool isCandidate = checkFlightsShareSectorInTime(flight, currentFlight);
+			if (isCandidate)
+				candidates.push_back(*currentFlight);
+		}
+	}
+
+	exit(1);
+}
+
+bool Problem::checkFlightsShareSectorInTime(Flight *original, Flight *candidate) {
+	vector<int> originalSolution = original->getIntialSolution();
+	vector<int> candidateSolution = candidate->getIntialSolution();
+	//foreach WR in original
+	for (std::vector<int>::iterator eachWRId = originalSolution.begin(); eachWRId != originalSolution.end();
+			++eachWRId) {
+		//cout << *eachWRId << " del " << candidate->getId() << endl;
+		WaypointRoute *currentWR = original->getListWaypointsRoute()[*eachWRId];
+
+		if (!currentWR->isAirport()) {
+			int inTimeOriginal = currentWR->getInTime();
+			int idSectorOriginal = getIdSectorByName(currentWR->getWaypointFather()->getSector1());
+			std::pair<int, int> orinalPair(inTimeOriginal, idSectorOriginal);
+
+			//check if some WR of candidate has same sector and in time
+			for (std::vector<int>::iterator it = candidateSolution.begin(); it != candidateSolution.end(); ++it) {
+				WaypointRoute *candidateWR = candidate->getListWaypointsRoute()[*it];
+				if (!candidateWR->isAirport()) {
+					int inTimeCadidate = candidateWR->getInTime();
+					int idSectorCandidate = getIdSectorByName(candidateWR->getWaypointFather()->getSector1());
+					std::pair<int, int> candidatePair(inTimeCadidate, idSectorCandidate);
+
+					if (candidatePair == orinalPair) {
+					//	cout << "el " << *it << " del "<<candidate->getId()<<" coincide!" << endl;
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
 }
 
