@@ -44,6 +44,9 @@ public:
 
 	std::string getCompleteName();
 
+	int getIdSector();
+
+
 private:
 	int _id;
 	int _inTime;

@@ -129,3 +129,12 @@ void Flight::assignHeuristics() {
 
 }
 
+vector<int> Flight::getIdSectorsIS() {
+	vector<int> sectors;
+	for (std::vector<int>::iterator it = this->_initialSolution.begin(); it != this->_initialSolution.end(); ++it) {
+		WaypointRoute *currentWR = _listWaypointsRoute[*it];
+		currentWR->getIdSector();
+	}
+	return removeDuplicatesVectorInt(sectors);
+}
+

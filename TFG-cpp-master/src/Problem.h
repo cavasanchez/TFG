@@ -23,6 +23,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <map>
 
 using namespace std;
 
@@ -108,8 +109,11 @@ public:
 	int conditionDjistraByOption(int option, int inTime, string sectorWaypointRoute, int isAirport);
 	void updateTimesBetweenWaypoints(int lastInstantFlight, int newInstantFlight, int idSectorToUpdate);
 	void tryInterchageFlights();
-	void createFlightCandidatesInterchange(Flight *flight);
+	vector<int> createFlightCandidatesInterchange(Flight *flight);
 	bool checkFlightsShareSectorInTime(Flight *original, Flight *candidate);
+	bool existsPairWRInFlight(pair<int, int> orinalPair, Flight *candidate);
+	map<int, vector<int> > filterFlightsBlokcMore1(map<int, vector<int> > original);
+	int tryInterchange(map<int, vector<int> > mapFiltered);
 
 	void Djistra(Flight *flight, int option);
 

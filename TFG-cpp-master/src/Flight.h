@@ -128,11 +128,11 @@ public:
 	}
 
 	const std::vector<int>& getIntialSolution() const {
-		return _intialSolution;
+		return _initialSolution;
 	}
 
 	void setIntialSolution(const std::vector<int>& intialSolution) {
-		_intialSolution = intialSolution;
+		_initialSolution = intialSolution;
 	}
 
 	int getTimeFinish() const {
@@ -142,6 +142,9 @@ public:
 	void setTimeFinish(int timeFinish) {
 		_timeFinish = timeFinish;
 	}
+
+	std::vector<int>getIdSectorsIS();
+
 
 private:
 	int _id;
@@ -158,7 +161,7 @@ private:
 	WaypointRoute **_listWaypointsRoute;
 	int _numWaypointsRoute;
 	Heuristic* _heuristic;
-	std::vector<int> _intialSolution;	// in waypointsRouteId
+	std::vector<int> _initialSolution;	// in waypointsRouteId
 	std::vector<int> _currentSolution;	//
 	std::vector<Flight> _flightInterchangeCandidates;
 
@@ -168,6 +171,7 @@ private:
 	 * 1= llegó en tiempo
 	 * 2= llega con delay
 	 * -1= cancelado
+	 * -10= sin solución inicial -> ERROR DATOS
 	 */
 
 };

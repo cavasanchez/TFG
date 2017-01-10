@@ -15,7 +15,6 @@
 #include <string>
 #include <vector>
 
-
 int linesFile(char* route) {
 	int numLines = 0;
 	std::ifstream f(route);
@@ -94,7 +93,13 @@ void printVectorInt(vector<int> vectorInts) {
 		std::cout << *i << ' ';
 }
 
-vector<string> removeDuplicatesVectorString(vector<string> vectorStrings) {
+vector<string> removeDuplicatesVectorString(vector<int> vectorStrings) {
+	sort(vectorStrings.begin(), vectorStrings.end());
+	vectorStrings.erase(unique(vectorStrings.begin(), vectorStrings.end()), vectorStrings.end());
+	return vectorStrings;
+}
+
+vector<string> removeDuplicatesVectorInt(vector<int> vectorStrings) {
 	sort(vectorStrings.begin(), vectorStrings.end());
 	vectorStrings.erase(unique(vectorStrings.begin(), vectorStrings.end()), vectorStrings.end());
 	return vectorStrings;
@@ -140,5 +145,21 @@ vector<int> createVectorFromList(list<int> path) {
 		solution.push_back(currentValue);
 	}
 	return solution;
+}
+
+vector<int> getFlightsThatBlocks(int value, map<int, vector<int> > original) {
+	vector<int> flightsThatBlocks;
+	for (map<int, vector<int> >::iterator it = original.begin(); it != original.end(); ++it) {
+		vector<int> currentCandidates = it->second;
+		//for each candidate
+		for (vector<int>::iterator eachCandidate = currentCandidates.begin(); eachCandidate != currentCandidates.end();
+				++eachCandidate) {
+			if (value == *eachCandidate) {
+				flightsThatBlocks.push_back(*eachCandidate);
+			}
+		}
+	}
+
+	return flightsThatBlocks;
 }
 

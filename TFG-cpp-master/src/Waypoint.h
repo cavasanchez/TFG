@@ -14,7 +14,7 @@
 class Waypoint {
 public:
 
-	Waypoint(int id, std::string name, std::string sector1);
+	Waypoint(int id, std::string name, Sector *sector1);
 
 	int getId() const {
 		return _id;
@@ -32,22 +32,6 @@ public:
 		_name = name;
 	}
 
-	const std::string& getSector1() const {
-		return _sector1;
-	}
-
-	void setSector1(const std::string& sector1) {
-		_sector1 = sector1;
-	}
-
-	const std::string& getSector2() const {
-		return _sector2;
-	}
-
-	void setSector2(const std::string& sector2) {
-		_sector2 = sector2;
-	}
-
 	int getIsAirport() const {
 		return _isAirport;
 	}
@@ -56,12 +40,21 @@ public:
 		_isAirport = isAirport;
 	}
 
+	const Sector* getSector1() const {
+		return _sector1;
+	}
+
+//	const Sector* getSector2() const {
+//		return _sector2;
+//	}
+
+
 private:
 
 	int _id;
 	std::string _name;
-	std::string _sector1;
-	std::string _sector2;
+	Sector *_sector1;
+//	Sector *_sector2;
 	int _isAirport;
 
 };

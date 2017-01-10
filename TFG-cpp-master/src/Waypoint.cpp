@@ -8,12 +8,10 @@
 #include "Waypoint.h"
 #include "Sector.h"
 
-Waypoint::Waypoint(int id, std::string name, std::string sector1 ) {
+Waypoint::Waypoint(int id, std::string name, Sector *sector1) {
 	_id = id;
 	_name = name;
-	_sector1=sector1;
-	_sector2="NO";
-	_isAirport=0;
+	_sector1 = sector1;
+	_isAirport = 0;
 
 }
-

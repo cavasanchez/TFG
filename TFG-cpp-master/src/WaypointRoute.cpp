@@ -43,6 +43,11 @@ std::string WaypointRoute::getName() {
 	return (this->getWaypointFather()->getName());
 }
 
-bool WaypointRoute::isAirport(){
+bool WaypointRoute::isAirport() {
 	return (this->getWaypointFather()->getIsAirport());
 }
+
+int WaypointRoute::getIdSector() {
+	return this->getWaypointFather()->getSector1()->getId();
+}
+

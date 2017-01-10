@@ -94,7 +94,7 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 
 						WaypointRoute *currentWaypointRoute = flight->getListWaypointsRoute()[fila];
 						std::string nameWaypointRoute = currentWaypointRoute->getCompleteName();
-						std::string sectorWaypointRoute = currentWaypointRoute->getWaypointFather()->getSector1();
+						std::string sectorWaypointRoute = currentWaypointRoute->getWaypointFather()->getSector1()->getName();
 
 						// Time instant we analize
 						int inTime = currentWaypointRoute->getInTime() + flight->getTimeStart();
@@ -180,18 +180,18 @@ void Problem::Djistra(Flight *flight, int option) {
 	//Find shortest path
 	computePaths(0, adjacency_list, min_distance, previous);
 
-	int distance=min_distance[1];
+	int distance = min_distance[1];
 	std::cout << "Distance del " << flight->getId() << ": " << distance << std::endl;
 
 	// If we have found a route
-	if (distance < MAX_DISTANCE && distance>0) {
+	if (distance < MAX_DISTANCE && distance > 0) {
 
 		list<vertex_t> path = getShortestPathTo(1, previous);
-		cout << "Path: " << endl;
+		cout << "Path: ";
 		copy(path.begin(), path.end(), std::ostream_iterator<vertex_t>(std::cout, " "));
 		cout << endl;
 
-		vector<int> pathWaypointsRoute=createVectorFromList(path);
+		vector<int> pathWaypointsRoute = createVectorFromList(path);
 
 		//Post solution
 		switch (option) {
@@ -204,13 +204,22 @@ void Problem::Djistra(Flight *flight, int option) {
 
 				updateTimeSector(pathWaypointsRoute, flight);
 				flight->setStatus(1);
-				flight->setTimeFinish(flight->getTimeStart()+distance);
+				flight->setTimeFinish(flight->getTimeStart() + distance);
 				break;
 		}
 
 	} else {
-		flight->setStatus(-1);
-		cout << "CAMINO NO ENCONTRADO" << endl;
+		switch (option) {
+			case OPTION_SHORTEST_PATH:
+				flight->setStatus(-10);
+				cout << "SIN SOLUCION INICIAL. CAMINO NO ENCONTRADO" << endl;
+
+			case OPTION_ONLY_INITIAL_SOLUTION:
+				flight->setStatus(-1);
+				cout << "CAMINO NO ENCONTRADO" << endl;
+		}
+
+
 	}
 
 }
