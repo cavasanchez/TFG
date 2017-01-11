@@ -94,7 +94,8 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 
 						WaypointRoute *currentWaypointRoute = flight->getListWaypointsRoute()[fila];
 						std::string nameWaypointRoute = currentWaypointRoute->getCompleteName();
-						std::string sectorWaypointRoute = currentWaypointRoute->getWaypointFather()->getSector1()->getName();
+						std::string sectorWaypointRoute =
+								currentWaypointRoute->getWaypointFather()->getSector1()->getName();
 
 						// Time instant we analize
 						int inTime = currentWaypointRoute->getInTime() + flight->getTimeStart();
@@ -201,9 +202,7 @@ void Problem::Djistra(Flight *flight, int option) {
 
 			case OPTION_ONLY_INITIAL_SOLUTION:
 				cout << "----ENCONTRADO!" << endl;
-
-				updateTimeSector(pathWaypointsRoute, flight);
-				flight->setStatus(1);
+				setFlightOk(flight,pathWaypointsRoute);
 				flight->setTimeFinish(flight->getTimeStart() + distance);
 				break;
 		}
@@ -218,7 +217,6 @@ void Problem::Djistra(Flight *flight, int option) {
 				flight->setStatus(-1);
 				cout << "CAMINO NO ENCONTRADO" << endl;
 		}
-
 
 	}
 

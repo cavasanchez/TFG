@@ -14,7 +14,7 @@
 #include <iterator>
 #include <string>
 #include <vector>
-
+#include <iostream>
 int linesFile(char* route) {
 	int numLines = 0;
 	std::ifstream f(route);
@@ -89,20 +89,21 @@ void printVectorString(vector<string> vectorStrings) {
 }
 
 void printVectorInt(vector<int> vectorInts) {
-	for (std::vector<int>::const_iterator i = vectorInts.begin(); i != vectorInts.end(); ++i)
+	for (std::vector<int>::const_iterator i = vectorInts.begin(); i != vectorInts.end(); ++i) {
 		std::cout << *i << ' ';
+	}
 }
 
-vector<string> removeDuplicatesVectorString(vector<int> vectorStrings) {
+vector<string> removeDuplicatesVectorString(vector<string> vectorStrings) {
 	sort(vectorStrings.begin(), vectorStrings.end());
 	vectorStrings.erase(unique(vectorStrings.begin(), vectorStrings.end()), vectorStrings.end());
 	return vectorStrings;
 }
 
-vector<string> removeDuplicatesVectorInt(vector<int> vectorStrings) {
-	sort(vectorStrings.begin(), vectorStrings.end());
-	vectorStrings.erase(unique(vectorStrings.begin(), vectorStrings.end()), vectorStrings.end());
-	return vectorStrings;
+vector<int> removeDuplicatesVectorInt(vector<int> vectorInt) {
+	sort(vectorInt.begin(), vectorInt.end());
+	vectorInt.erase(unique(vectorInt.begin(), vectorInt.end()), vectorInt.end());
+	return vectorInt;
 }
 
 vector<string> joinVectorString(vector<string> vectorA, vector<string> vectorB, vector<string> &finalVector) {
@@ -149,17 +150,48 @@ vector<int> createVectorFromList(list<int> path) {
 
 vector<int> getFlightsThatBlocks(int value, map<int, vector<int> > original) {
 	vector<int> flightsThatBlocks;
+
 	for (map<int, vector<int> >::iterator it = original.begin(); it != original.end(); ++it) {
-		vector<int> currentCandidates = it->second;
-		//for each candidate
-		for (vector<int>::iterator eachCandidate = currentCandidates.begin(); eachCandidate != currentCandidates.end();
-				++eachCandidate) {
-			if (value == *eachCandidate) {
-				flightsThatBlocks.push_back(*eachCandidate);
+		int currentFlight = it->first;
+		vector<int> candidates = it->second;
+		for (std::vector<int>::iterator currentCandidate = candidates.begin(); currentCandidate != candidates.end();
+				++currentCandidate) {
+			if (*currentCandidate == value) {
+				flightsThatBlocks.push_back(currentFlight);
 			}
 		}
 	}
-
 	return flightsThatBlocks;
 }
 
+int getMinValueFomVector(vector<int> vector) {
+	int min = 1000;
+	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); ++it) {
+		if (*it < min)
+			min = *it;
+	}
+	return min;
+}
+
+vector<int> removeElementsFromVector(vector<int> orignal, vector<int> elementsToDelete) {
+	vector<int> erased = orignal;
+	for (std::vector<int>::iterator elementToDelete = elementsToDelete.begin();
+			elementToDelete != elementsToDelete.end(); ++elementToDelete) {
+		for (vector<int>::iterator it = erased.begin(); it != erased.end(); ++it) {
+			if (*it == *elementToDelete) {
+				cout << "borro el" << *it << endl;
+				erased.erase(it);
+				break;
+			}
+		}
+	}
+	return erased;
+}
+bool vectorContainsAllValues(vector<int> orignal, vector<int> elementsToCheck) {
+	for (vector<int>::iterator elementToFind = elementsToCheck.begin(); elementToFind != elementsToCheck.end();
+			++elementToFind) {
+		if (std::find(orignal.begin(), orignal.end(), *elementToFind) == orignal.end())
+			return false;
+	}
+	return true;
+}

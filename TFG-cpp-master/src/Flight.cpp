@@ -15,6 +15,8 @@
 #include "TimeMoment.h"
 #include "Waypoint.h"
 #include "Sector.h"
+#include "Utilities.h""
+
 #include <ctime>
 #include <fstream>
 #include <string.h>
@@ -24,6 +26,9 @@
 #include <iostream>
 #include <sstream>
 
+Flight::Flight() {
+
+}
 Flight::Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, int delayGround) {
 	_id = id;
 	_timeStart = timeStart;
@@ -122,19 +127,13 @@ int Flight::numWaypointsFlight(int idFlight, int numWaypoints) {
 	return numDifferentWaypoints;
 }
 
-void Flight::assignHeuristics() {
-	Heuristic *heuristic = new Heuristic(this->getNumRoutes(), this->getNumWaypointsRoute());
-	this->_heuristic = heuristic;
-	double heuristicNumberRoutesANdWaypoints = _heuristic->getHeuristicNumberwaypoints();
-
-}
-
 vector<int> Flight::getIdSectorsIS() {
 	vector<int> sectors;
 	for (std::vector<int>::iterator it = this->_initialSolution.begin(); it != this->_initialSolution.end(); ++it) {
 		WaypointRoute *currentWR = _listWaypointsRoute[*it];
-		currentWR->getIdSector();
+		sectors.push_back(currentWR->getIdSector());
 	}
+
 	return removeDuplicatesVectorInt(sectors);
 }
 

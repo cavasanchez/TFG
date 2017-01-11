@@ -13,6 +13,7 @@
 
 class Waypoint {
 public:
+	Waypoint();
 
 	Waypoint(int id, std::string name, Sector *sector1);
 

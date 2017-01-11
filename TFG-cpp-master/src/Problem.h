@@ -79,6 +79,7 @@ public:
 	int getIdWaypointByName(std::string name);
 	Waypoint* getWaypointById(int id);
 	int getIdSectorByName(std::string name);
+	Flight* getFlightById(int id);
 
 	void inizializeProblem();
 	int nameInList(string nameWay, Waypoint **waypoints, int cont);
@@ -86,11 +87,11 @@ public:
 	void createSectors();
 	void createFlights();
 	void createAllRoutes();
+	void createTimes();
 	void createRoutes(Flight *flight);
 	void createWaypointRoutesObject(Flight *flight);
 	void setProblemRouteAttributes(Flight *flight, int **matrix, int numWaypointsList, WaypointRoute **waypointsRoute);
 
-	void createTimes();
 	void calculateAllShortestPath();
 	void createOrderFlights();
 	void updateTimes();
@@ -98,11 +99,11 @@ public:
 	void getInitialShortestRoutes();
 	void initialValidations();
 	void interchangeFlights();
-
+	void cancelFlight(Flight* f, vector<int> path);
+	void setFlightOk(Flight* f, vector<int> path);
 	bool solutionHasValidSectors(vector<int> vectorWaypointsRoute, Flight *flight);
 
 	void getFlightsUnconnected();
-	void assignHeuristcs();
 	bool flightIsUnconnected(vector<string> allWaypointsRoute, vector<string> flightWaypointsRoute);
 	std::vector<std::string> getUniqueWaypointsRouteByFlight(Flight *flight);
 	int sectorIsFreeAtTime(int time, string sectorName);
@@ -113,12 +114,15 @@ public:
 	bool checkFlightsShareSectorInTime(Flight *original, Flight *candidate);
 	bool existsPairWRInFlight(pair<int, int> orinalPair, Flight *candidate);
 	map<int, vector<int> > filterFlightsBlokcMore1(map<int, vector<int> > original);
-	int tryInterchange(map<int, vector<int> > mapFiltered);
+	int tryAllInterchanges(map<int, vector<int> > mapFiltered);
+	bool tryInterchange(int flightId, vector<int> candidates);
+	vector<int> getSolutionInterchangeFlights(int flightId, vector<int> candidates, int minSize);
+	bool changeFlightForCandidates(int flightId, vector<int> allSolutions);
 
 	void Djistra(Flight *flight, int option);
 
 	int sectorHasSpace(int inTime);
-	void updateTimeSector(vector<int> PathIdWaypointsRoute, Flight *flight);
+	void updateTimeSector(vector<int> PathIdWaypointsRoute, Flight *flight, int option);
 	int isWaypointRouteInList(WaypointRoute **list, int idFather, int inTime, int sizeList);
 	void initialFlightsTakeOff();
 

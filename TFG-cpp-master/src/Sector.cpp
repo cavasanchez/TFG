@@ -8,12 +8,13 @@
 #include <string>
 
 #include "Sector.h"
+Sector::Sector() {
+
+}
 
 Sector::Sector(int id, std::string name, int capacity) {
 	_id = id;
 	_name = name;
 	_capacity = capacity;
 }
-
-
 

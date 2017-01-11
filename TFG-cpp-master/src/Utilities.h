@@ -30,10 +30,12 @@ vector<int> createVectorFromList(list<int> path);
 vector<int> getFlightsThatBlocks(int value, map<int, vector<int> > original);
 
 vector<string> removeDuplicatesVectorString(vector<string> vectorStrings);
-vector<int> removeDuplicatesVectorString(vector<int> vectorStrings);
+vector<int> removeDuplicatesVectorInt(vector<int> vectorInt);
+int getMinValueFomVector(vector<int> vector);
 
 vector<string> joinVectorString(vector<string> vectorA, vector<string> vectorB, vector<string> &finalVector);
 vector<int> arrayIntToVector(int *array);
 int** initializeMatrixRoutes();
-
+vector<int> removeElementsFromVector(vector<int> orignal, vector<int> elementsToDelete);
+bool vectorContainsAllValues(vector<int> orignal, vector<int> elementsToCheck);
 #endif /* UTILITIES_H_ */

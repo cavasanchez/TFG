@@ -12,6 +12,8 @@
 
 class Sector {
 public:
+	Sector();
+
 	Sector(int id, std::string name, int capacity);
 
 	int getCapacity() const {

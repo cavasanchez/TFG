@@ -17,6 +17,7 @@
 
 class Flight {
 public:
+	Flight();
 
 	Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, int delayGround);
 
@@ -143,8 +144,7 @@ public:
 		_timeFinish = timeFinish;
 	}
 
-	std::vector<int>getIdSectorsIS();
-
+	std::vector<int> getIdSectorsIS();
 
 private:
 	int _id;
@@ -160,7 +160,6 @@ private:
 	std::string *_listNameWaypoints;
 	WaypointRoute **_listWaypointsRoute;
 	int _numWaypointsRoute;
-	Heuristic* _heuristic;
 	std::vector<int> _initialSolution;	// in waypointsRouteId
 	std::vector<int> _currentSolution;	//
 	std::vector<Flight> _flightInterchangeCandidates;
