@@ -38,12 +38,23 @@ Flight::Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, in
 	_groundDelay = delayGround;
 }
 
+WaypointRoute* Flight::getWRById(int id) {
+	WaypointRoute *wr = new WaypointRoute();
+	for (int i = 0; i < this->getNumWaypointsRoute(); i++) {
+		if (_listWaypointsRoute[i]->getId() == id) {
+			wr = _listWaypointsRoute[i];
+			return wr;
+		}
+	}
+	return wr;
+}
+
 //Comprueba si en la lista de waypointsFather hay algún nodo con father e inTime similar
 int Flight::isWaypointInList(int idWaypointRouteFather, int sizeList, int inTime, WaypointRoute **waypointsRoute) {
 	int isInList = -1;
 	for (int i = 0; i < sizeList; i++) {
-		cout << "Miro si " << idWaypointRouteFather << " = " << waypointsRoute[i]->getWaypointFather()->getId() << " y "
-				<< inTime << " = " << waypointsRoute[i]->getInTime() << endl;
+//		cout << "Miro si " << idWaypointRouteFather << " = " << waypointsRoute[i]->getWaypointFather()->getId() << " y "
+//				<< inTime << " = " << waypointsRoute[i]->getInTime() << endl;
 
 		if (idWaypointRouteFather == waypointsRoute[i]->getWaypointFather()->getId()
 				&& inTime == waypointsRoute[i]->getInTime()) {
@@ -51,7 +62,7 @@ int Flight::isWaypointInList(int idWaypointRouteFather, int sizeList, int inTime
 			break;
 		}
 	}
-	cout << "inlist es " << isInList << endl;
+//	cout << "inlist es " << isInList << endl;
 	return isInList;
 
 }
@@ -135,5 +146,44 @@ vector<int> Flight::getIdSectorsIS() {
 	}
 
 	return removeDuplicatesVectorInt(sectors);
+}
+
+/*
+ * STATUS VUELO:
+ * 0= sin salir
+ * 1= llegó en tiempo
+ * 2= llega con delay
+ * -1= cancelado
+ * -10= sin solución inicial -> ERROR DATOS
+ */
+
+void Flight::printStatus() {
+	cout << "El vuelo " << this->_id << " está ";
+	switch (this->_status) {
+		case -10:
+			cout << "SIN SOLUCIÓN INICIAL. ERROR";
+			break;
+		case -1:
+			cout << "CANCELADO";
+			break;
+		case 0:
+			cout << "SIN SALIR";
+			break;
+		case 1:
+			cout << "LLEGÓ EN TIEMPO";
+			break;
+		case 2:
+			cout << "OK PERO RETRASADO";
+			break;
+		case 3:
+			cout << "OK PERO DESVIADO";
+			break;
+		case 4:
+			cout << "OK PERO RETRASADO Y DESVIADO";
+			break;
+
+	}
+	cout << endl;
+
 }
 

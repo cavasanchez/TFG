@@ -52,11 +52,15 @@ int main() {
 	log << writeInLog("Calculating shortest paths");
 	p->initialValidations();
 
-	log << writeInLog("Step 1. Take of flights in random order");
+	log << writeInLog("Step 1. Take off flights in random order");
 	p->initialFlightsTakeOff();
 
 	log << writeInLog("Step 2. trying to interchange flights");
 	p->interchangeFlights();
+
+	log << writeInLog("Step 3. Take off flights with delays");
+	p->flightsTakeOffWithDelays();
+
 	log << writeInLog("Execution finished");
 	log.close();
 

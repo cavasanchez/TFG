@@ -14,6 +14,7 @@
 
 class WaypointRoute {
 public:
+	WaypointRoute();
 
 	WaypointRoute(int id, int inTime, Waypoint *waypointFather);
 

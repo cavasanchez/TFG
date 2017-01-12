@@ -173,13 +173,22 @@ int getMinValueFomVector(vector<int> vector) {
 	return min;
 }
 
+int getMaxValueFomVector(vector<int> vector) {
+	int max = 0;
+	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); ++it) {
+		if (*it > max)
+			max = *it;
+	}
+	return max;
+}
+
 vector<int> removeElementsFromVector(vector<int> orignal, vector<int> elementsToDelete) {
 	vector<int> erased = orignal;
 	for (std::vector<int>::iterator elementToDelete = elementsToDelete.begin();
 			elementToDelete != elementsToDelete.end(); ++elementToDelete) {
 		for (vector<int>::iterator it = erased.begin(); it != erased.end(); ++it) {
 			if (*it == *elementToDelete) {
-				cout << "borro el" << *it << endl;
+//				cout << "borro el" << *it << endl;
 				erased.erase(it);
 				break;
 			}
@@ -194,4 +203,29 @@ bool vectorContainsAllValues(vector<int> orignal, vector<int> elementsToCheck) {
 			return false;
 	}
 	return true;
+}
+
+pair<int, int> getMinMaxTimeWR(vector<int> candidates, Problem *p) {
+	vector<int> times;
+	for (vector<int>::iterator eachFlightId = candidates.begin(); eachFlightId != candidates.end(); ++eachFlightId) {
+		Flight*f = p->getFlightById(*eachFlightId);
+		vector<int> path = f->getIntialSolution();
+		for (vector<int>::iterator it = path.begin(); it != path.end(); ++it) {
+			WaypointRoute *wr = f->getWRById(*it);
+			times.push_back(wr->getInTime());
+		}
+	}
+	int min = getMinValueFomVector(times);
+	int max = getMaxValueFomVector(times);
+	pair<int, int> minMax(min, max);
+	return minMax;
+
+}
+
+bool checkVectorContainsElement(vector<int> v, int value) {
+	bool found = false;
+	if (std::find(v.begin(), v.end(), value) != v.end())
+		return true;
+
+	return found;
 }

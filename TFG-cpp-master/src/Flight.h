@@ -22,11 +22,11 @@ public:
 	Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, int delayGround);
 
 	int numWaypointsFlight(int idFlight, int numWaypoints);
-
+	WaypointRoute* getWRById(int id);
 	int isNewWaypoint(std::string newPoint, std::string oldPoints[], int cont);
 	int getAllWaypointsFlight();
 	int isWaypointInList(int idWaypointRoute, int sizeList, int inTime, WaypointRoute **waypointsRoute);
-	void assignHeuristics();
+	void printStatus();
 
 	int getId() const {
 		return _id;

@@ -84,8 +84,8 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 	adjacency_list_t adjacency_list(flight->getNumWaypointsRoute());
 
 	switch (option) {
-		case OPTION_SHORTEST_PATH:
-
+		case OPTION_SHORTEST_PATH: {
+			vector<int> empty;
 			for (int idWaypoint = 0; idWaypoint < flight->getNumWaypointsRoute(); idWaypoint++) {
 				int currentDelay = 0;
 
@@ -93,15 +93,12 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 					if (flight->getRoutes()[fila][idWaypoints[idWaypoint]] != 1000) {
 
 						WaypointRoute *currentWaypointRoute = flight->getListWaypointsRoute()[fila];
-						std::string nameWaypointRoute = currentWaypointRoute->getCompleteName();
-						std::string sectorWaypointRoute =
-								currentWaypointRoute->getWaypointFather()->getSector1()->getName();
 
 						// Time instant we analize
 						int inTime = currentWaypointRoute->getInTime() + flight->getTimeStart();
 						int isAirport = currentWaypointRoute->getWaypointFather()->getIsAirport();
 
-						if (p->conditionDjistraByOption(option, inTime, sectorWaypointRoute, isAirport)) {
+						if (p->conditionDjistraByOption(option, inTime, currentWaypointRoute, empty)) {
 							int totalDelay = flight->getRoutes()[fila][idWaypoints[idWaypoint]] + currentDelay;
 							neighbor newNeighbor = neighbor(fila, totalDelay);
 
@@ -115,18 +112,19 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 			}
 
 			break;
+		}
 
-		case OPTION_ONLY_INITIAL_SOLUTION:
+		case OPTION_ONLY_INITIAL_SOLUTION: {
 			vector<int> initialSoluton = flight->getIntialSolution();
 			if (p->solutionHasValidSectors(initialSoluton, flight)) {
 
-				cout << "ID: " << flight->getId() << endl;
+//				cout << "ID: " << flight->getId() << endl;
 				for (int i = 0; i < initialSoluton.size(); i++) {
 
 					int currentWRId = initialSoluton[i];
 					int nextWRid = initialSoluton[i + 1];
 					WaypointRoute *wr = flight->getListWaypointsRoute()[currentWRId];
-					cout << currentWRId << " --> " << wr->getInTime() << endl;
+//					cout << currentWRId << " --> " << wr->getInTime() << endl;
 
 					//start airport
 					if (currentWRId == 0) {
@@ -152,7 +150,48 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 
 				}
 			}
+			break;
+		}
 
+		case OPTION_ONLY_DELAYS: {
+			vector<int> waypointIds = p->getIdWaypointsInIS(flight);
+			for (int idWaypoint = 0; idWaypoint < flight->getNumWaypointsRoute(); idWaypoint++) {
+				int currentDelay = 0;
+
+				for (int fila = 0; fila < flight->getNumWaypointsRoute(); fila++) {
+					if (flight->getRoutes()[fila][idWaypoints[idWaypoint]] != 1000) {
+
+						WaypointRoute *currentWaypointRoute = flight->getListWaypointsRoute()[fila];
+
+//						cout << "miro si " << currentWaypointRoute->getWaypointFather()->getId()
+//								<< "está en los waypoints";
+//						printVectorInt(waypointIds);
+//						cout << endl;
+
+						//exit(1);
+						int isAirport = currentWaypointRoute->getWaypointFather()->getIsAirport();
+
+//							std::string nameWaypointRoute = currentWaypointRoute->getCompleteName();
+//							std::string sectorWaypointRoute =
+//									currentWaypointRoute->getWaypointFather()->getSector1()->getName();
+
+						// Time instant we analize
+						int inTime = currentWaypointRoute->getInTime() + flight->getTimeStart();
+
+						if (p->conditionDjistraByOption(option, inTime, currentWaypointRoute, waypointIds)) {
+							int totalDelay = flight->getRoutes()[fila][idWaypoints[idWaypoint]] + currentDelay;
+							neighbor newNeighbor = neighbor(fila, totalDelay);
+
+							adjacency_list[idWaypoints[idWaypoint]].push_back(newNeighbor);
+						}
+//
+						if (!isAirport)
+							currentDelay++;
+					}
+				}
+			}
+			break;
+		}
 	}
 	return adjacency_list;
 
@@ -201,24 +240,33 @@ void Problem::Djistra(Flight *flight, int option) {
 				break;
 
 			case OPTION_ONLY_INITIAL_SOLUTION:
-				cout << "----ENCONTRADO!" << endl;
-				setFlightOk(flight,pathWaypointsRoute);
+				cout << "**:)**CAMINO ENCONTRADO" << endl;
+				setFlightOk(flight, pathWaypointsRoute);
 				flight->setTimeFinish(flight->getTimeStart() + distance);
 				break;
-		}
+			case OPTION_ONLY_DELAYS:
+				cout << "**:)**CAMINO ENCONTRADO RETRASADO" << endl;
+				setFlightDelayed(flight, pathWaypointsRoute);
+				flight->setTimeFinish(flight->getTimeStart() + distance);
 
+				break;
+		}
 	} else {
 		switch (option) {
 			case OPTION_SHORTEST_PATH:
 				flight->setStatus(-10);
-				cout << "SIN SOLUCION INICIAL. CAMINO NO ENCONTRADO" << endl;
+				cout << "SIN SOLUCION INICIAL. SACAR DEL PROBLEMA" << endl;
+				break;
 
 			case OPTION_ONLY_INITIAL_SOLUTION:
 				flight->setStatus(-1);
 				cout << "CAMINO NO ENCONTRADO" << endl;
+				break;
+			case OPTION_ONLY_DELAYS:
+				cout << "CAMINO RETRASADO NO ENCONTRADO" << endl;
+				flight->setStatus(-1);
+				break;
 		}
-
 	}
-
 }
 

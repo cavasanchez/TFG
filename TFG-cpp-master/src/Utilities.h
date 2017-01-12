@@ -19,16 +19,17 @@ void printArrayInt(int *array, int size);
 
 void printMatrixInt(int **matrix, int size);
 void printMatrixString(std::string **matrix, int size);
+pair<int, int> getMinMaxTimeWR(vector<int> candidates, Problem *p);
 
 void inicializeMatrixTo0(int **matrix, int num);
 
-std::string writeInLog(std::string text);
+string writeInLog(std::string text);
 
 void printVectorString(vector<string> vectorStrings);
 void printVectorInt(vector<int> vectorInts);
 vector<int> createVectorFromList(list<int> path);
 vector<int> getFlightsThatBlocks(int value, map<int, vector<int> > original);
-
+bool checkVectorContainsElement(vector<int> v, int value);
 vector<string> removeDuplicatesVectorString(vector<string> vectorStrings);
 vector<int> removeDuplicatesVectorInt(vector<int> vectorInt);
 int getMinValueFomVector(vector<int> vector);

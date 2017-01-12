@@ -80,7 +80,7 @@ public:
 	Waypoint* getWaypointById(int id);
 	int getIdSectorByName(std::string name);
 	Flight* getFlightById(int id);
-
+	WaypointRoute* getWRById(Flight *f, int id);
 	void inizializeProblem();
 	int nameInList(string nameWay, Waypoint **waypoints, int cont);
 	void createWaypoints();
@@ -99,15 +99,20 @@ public:
 	void getInitialShortestRoutes();
 	void initialValidations();
 	void interchangeFlights();
+	void flightsTakeOffWithDelays();
 	void cancelFlight(Flight* f, vector<int> path);
 	void setFlightOk(Flight* f, vector<int> path);
-	bool solutionHasValidSectors(vector<int> vectorWaypointsRoute, Flight *flight);
+	void setFlightDelayed(Flight* f, vector<int> path);
 
+	bool solutionHasValidSectors(vector<int> vectorWaypointsRoute, Flight *flight);
+	bool sectorCapacitiesAreOk(vector<int> solutions);
+	void printAllFlightStatus();
+	vector<int> getIdWaypointsInIS(Flight *flight);
 	void getFlightsUnconnected();
 	bool flightIsUnconnected(vector<string> allWaypointsRoute, vector<string> flightWaypointsRoute);
 	std::vector<std::string> getUniqueWaypointsRouteByFlight(Flight *flight);
 	int sectorIsFreeAtTime(int time, string sectorName);
-	int conditionDjistraByOption(int option, int inTime, string sectorWaypointRoute, int isAirport);
+	int conditionDjistraByOption(int option, int inTime, WaypointRoute *wr,vector<int>v);
 	void updateTimesBetweenWaypoints(int lastInstantFlight, int newInstantFlight, int idSectorToUpdate);
 	void tryInterchageFlights();
 	vector<int> createFlightCandidatesInterchange(Flight *flight);
