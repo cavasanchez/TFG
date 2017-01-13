@@ -43,7 +43,7 @@ WaypointRoute* Flight::getWRById(int id) {
 	for (int i = 0; i < this->getNumWaypointsRoute(); i++) {
 		if (_listWaypointsRoute[i]->getId() == id) {
 			wr = _listWaypointsRoute[i];
-			return wr;
+			break;
 		}
 	}
 	return wr;
@@ -160,30 +160,34 @@ vector<int> Flight::getIdSectorsIS() {
 void Flight::printStatus() {
 	cout << "El vuelo " << this->_id << " está ";
 	switch (this->_status) {
-		case -10:
+		case FLIGHT_STATUS_ERROR:
 			cout << "SIN SOLUCIÓN INICIAL. ERROR";
 			break;
-		case -1:
+		case FLIGHT_STATUS_CANCELED:
 			cout << "CANCELADO";
 			break;
-		case 0:
+		case FLIGHT_STATUS_NOT_LAUNCHED:
 			cout << "SIN SALIR";
 			break;
-		case 1:
+		case FLIGHT_STATUS_IN_TIME:
 			cout << "LLEGÓ EN TIEMPO";
 			break;
-		case 2:
+		case FLIGHT_STATUS_DELAYEYD:
 			cout << "OK PERO RETRASADO";
 			break;
-		case 3:
+		case FLIGHT_STATUS_DEFLECTED:
 			cout << "OK PERO DESVIADO";
 			break;
-		case 4:
+		case FLIGHT_STATUS_DELAYED_AND_DEFLECTED:
 			cout << "OK PERO RETRASADO Y DESVIADO";
 			break;
 
 	}
 	cout << endl;
 
+}
+
+bool Flight::isCanceled() {
+	return (_status == FLIGHT_STATUS_ERROR && _status == FLIGHT_STATUS_CANCELED && _status == FLIGHT_STATUS_NOT_LAUNCHED);
 }
 

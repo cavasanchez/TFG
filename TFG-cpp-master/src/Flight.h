@@ -27,6 +27,7 @@ public:
 	int getAllWaypointsFlight();
 	int isWaypointInList(int idWaypointRoute, int sizeList, int inTime, WaypointRoute **waypointsRoute);
 	void printStatus();
+	bool isCanceled();
 
 	int getId() const {
 		return _id;

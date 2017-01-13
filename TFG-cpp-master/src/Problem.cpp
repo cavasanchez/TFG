@@ -138,7 +138,7 @@ void Problem::interchangeFlights() {
 	map<int, vector<int> > mapCanceledFlight_flightsBlockIt;
 
 	for (int i = 0; i < this->getNumFlights(); i++) {
-		if (_listFlights[i]->getStatus() == -1) {
+		if (_listFlights[i]->getStatus() == FLIGHT_STATUS_CANCELED) {
 			//Step 1: create candidates for each flight in time
 			vector<int> candidates = createFlightCandidatesInterchange(_listFlights[i]);
 
@@ -169,7 +169,18 @@ void Problem::flightsTakeOffWithDelays() {
 		}
 	}
 	cout << "DESPUES DE RETRASOS" << endl;
-		printAllFlightStatus();
+	printAllFlightStatus();
+}
+
+void Problem::flightsTakeOffAlternativeRoutes() {
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		if (_listFlights[i]->getStatus() == -1) {
+			Djistra(_listFlights[i], OPTION_ALTERNATIVE_ROUTES);
+
+		}
+	}
+	cout << "DESPUES DE RUTAS ALTERNATIVAS" << endl;
+	printAllFlightStatus();
 }
 
 void Problem::createOrderFlights() {
@@ -217,7 +228,7 @@ void Problem::createTimes() {
 }
 
 Waypoint* Problem::getWaypointById(int id) {
-	Waypoint *w = new Waypoint();
+	Waypoint *w;
 	for (int i = 0; i < this->getNumWaypoints(); i++) {
 		if (_listWaypoints[i]->getId() == id) {
 			w = _listWaypoints[i];
@@ -228,7 +239,7 @@ Waypoint* Problem::getWaypointById(int id) {
 }
 
 Flight* Problem::getFlightById(int id) {
-	Flight *f = new Flight();
+	Flight *f;
 	for (int i = 0; i < this->getNumFlights(); i++) {
 		if (_listFlights[i]->getId() == id) {
 			f = _listFlights[i];
@@ -239,7 +250,7 @@ Flight* Problem::getFlightById(int id) {
 }
 
 WaypointRoute* Problem::getWRById(Flight *f, int id) {
-	WaypointRoute *wr = new WaypointRoute();
+	WaypointRoute *wr;
 	for (int i = 0; i < f->getNumWaypointsRoute(); i++) {
 		if (f->getListWaypointsRoute()[i]->getId() == id) {
 			wr = f->getListWaypointsRoute()[i];
@@ -258,7 +269,7 @@ void Problem::printAllFlightStatus() {
 
 Sector* Problem::getSectorById(int id) {
 
-	Sector *s = new Sector();
+	Sector *s;
 
 	for (int i = 0; i < this->getNumSectors(); i++) {
 		if (_listSectors[i]->getId() == id) {
@@ -270,7 +281,7 @@ Sector* Problem::getSectorById(int id) {
 }
 
 int Problem::getIdWaypointByName(std::string name) {
-	Waypoint *w = new Waypoint();
+	Waypoint *w;
 
 	for (int i = 0; i < this->getNumWaypoints(); i++) {
 		if (_listWaypoints[i]->getName().compare(name) == 0) {
@@ -282,7 +293,7 @@ int Problem::getIdWaypointByName(std::string name) {
 }
 
 Sector* Problem::getSectorByName(std::string name) {
-	Sector *s = new Sector();
+	Sector *s;
 	for (int i = 0; i < this->getNumSectors(); i++) {
 		if (_listSectors[i]->getName().compare(name) == 0) {
 			s = _listSectors[i];
@@ -515,7 +526,8 @@ int Problem::conditionDjistraByOption(int option, int inTime, WaypointRoute *cur
 
 	switch (option) {
 		case OPTION_ONLY_INITIAL_SOLUTION:
-			resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute) || isAirport);
+			caseOPTION_ALTERNATIVE_ROUTES: resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute)
+					|| isAirport);
 			break;
 
 		case OPTION_SHORTEST_PATH:
@@ -694,19 +706,15 @@ bool Problem::solutionHasValidSectors(vector<int> vectorWaypointsRoute, Flight *
 		WaypointRoute *previousWR = flight->getWRById(vectorWaypointsRoute[i - 1]);
 
 		for (int j = previousWR->getInTime(); j < currentWR->getInTime(); j++) {
-			string nameSector = previousWR->getWaypointFather()->getSector1()->getName();
 			int idSector = previousWR->getIdSector();
 //			cout << "miro si está libre el sector" << nameSector << " del wr " << previousWR->getId() << " en instante "
 //					<< j << endl;
 			int flightsInSector = _timeMomentlist[j]->getNumFlightsSector()[idSector];
-			if (flightsInSector > 0) {
-				result = false;
-				//cout << "OCUOPADO" << endl;
+			if (flightsInSector > 0)
 				return false;
-			}
+
 		}
 	}
-
 	return result;
 }
 
@@ -857,9 +865,6 @@ vector<int> Problem::getSolutionInterchangeFlights(int flightId, vector<int> can
 	//shuffle vector candidates
 	std::random_shuffle(candidatesCopy.begin(), candidatesCopy.end());
 
-//	Sector *s=getSectorById(10);
-//	cout<<s->getName();
-//	exit(1);
 	//get all combination of solutions
 	for (vector<int>::iterator it = candidatesCopy.begin(); it != candidatesCopy.end(); ++it) {
 		//if there are no more sectors free, stop
@@ -881,8 +886,8 @@ vector<int> Problem::getSolutionInterchangeFlights(int flightId, vector<int> can
 				sectorsToGet = removeElementsFromVector(sectorsToGet, idSectorCandidate);
 				//	cout << "después de borrar queda";
 
-				printVectorInt(sectorsToGet);
-				cout << endl;
+//				printVectorInt(sectorsToGet);
+//				cout << endl;
 
 				candidatesSelected.push_back(*it);
 				//	cout << "AÑADO EL" << *it << endl;
@@ -931,12 +936,29 @@ void Problem::cancelFlight(Flight* f, vector<int> path) {
 
 void Problem::setFlightOk(Flight* f, vector<int> path) {
 	updateTimeSector(path, f, 1);
+	f->setCurrentSolution(path);
 	f->setStatus(1);
 }
 
 void Problem::setFlightDelayed(Flight* f, vector<int> path) {
 	updateTimeSector(path, f, 1);
+	f->setCurrentSolution(path);
+
 	f->setStatus(2);
+}
+
+void Problem::setFlightAlternativeRoute(Flight* f, vector<int> path, int newDuration) {
+	updateTimeSector(path, f, 1);
+	f->setCurrentSolution(path);
+
+	//alternative route and delayed
+	if (newDuration > f->getTimeFinish()) {
+		f->setStatus(4);
+	}
+	//alternative route but same or better time
+	else {
+		f->setStatus(3);
+	}
 }
 
 //
@@ -961,5 +983,14 @@ vector<int> Problem::getIdWaypointsInIS(Flight *flight) {
 		waypointIds.push_back(getWRById(flight, *it)->getWaypointFather()->getId());
 	}
 	return waypointIds;
+}
+
+int Problem::getNumFlightsNoCanceled() {
+	int flightsNoCancel = 0;
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		if (!_listFlights[i]->isCanceled())
+			flightsNoCancel++;
+	}
+	return flightsNoCancel;
 }
 

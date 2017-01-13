@@ -100,9 +100,12 @@ public:
 	void initialValidations();
 	void interchangeFlights();
 	void flightsTakeOffWithDelays();
+	void flightsTakeOffAlternativeRoutes();
 	void cancelFlight(Flight* f, vector<int> path);
 	void setFlightOk(Flight* f, vector<int> path);
 	void setFlightDelayed(Flight* f, vector<int> path);
+	void setFlightAlternativeRoute(Flight* f, vector<int> path, int newDuration);
+	int getNumFlightsNoCanceled();
 
 	bool solutionHasValidSectors(vector<int> vectorWaypointsRoute, Flight *flight);
 	bool sectorCapacitiesAreOk(vector<int> solutions);
@@ -112,7 +115,7 @@ public:
 	bool flightIsUnconnected(vector<string> allWaypointsRoute, vector<string> flightWaypointsRoute);
 	std::vector<std::string> getUniqueWaypointsRouteByFlight(Flight *flight);
 	int sectorIsFreeAtTime(int time, string sectorName);
-	int conditionDjistraByOption(int option, int inTime, WaypointRoute *wr,vector<int>v);
+	int conditionDjistraByOption(int option, int inTime, WaypointRoute *wr, vector<int> v);
 	void updateTimesBetweenWaypoints(int lastInstantFlight, int newInstantFlight, int idSectorToUpdate);
 	void tryInterchageFlights();
 	vector<int> createFlightCandidatesInterchange(Flight *flight);

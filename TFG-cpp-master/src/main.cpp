@@ -55,12 +55,24 @@ int main() {
 	log << writeInLog("Step 1. Take off flights in random order");
 	p->initialFlightsTakeOff();
 
-	log << writeInLog("Step 2. trying to interchange flights");
-	p->interchangeFlights();
+	int lastNumFlightsNoCancel = 0;
+	int iterations = 0;
+	int currentFlightNoCanceled = 0;
 
-	log << writeInLog("Step 3. Take off flights with delays");
-	p->flightsTakeOffWithDelays();
+	while (iterations < MAX_ITERATIONS ) {
+cout<<"******************ITERACCION "<<iterations<<" ************************"<<endl;
+		log << writeInLog("Step 2. trying to interchange flights");
+		p->interchangeFlights();
 
+		log << writeInLog("Step 3. Take off flights with delays");
+		p->flightsTakeOffWithDelays();
+
+		log << writeInLog("Step 4. Take off flights with alternatives routes");
+		p->flightsTakeOffAlternativeRoutes();
+
+		int currentFlightNoCanceled = p->getNumFlightsNoCanceled();
+		iterations++;
+	}
 	log << writeInLog("Execution finished");
 	log.close();
 

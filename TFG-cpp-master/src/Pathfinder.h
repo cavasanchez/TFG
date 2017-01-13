@@ -84,7 +84,8 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 	adjacency_list_t adjacency_list(flight->getNumWaypointsRoute());
 
 	switch (option) {
-		case OPTION_SHORTEST_PATH: {
+		case OPTION_SHORTEST_PATH:
+		case OPTION_ALTERNATIVE_ROUTES: {
 			vector<int> empty;
 			for (int idWaypoint = 0; idWaypoint < flight->getNumWaypointsRoute(); idWaypoint++) {
 				int currentDelay = 0;
@@ -248,6 +249,13 @@ void Problem::Djistra(Flight *flight, int option) {
 				cout << "**:)**CAMINO ENCONTRADO RETRASADO" << endl;
 				setFlightDelayed(flight, pathWaypointsRoute);
 				flight->setTimeFinish(flight->getTimeStart() + distance);
+				break;
+			case OPTION_ALTERNATIVE_ROUTES:
+				cout << "**:)** RUTA ALTERNATIVA ENCONTRADA " << endl;
+
+				int newTime = flight->getTimeStart() + distance;
+				setFlightAlternativeRoute(flight, pathWaypointsRoute, newTime);
+				flight->setTimeFinish(newTime);
 
 				break;
 		}
@@ -265,6 +273,12 @@ void Problem::Djistra(Flight *flight, int option) {
 			case OPTION_ONLY_DELAYS:
 				cout << "CAMINO RETRASADO NO ENCONTRADO" << endl;
 				flight->setStatus(-1);
+				break;
+
+			case OPTION_ALTERNATIVE_ROUTES:
+				cout << "RUTA ALTERNATIVA NO ENCONTRADA" << endl;
+				flight->setStatus(-1);
+
 				break;
 		}
 	}

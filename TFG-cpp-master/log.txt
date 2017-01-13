@@ -1,14 +1,18 @@
-12-01-2017 01:37:17 Executon start
+13-01-2017 01:10:59 Executon start
 Poblem characteristics:
 	 Num airports: 6
 	 Num flights: 22
 	 Num sectors: 44
 	 Num trajectories: 708
 	 Num waypoints: 206
-12-01-2017 01:37:17 Problem initialization
-12-01-2017 01:37:18 Initialization finished
-12-01-2017 01:37:18 Calculating shortest paths
-12-01-2017 01:37:18 Step 1. Take off flights in random order
-12-01-2017 01:37:18 Step 2. trying to interchange flights
-12-01-2017 01:37:18 Step 3. Take off flights with delays
-12-01-2017 01:37:18 Execution finished
+13-01-2017 01:10:59 Problem initialization
+13-01-2017 01:11:00 Initialization finished
+13-01-2017 01:11:00 Calculating shortest paths
+13-01-2017 01:11:00 Step 1. Take off flights in random order
+13-01-2017 01:11:00 Step 2. trying to interchange flights
+13-01-2017 01:11:00 Step 3. Take off flights with delays
+13-01-2017 01:11:00 Step 4. Take off flights with alternatives routes
+13-01-2017 01:11:00 Step 2. trying to interchange flights
+13-01-2017 01:11:00 Step 3. Take off flights with delays
+13-01-2017 01:11:00 Step 4. Take off flights with alternatives routes
+13-01-2017 01:11:00 Execution finished
