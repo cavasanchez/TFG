@@ -943,7 +943,6 @@ void Problem::setFlightOk(Flight* f, vector<int> path) {
 void Problem::setFlightDelayed(Flight* f, vector<int> path) {
 	updateTimeSector(path, f, 1);
 	f->setCurrentSolution(path);
-
 	f->setStatus(2);
 }
 
@@ -992,5 +991,48 @@ int Problem::getNumFlightsNoCanceled() {
 			flightsNoCancel++;
 	}
 	return flightsNoCancel;
+}
+
+void Problem::writeFileForHTML() {
+	createFileSectors();
+	createFileFlights();
+}
+
+void Problem::createFileSectors() {
+	std::ofstream outfile("waypoints.txt");
+	for (int i = 0; i < getNumWaypoints(); i++) {
+		Waypoint *w = _listWaypoints[i];
+		outfile << w->getId() << " " << w->getName() << std::endl;
+	}
+	outfile.close();
+
+}
+
+void Problem::createFileFlights() {
+	std::ofstream outfile("flights.txt");
+	for (int i = 0; i < getNumFlights(); i++) {
+		Flight *f = _listFlights[i];
+		if (!f->isCanceled()) {
+			cout << "entro" << endl;
+			vector<int> solution = f->getCurrentSolution();
+			cout << "salgo" << endl;
+			printVectorInt(solution);
+			cout << endl;
+			if (!solution.empty()) {
+
+				for (int j = 0; j < solution.size() - 1; j++) {
+					Waypoint *w1 = getWRById(f, solution[j])->getWaypointFather();
+					Waypoint *w2 = getWRById(f, solution[j + 1])->getWaypointFather();
+					int id1 = w1->getId();
+					int id2 = w2->getId();
+					string name1 = w1->getName();
+					string name2 = w2->getName();
+
+					outfile << f->getId() << " " << id1 << " " << name1 << " " << id2 << " " << name2 << std::endl;
+				}
+			}
+		}
+	}
+	outfile.close();
 }
 

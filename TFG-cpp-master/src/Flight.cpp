@@ -188,6 +188,6 @@ void Flight::printStatus() {
 }
 
 bool Flight::isCanceled() {
-	return (_status == FLIGHT_STATUS_ERROR && _status == FLIGHT_STATUS_CANCELED && _status == FLIGHT_STATUS_NOT_LAUNCHED);
+	return (_status == FLIGHT_STATUS_ERROR || _status == FLIGHT_STATUS_CANCELED || _status == FLIGHT_STATUS_NOT_LAUNCHED);
 }
 

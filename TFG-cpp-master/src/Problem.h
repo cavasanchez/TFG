@@ -106,6 +106,9 @@ public:
 	void setFlightDelayed(Flight* f, vector<int> path);
 	void setFlightAlternativeRoute(Flight* f, vector<int> path, int newDuration);
 	int getNumFlightsNoCanceled();
+	void writeFileForHTML();
+	void createFileSectors();
+	void createFileFlights();
 
 	bool solutionHasValidSectors(vector<int> vectorWaypointsRoute, Flight *flight);
 	bool sectorCapacitiesAreOk(vector<int> solutions);

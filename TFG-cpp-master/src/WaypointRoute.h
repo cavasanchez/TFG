@@ -34,7 +34,7 @@ public:
 		_inTime = inTime;
 	}
 
-	const Waypoint* getWaypointFather() const {
+	 Waypoint* getWaypointFather() const {
 		return _waypointFather;
 	}
 

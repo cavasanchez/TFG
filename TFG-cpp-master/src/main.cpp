@@ -59,8 +59,8 @@ int main() {
 	int iterations = 0;
 	int currentFlightNoCanceled = 0;
 
-	while (iterations < MAX_ITERATIONS ) {
-cout<<"******************ITERACCION "<<iterations<<" ************************"<<endl;
+	while (iterations < MAX_ITERATIONS) {
+		cout << "******************ITERACCION " << iterations << " ************************" << endl;
 		log << writeInLog("Step 2. trying to interchange flights");
 		p->interchangeFlights();
 
@@ -73,7 +73,11 @@ cout<<"******************ITERACCION "<<iterations<<" ************************"<<
 		int currentFlightNoCanceled = p->getNumFlightsNoCanceled();
 		iterations++;
 	}
+
+	p->writeFileForHTML();
+
 	log << writeInLog("Execution finished");
+
 	log.close();
 
 	cout << "FIN";
