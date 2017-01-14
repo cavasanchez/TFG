@@ -13,3 +13,5 @@ const static int FLIGHT_STATUS_DELAYEYD = 2;
 const static int FLIGHT_STATUS_DEFLECTED = 3;
 const static int FLIGHT_STATUS_DELAYED_AND_DEFLECTED = 4;
 
+const static std::string RESORCES_FOLDER="./Resources/big1/";
+

@@ -28,11 +28,12 @@ int main() {
 
 	log << writeInLog("Executon start");
 
-	int numAirports = linesFile("./Resources/medium1/airports.csv");
-	int numFlights = linesFile("./Resources/medium1/flights.csv");
-	int numSectors = linesFile("./Resources/medium1/sectors.csv");
-	int numTrajectories = linesFile("./Resources/medium1/trajectories.csv");
-	int numWaypoints = linesFile("./Resources/medium1/waypoints.csv");
+
+	int numAirports = linesFile(RESORCES_FOLDER+"arports.csv");
+	int numFlights = linesFile(RESORCES_FOLDER+"flights.csv");
+	int numSectors = linesFile(RESORCES_FOLDER+"sectors.csv");
+	int numTrajectories = linesFile(RESORCES_FOLDER+"trajectories.csv");
+	int numWaypoints = linesFile(RESORCES_FOLDER+"waypoints.csv");
 
 	Problem *p = new Problem(numAirports, numSectors, numTrajectories, numWaypoints, numFlights);
 
@@ -59,11 +60,12 @@ int main() {
 	int iterations = 0;
 	int currentFlightNoCanceled = 0;
 
-	while (iterations < MAX_ITERATIONS) {
+//	while (iterations < MAX_ITERATIONS) {
+		while (iterations < 1) {
+
 		cout << "******************ITERACCION " << iterations << " ************************" << endl;
 		log << writeInLog("Step 2. trying to interchange flights");
 		p->interchangeFlights();
-
 		log << writeInLog("Step 3. Take off flights with delays");
 		p->flightsTakeOffWithDelays();
 
@@ -76,6 +78,7 @@ int main() {
 
 	p->writeFileForHTML();
 
+	p->printStatusProblem();
 	log << writeInLog("Execution finished");
 
 	log.close();

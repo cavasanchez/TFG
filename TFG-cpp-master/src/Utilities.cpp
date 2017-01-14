@@ -15,7 +15,9 @@
 #include <string>
 #include <vector>
 #include <iostream>
-int linesFile(char* route) {
+int linesFile(string routeString) {
+	const char *route = routeString.c_str();
+
 	int numLines = 0;
 	std::ifstream f(route);
 	std::string line;
@@ -223,9 +225,9 @@ pair<int, int> getMinMaxTimeWR(vector<int> candidates, Problem *p) {
 }
 
 bool checkVectorContainsElement(vector<int> v, int value) {
-	bool found = false;
 	if (std::find(v.begin(), v.end(), value) != v.end())
 		return true;
 
-	return found;
+	return false;
 }
+

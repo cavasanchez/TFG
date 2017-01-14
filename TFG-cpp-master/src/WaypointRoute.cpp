@@ -23,7 +23,6 @@ WaypointRoute::WaypointRoute(int id, int inTime, Waypoint *waypointFather) {
 	_id = id;
 	_inTime = inTime;
 	_waypointFather = waypointFather;
-
 }
 
 bool WaypointRoute::isSameWaypointRoute(int inTime, int idFather) {

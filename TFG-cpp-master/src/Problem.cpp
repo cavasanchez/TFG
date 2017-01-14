@@ -131,7 +131,7 @@ void Problem::initialFlightsTakeOff() {
  * Try to interchange a bad
  */
 void Problem::interchangeFlights() {
-	cout << "ANTES DE INTERCAMBIO" << endl;
+	cout << "---------- ANTES DE INTERCAMBIO ----------" << endl;
 	printAllFlightStatus();
 
 	//list of pairs with status,ok flight candidates that block a cancel flight
@@ -143,10 +143,10 @@ void Problem::interchangeFlights() {
 			vector<int> candidates = createFlightCandidatesInterchange(_listFlights[i]);
 
 			mapCanceledFlight_flightsBlockIt[_listFlights[i]->getId()] = candidates;
-			cout << "el vuelo cancelado " << _listFlights[i]->getId() << " tiene " << candidates.size()
-					<< " candidatos (";
-			printVectorInt(candidates);
-			cout << ") con solución inicial ok" << endl;
+//			cout << "el vuelo cancelado " << _listFlights[i]->getId() << " tiene " << candidates.size()
+//					<< " candidatos (";
+//			printVectorInt(candidates);
+//			cout << ") con solución inicial ok" << endl;
 		}
 	}
 
@@ -156,7 +156,7 @@ void Problem::interchangeFlights() {
 	//Step 3: try to interchange an ok flight for 2 or more refused flights
 	int numInterchnges = tryAllInterchanges(mapFiltered);
 
-	cout << "DESPUES DE INTERCAMBIO" << endl;
+	cout << "---------- DESPUES DE INTERCAMBIO ----------" << endl;
 	printAllFlightStatus();
 }
 
@@ -168,7 +168,7 @@ void Problem::flightsTakeOffWithDelays() {
 
 		}
 	}
-	cout << "DESPUES DE RETRASOS" << endl;
+	cout << "---------- DESPUES DE RETRASOS ----------" << endl;
 	printAllFlightStatus();
 }
 
@@ -179,7 +179,7 @@ void Problem::flightsTakeOffAlternativeRoutes() {
 
 		}
 	}
-	cout << "DESPUES DE RUTAS ALTERNATIVAS" << endl;
+	cout << "---------- DESPUES DE RUTAS ALTERNATIVAS ----------" << endl;
 	printAllFlightStatus();
 }
 
@@ -203,7 +203,7 @@ void Problem::createOrderFlights() {
 }
 
 void Problem::createTimes() {
-	int maxSize = 100;
+	int maxSize = 1000;
 	_timeMomentlist = new TimeMoment*[maxSize];
 	cout << "creando times... " << endl;
 
@@ -327,7 +327,10 @@ void Problem::createAllRoutes() {
  */
 void Problem::createFlights() {
 	int cont = 0;
-	ifstream fe("./Resources/medium1/flights.csv");
+	string s = RESORCES_FOLDER + "flights.csv";
+	const char* route = s.c_str();
+
+	ifstream fe(route);
 	std::string line;
 	_listFlights = new Flight*[this->getNumFlights()];
 	while (std::getline(fe, line)) {
@@ -353,7 +356,9 @@ void Problem::createFlights() {
  */
 void Problem::createSectors() {
 	int cont = 0;
-	ifstream fe("./Resources/medium1/sectors.csv");
+	string s = RESORCES_FOLDER + "sectors.csv";
+	const char* route = s.c_str();
+	ifstream fe(route);
 	std::string line;
 
 	_listSectors = new Sector*[this->getNumSectors()];
@@ -390,7 +395,9 @@ int Problem::nameInList(string nameWay, Waypoint **waypoints, int cont) {
  */
 void Problem::createWaypoints() {
 	int cont = 0;
-	ifstream fe("./Resources/medium1/waypoints.csv");
+	string s = RESORCES_FOLDER + "waypoints.csv";
+	const char* route = s.c_str();
+	ifstream fe(route);
 	std::string line;
 
 	_listWaypoints = new Waypoint*[this->getNumWaypoints()];
@@ -518,7 +525,8 @@ int Problem::sectorIsFreeAtTime(int time, string sectorName) {
 	return sectorIsFree;
 }
 
-int Problem::conditionDjistraByOption(int option, int inTime, WaypointRoute *currentWaypointRoute, vector<int> v) {
+int Problem::conditionDjistraByOption(int option, int inTime, WaypointRoute *currentWaypointRoute, vector<int> v,
+		int idWaypointDestiny) {
 	int resultCondition = 0;
 	std::string nameWaypointRoute = currentWaypointRoute->getCompleteName();
 	std::string sectorWaypointRoute = currentWaypointRoute->getWaypointFather()->getSector1()->getName();
@@ -526,25 +534,45 @@ int Problem::conditionDjistraByOption(int option, int inTime, WaypointRoute *cur
 
 	switch (option) {
 		case OPTION_ONLY_INITIAL_SOLUTION:
-			caseOPTION_ALTERNATIVE_ROUTES: resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute)
-					|| isAirport);
+		case OPTION_ALTERNATIVE_ROUTES:
+			resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute) || isAirport);
 			break;
 
 		case OPTION_SHORTEST_PATH:
 			resultCondition = 1;
 			break;
 		case OPTION_ONLY_DELAYS:
+
 			int currentWaypointId = currentWaypointRoute->getWaypointFather()->getId();
-			bool inWaypointsIncluded = checkVectorContainsElement(v, currentWaypointId);
-			resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute) || isAirport) && inWaypointsIncluded;
+			bool isWaypointsIncluded = checkVectorContainsElement(v, currentWaypointId);
+			bool destinyIsIncluded = checkVectorContainsElement(v, idWaypointDestiny);
+			bool noCapacityProblems = sectorIsFreeAtTime(inTime, sectorWaypointRoute);
+			bool isAnAirport = isAirport;
+			resultCondition = (isWaypointsIncluded && destinyIsIncluded && noCapacityProblems) || isAnAirport;
+
+//			cout << "Añado el " << currentWaypointRoute->getId() << "? " << resultCondition << "!";
+//			if (!isWaypointsIncluded)
+//				cout << " origen no incluído" << endl;
+//			if (!destinyIsIncluded)
+//				cout << "destino no incluído" << endl;
+//
+//			if (!noCapacityProblems)
+//				cout << "sector lleno" << endl;
+//
+//			if (isAnAirport)
+//							cout << "es aeropuerto" << endl;
 			break;
 	}
 	return resultCondition;
 }
 
 void Problem::createRoutes(Flight *flight) {
+//	cout<<"ENTRO"<<flight->getId()<<endl;
+
 	int newPosition = 2;
+
 	int numWaypoints = flight->getAllWaypointsFlight();
+
 	WaypointRoute **waypointsRoute = new WaypointRoute*[1000];
 
 	int cont = 0;
@@ -563,7 +591,9 @@ void Problem::createRoutes(Flight *flight) {
 	waypointsRoute[0] = start;
 	waypointsRoute[1] = end;
 
-	ifstream fe("./Resources/medium1/trajectories.csv");
+	string s = RESORCES_FOLDER + "trajectories.csv";
+	const char* route = s.c_str();
+	ifstream fe(route);
 	std::string line;
 
 	while (std::getline(fe, line)) {
@@ -803,10 +833,10 @@ map<int, vector<int> > Problem::filterFlightsBlokcMore1(map<int, vector<int> > c
 			if (find(candidatesAnalyzed.begin(), candidatesAnalyzed.end(), *eachCandidate)
 					== candidatesAnalyzed.end()) {
 				vector<int> flightsThatBlock = getFlightsThatBlocks(*eachCandidate, candidates);
-				cout << "El vuelo " << *eachCandidate << " está bloqueando " << flightsThatBlock.size()
-						<< " vuelos cancelados que son ";
-				printVectorInt(flightsThatBlock);
-				cout << endl;
+//				cout << "El vuelo " << *eachCandidate << " está bloqueando " << flightsThatBlock.size()
+//						<< " vuelos cancelados que son ";
+//				printVectorInt(flightsThatBlock);
+//				cout << endl;
 				//If flight COULD enable 2 or more flights
 				if (flightsThatBlock.size() > 0)
 					resultFiltered[*eachCandidate] = flightsThatBlock;
@@ -836,9 +866,9 @@ int Problem::tryAllInterchanges(map<int, vector<int> > FlightOKAndCandidates) {
 bool Problem::tryInterchange(int flightId, vector<int> candidates) {
 	bool successfullInterchange = false;
 
-	cout << "intento cambiar el " << flightId << " por alguno de" << endl;
-	printVectorInt(candidates);
-	cout << endl;
+//	cout << "intento cambiar el " << flightId << " por alguno de" << endl;
+//	printVectorInt(candidates);
+//	cout << endl;
 
 	//Get minimun number of sectors
 	int minSize = getMinValueFomVector(candidates);
@@ -962,7 +992,7 @@ void Problem::setFlightAlternativeRoute(Flight* f, vector<int> path, int newDura
 
 //
 bool Problem::sectorCapacitiesAreOk(vector<int> solutions) {
-//get max and min inTIme of solutions
+//get max and min inTime of solutions
 	pair<int, int> minMaxTimes = getMinMaxTimeWR(solutions, this);
 	for (int i = minMaxTimes.first; i <= minMaxTimes.second; i++) {
 		for (int sector = 0; sector < getNumSectors(); sector++) {
@@ -999,40 +1029,97 @@ void Problem::writeFileForHTML() {
 }
 
 void Problem::createFileSectors() {
-	std::ofstream outfile("waypoints.txt");
+	std::ofstream outfile("/home/carlos/DESARROLLO/waypoints.txt");
 	for (int i = 0; i < getNumWaypoints(); i++) {
 		Waypoint *w = _listWaypoints[i];
-		outfile << w->getId() << " " << w->getName() << std::endl;
+		outfile << w->getId() << " " << w->getName() << " " << w->getIsAirport() << " " << w->getSector1()->getId()
+				<< endl;
 	}
 	outfile.close();
 
 }
 
 void Problem::createFileFlights() {
-	std::ofstream outfile("flights.txt");
+	std::ofstream outfile("/home/carlos/DESARROLLO/flights.txt");
 	for (int i = 0; i < getNumFlights(); i++) {
 		Flight *f = _listFlights[i];
 		if (!f->isCanceled()) {
-			cout << "entro" << endl;
 			vector<int> solution = f->getCurrentSolution();
-			cout << "salgo" << endl;
-			printVectorInt(solution);
-			cout << endl;
 			if (!solution.empty()) {
 
 				for (int j = 0; j < solution.size() - 1; j++) {
-					Waypoint *w1 = getWRById(f, solution[j])->getWaypointFather();
-					Waypoint *w2 = getWRById(f, solution[j + 1])->getWaypointFather();
+					WaypointRoute *wr1 = getWRById(f, solution[j]);
+					WaypointRoute *wr2 = getWRById(f, solution[j + 1]);
+
+					Waypoint *w1 = wr1->getWaypointFather();
+					Waypoint *w2 = wr2->getWaypointFather();
 					int id1 = w1->getId();
 					int id2 = w2->getId();
 					string name1 = w1->getName();
 					string name2 = w2->getName();
 
-					outfile << f->getId() << " " << id1 << " " << name1 << " " << id2 << " " << name2 << std::endl;
-				}
+				if (id1 != id2)
+				outfile << f->getId() << " " << id1 << " " << name1 << " " << id2 << " " << name2 <<" "<< wr2->getInTime()<<endl;
 			}
 		}
 	}
-	outfile.close();
+}
+outfile.close();
+}
+
+void Problem::printStatusProblem() {
+int numOK = 0;
+int numDelayed = 0;
+int numDeflected = 0;
+int numDeflectedAndDelayed = 0;
+int numCanceled = 0;
+int numError = 0;
+int numNotLaunched = 0;
+for (int i = 0; i < getNumFlights(); i++) {
+	Flight *f = _listFlights[i];
+	switch (f->getStatus()) {
+		case FLIGHT_STATUS_ERROR:
+			numError++;
+			break;
+		case FLIGHT_STATUS_CANCELED:
+			numCanceled++;
+			break;
+		case FLIGHT_STATUS_NOT_LAUNCHED:
+			numNotLaunched++;
+			break;
+		case FLIGHT_STATUS_IN_TIME:
+			numOK++;
+			break;
+		case FLIGHT_STATUS_DELAYEYD:
+			numDelayed++;
+			break;
+		case FLIGHT_STATUS_DEFLECTED:
+			numDeflected++;
+			break;
+		case FLIGHT_STATUS_DELAYED_AND_DEFLECTED:
+			numDeflectedAndDelayed++;
+			break;
+	}
+}
+cout << "/////// Resultado final: ///////" << endl;
+cout << "Vuelos sin despegar: " << numNotLaunched << endl;
+cout << "Vuelos con error: " << numError << endl;
+cout << "Vuelos cancelados: " << numCanceled << endl;
+cout << "Vuelos en tiempo previsto: " << numOK << endl;
+cout << "Vuelos retrasados: " << numDelayed << endl;
+cout << "Vuelos desviados pero en tiempo: " << numDeflected << endl;
+cout << "Vuelos desviados y retrasados: " << numDeflectedAndDelayed << endl;
+
+//	cout << "waypoints y sectores" << endl;
+//	for (int i = 0; i < getNumFlights(); i++) {
+//		Flight *f = _listFlights[i];
+//		cout << "****************** " << f->getId() << endl;
+//		vector<int> solution = f->getCurrentSolution();
+//		for (vector<int>::iterator it = solution.begin(); it != solution.end(); ++it) {
+//			WaypointRoute *wr = getWRById(f, *it);
+//			cout << "wr " << *it << " con waypoint " << wr->getWaypointFather()->getId() << " y sector "
+//					<< wr->getIdSector() << " en tiempo " << wr->getInTime() << endl;
+//		}
+//	}
 }
 

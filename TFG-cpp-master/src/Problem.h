@@ -118,7 +118,7 @@ public:
 	bool flightIsUnconnected(vector<string> allWaypointsRoute, vector<string> flightWaypointsRoute);
 	std::vector<std::string> getUniqueWaypointsRouteByFlight(Flight *flight);
 	int sectorIsFreeAtTime(int time, string sectorName);
-	int conditionDjistraByOption(int option, int inTime, WaypointRoute *wr, vector<int> v);
+	int conditionDjistraByOption(int option, int inTime, WaypointRoute *wr, vector<int> v,int wrDestiny);
 	void updateTimesBetweenWaypoints(int lastInstantFlight, int newInstantFlight, int idSectorToUpdate);
 	void tryInterchageFlights();
 	vector<int> createFlightCandidatesInterchange(Flight *flight);
@@ -136,7 +136,7 @@ public:
 	void updateTimeSector(vector<int> PathIdWaypointsRoute, Flight *flight, int option);
 	int isWaypointRouteInList(WaypointRoute **list, int idFather, int inTime, int sizeList);
 	void initialFlightsTakeOff();
-
+	void printStatusProblem();
 private:
 	int _numAirports;
 	int _numSectors;

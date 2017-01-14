@@ -69,7 +69,9 @@ int Flight::isWaypointInList(int idWaypointRouteFather, int sizeList, int inTime
 
 int Flight::getAllWaypointsFlight() {
 	int num = 0;
-	ifstream fe("./Resources/medium1/trajectories.csv");
+	string s = RESORCES_FOLDER + "trajectories.csv";
+		const char* route = s.c_str();
+	ifstream fe(route);
 	std::string line;
 	while (std::getline(fe, line)) {
 		string array[7];
@@ -111,7 +113,9 @@ int Flight::numWaypointsFlight(int idFlight, int numWaypoints) {
 
 	this->_listNameWaypoints = new std::string[numWaypoints];
 	std::string oldNames[numWaypoints];
-	ifstream fe("./Resources/medium1/trajectories.csv");
+	string s = RESORCES_FOLDER + "trajectories.csv";
+			const char* route = s.c_str();
+	ifstream fe(route);
 	std::string line;
 
 	while (std::getline(fe, line)) {

@@ -79,7 +79,7 @@ std::list<vertex_t> getShortestPathTo(vertex_t vertex, const std::vector<vertex_
 	return path;
 }
 
-adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Problem *p) {
+adjacency_list_t createGraph(Flight *flight, int idWaypointsRoute[], int option, Problem *p) {
 
 	adjacency_list_t adjacency_list(flight->getNumWaypointsRoute());
 
@@ -87,23 +87,31 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 		case OPTION_SHORTEST_PATH:
 		case OPTION_ALTERNATIVE_ROUTES: {
 			vector<int> empty;
-			for (int idWaypoint = 0; idWaypoint < flight->getNumWaypointsRoute(); idWaypoint++) {
+			for (int originWR = 0; originWR < flight->getNumWaypointsRoute(); originWR++) {
 				int currentDelay = 0;
 
-				for (int fila = 0; fila < flight->getNumWaypointsRoute(); fila++) {
-					if (flight->getRoutes()[fila][idWaypoints[idWaypoint]] != 1000) {
+				for (int destinyWR = 0; destinyWR < flight->getNumWaypointsRoute(); destinyWR++) {
+					if (flight->getRoutes()[destinyWR][idWaypointsRoute[originWR]] != 1000) {
 
-						WaypointRoute *currentWaypointRoute = flight->getListWaypointsRoute()[fila];
+						WaypointRoute *currentWaypointRoute = flight->getListWaypointsRoute()[destinyWR];
 
 						// Time instant we analize
 						int inTime = currentWaypointRoute->getInTime() + flight->getTimeStart();
 						int isAirport = currentWaypointRoute->getWaypointFather()->getIsAirport();
 
-						if (p->conditionDjistraByOption(option, inTime, currentWaypointRoute, empty)) {
-							int totalDelay = flight->getRoutes()[fila][idWaypoints[idWaypoint]] + currentDelay;
-							neighbor newNeighbor = neighbor(fila, totalDelay);
+						if (p->conditionDjistraByOption(option, inTime, currentWaypointRoute, empty, 0)) {
+							int totalDelay = flight->getRoutes()[destinyWR][idWaypointsRoute[originWR]] + currentDelay;
+							neighbor newNeighbor = neighbor(destinyWR, totalDelay);
 
-							adjacency_list[idWaypoints[idWaypoint]].push_back(newNeighbor);
+							adjacency_list[idWaypointsRoute[originWR]].push_back(newNeighbor);
+//							WaypointRoute *wr1 = p->getWRById(flight, idWaypointsRoute[originWR]);
+//							WaypointRoute *wr2 = p->getWRById(flight, destinyWR);
+//
+//							Waypoint *w1 = wr1->getWaypointFather();
+//							Waypoint *w2 = wr2->getWaypointFather();
+//
+//							cout << "voy del " << idWaypointsRoute[originWR] << "(" << wr1->getCompleteName() << ") al "
+//									<< "(" << destinyWR << " ( " << wr2->getCompleteName() << ")" << endl;
 						}
 
 						if (!isAirport)
@@ -144,7 +152,6 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 					else {
 						int currentCost = flight->getListWaypointsRoute()[currentWRId]->getInTime();
 						int costNext = flight->getListWaypointsRoute()[nextWRid]->getInTime();
-
 						neighbor n = neighbor(initialSoluton[i + 1], costNext - currentCost);
 						adjacency_list[currentWRId].push_back(n);
 					}
@@ -156,34 +163,40 @@ adjacency_list_t createGraph(Flight *flight, int idWaypoints[], int option, Prob
 
 		case OPTION_ONLY_DELAYS: {
 			vector<int> waypointIds = p->getIdWaypointsInIS(flight);
-			for (int idWaypoint = 0; idWaypoint < flight->getNumWaypointsRoute(); idWaypoint++) {
+			for (int originWR = 0; originWR < flight->getNumWaypointsRoute(); originWR++) {
 				int currentDelay = 0;
 
-				for (int fila = 0; fila < flight->getNumWaypointsRoute(); fila++) {
-					if (flight->getRoutes()[fila][idWaypoints[idWaypoint]] != 1000) {
+				for (int destinyWR = 0; destinyWR < flight->getNumWaypointsRoute(); destinyWR++) {
+					if (flight->getRoutes()[destinyWR][idWaypointsRoute[originWR]] != 1000) {
 
-						WaypointRoute *currentWaypointRoute = flight->getListWaypointsRoute()[fila];
+						WaypointRoute *currentWR = flight->getListWaypointsRoute()[destinyWR];
 
-//						cout << "miro si " << currentWaypointRoute->getWaypointFather()->getId()
-//								<< "está en los waypoints";
+//						cout << "miro si " << currentWR->getId() << " y su waypoint "
+//								<< currentWR->getWaypointFather()->getId() << " está en los waypoints";
 //						printVectorInt(waypointIds);
 //						cout << endl;
 
-						//exit(1);
-						int isAirport = currentWaypointRoute->getWaypointFather()->getIsAirport();
+						int isAirport = currentWR->getWaypointFather()->getIsAirport();
 
-//							std::string nameWaypointRoute = currentWaypointRoute->getCompleteName();
-//							std::string sectorWaypointRoute =
-//									currentWaypointRoute->getWaypointFather()->getSector1()->getName();
+						WaypointRoute *wr1 = p->getWRById(flight, idWaypointsRoute[originWR]);
+						WaypointRoute *wr2 = p->getWRById(flight, destinyWR);
+
+						Waypoint *w1 = wr1->getWaypointFather();
+						Waypoint *w2 = wr2->getWaypointFather();
+
+//						cout << "voy del " << idWaypointsRoute[originWR] << "(" << wr1->getCompleteName() << ") y waypoint "<<w1->getId() <<" al "
+//								<< "(" << destinyWR << " ( " << wr2->getCompleteName() << ") y waypoint "<<w2->getId() << endl;
 
 						// Time instant we analize
-						int inTime = currentWaypointRoute->getInTime() + flight->getTimeStart();
+						int inTime = currentWR->getInTime() + flight->getTimeStart();
 
-						if (p->conditionDjistraByOption(option, inTime, currentWaypointRoute, waypointIds)) {
-							int totalDelay = flight->getRoutes()[fila][idWaypoints[idWaypoint]] + currentDelay;
-							neighbor newNeighbor = neighbor(fila, totalDelay);
+						if (p->conditionDjistraByOption(option, inTime, currentWR, waypointIds, w2->getId())) {
+							int totalDelay = flight->getRoutes()[destinyWR][idWaypointsRoute[originWR]] + currentDelay;
+							neighbor newNeighbor = neighbor(destinyWR, totalDelay);
 
-							adjacency_list[idWaypoints[idWaypoint]].push_back(newNeighbor);
+							adjacency_list[idWaypointsRoute[originWR]].push_back(newNeighbor);
+//							cout << "voy del " << idWaypointsRoute[originWR] << " al " << destinyWR << " con tiempo "
+//									<< totalDelay << endl<<endl;
 						}
 //
 						if (!isAirport)
@@ -204,19 +217,16 @@ void Problem::Djistra(Flight *flight, int option) {
 	vector<weight_t> min_distance;
 	vector<vertex_t> previous;
 
-	//Array with Waypoint names
-	std::string arrayNameswaypoints[flight->getNumWaypointsRoute()];
 	//Array with waypoints id
-	int idWaypoints[flight->getNumWaypointsRoute()];
+	int idWaypointRoutes[flight->getNumWaypointsRoute()];
 
 	for (int i = 0; i < flight->getNumWaypointsRoute(); i++) {
 		std::string nameWaypointRoute = flight->getListWaypointsRoute()[i]->getCompleteName();
-		arrayNameswaypoints[i] = i;
-		idWaypoints[i] = i;
+		idWaypointRoutes[i] = i;
 	}
 
 	//crete graph given opton
-	adjacency_list_t adjacency_list = createGraph(flight, idWaypoints, option, this);
+	adjacency_list_t adjacency_list = createGraph(flight, idWaypointRoutes, option, this);
 
 	//Find shortest path
 	computePaths(0, adjacency_list, min_distance, previous);
@@ -228,7 +238,7 @@ void Problem::Djistra(Flight *flight, int option) {
 	if (distance < MAX_DISTANCE && distance > 0) {
 
 		list<vertex_t> path = getShortestPathTo(1, previous);
-		cout << "Path: ";
+		cout << "Path : ";
 		copy(path.begin(), path.end(), std::ostream_iterator<vertex_t>(std::cout, " "));
 		cout << endl;
 

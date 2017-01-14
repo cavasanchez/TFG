@@ -13,7 +13,7 @@
 #include <fstream>
 #include <list>
 
-int linesFile(char* route);
+int linesFile(string route);
 void printProblemData(std::ofstream log, Problem *p);
 void printArrayInt(int *array, int size);
 
