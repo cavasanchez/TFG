@@ -29,6 +29,7 @@
 Flight::Flight() {
 
 }
+
 Flight::Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, int delayGround) {
 	_id = id;
 	_timeStart = timeStart;
@@ -70,7 +71,7 @@ int Flight::isWaypointInList(int idWaypointRouteFather, int sizeList, int inTime
 int Flight::getAllWaypointsFlight() {
 	int num = 0;
 	string s = RESORCES_FOLDER + "trajectories.csv";
-		const char* route = s.c_str();
+	const char* route = s.c_str();
 	ifstream fe(route);
 	std::string line;
 	while (std::getline(fe, line)) {
@@ -111,10 +112,9 @@ int Flight::numWaypointsFlight(int idFlight, int numWaypoints) {
 	int cont = 0;
 //REVISA ESTO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-	this->_listNameWaypoints = new std::string[numWaypoints];
 	std::string oldNames[numWaypoints];
 	string s = RESORCES_FOLDER + "trajectories.csv";
-			const char* route = s.c_str();
+	const char* route = s.c_str();
 	ifstream fe(route);
 	std::string line;
 
@@ -131,7 +131,7 @@ int Flight::numWaypointsFlight(int idFlight, int numWaypoints) {
 
 			if (isNewWaypoint(array[3], oldNames, cont)) {
 				oldNames[cont] = array[3];
-				this->_listNameWaypoints[cont] = array[3];
+				_allWaypointNames.push_back(array[3]);
 				numDifferentWaypoints++;
 			}
 			cont++;
@@ -176,7 +176,7 @@ void Flight::printStatus() {
 		case FLIGHT_STATUS_IN_TIME:
 			cout << "LLEGÓ EN TIEMPO";
 			break;
-		case FLIGHT_STATUS_DELAYEYD:
+		case FLIGHT_STATUS_DELAYED:
 			cout << "OK PERO RETRASADO";
 			break;
 		case FLIGHT_STATUS_DEFLECTED:
@@ -193,5 +193,27 @@ void Flight::printStatus() {
 
 bool Flight::isCanceled() {
 	return (_status == FLIGHT_STATUS_ERROR || _status == FLIGHT_STATUS_CANCELED || _status == FLIGHT_STATUS_NOT_LAUNCHED);
+}
+
+bool Flight::isOnTimeOrDelayed(){
+	return (_status == FLIGHT_STATUS_DELAYED || _status == FLIGHT_STATUS_IN_TIME);
+
+}
+
+int Flight::getSomeWaypointUnused(vector<int> waypointId, vector<int>waypointsToAvoid) {
+	bool waypointUnused = -1;
+//	printVectorInt(waypointId);
+//	cout << endl;
+	for (int i = 0; i < this->getNumWaypointsRoute(); i++) {
+		WaypointRoute *wr = this->getListWaypointsRoute()[i];
+		bool contains = checkVectorContainsElement(waypointId, wr->getWaypointFather()->getId());
+		if (contains && !checkVectorContainsElement(waypointsToAvoid, wr->getWaypointFather()->getId())) {
+//			cout<<"está el"<<endl;
+//			cout << wr->getWaypointFather()->getId() << endl;
+//			cout << wr->getWaypointFather()->getName() << endl;
+			return wr->getWaypointFather()->getId();
+		}
+	}
+	return -1;
 }
 

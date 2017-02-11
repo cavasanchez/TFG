@@ -1,1 +1,17 @@
 \section{Heurístico}
+El algoritmo se resume en el siguiente diagrama:
+
+Los pasos son:
+\begin{enumerate}
+	\item \textbf{Lanzamientos iniciales:} Lanzar vuelos solo con la mejor solución (solución inicial)
+	\item \textbf{Intercambio de vuelos: }solo con las soluciones iniciales (sin retardos ni rutas alternativas), intentamos cambiar un vuelo ok por 2 O MAS vuelos que fueron cancelados. para ello:
+	\begin{enumerate}
+		\item Vemos si algún vuelo ok bloquea más de 2 vuelos cancelados. Comparamos los sectores que bloquea cada uno en un momento de tiempo t. Obtenemos una tupla <vueloOK,candidatos vuelos cancelados>
+		\item De todos los candidatos, escogemos una combinación (al azar) de vuelos que puedan ser una solución válida respecto al número de sectores(un vuelo ok que bloquea 4 sectores necesitará como mucho 2 vuelos de 2 sectores cada uno)
+		\item Con esa selección de candidatos, vemos si lanzando esos vuelos y cancelando el anterior ok la solución es válida.
+		\item Si es válida, hacemos el cambio. Si no, nada.
+	\end{enumerate} 
+	
+	\item \textbf{Vuelos con retrasos}: los vuelos pueden retrasarse, pero no optar por las rutas alternativas.
+	\item \textbf{Vuelos sin restricciones}: pueden coger rutas alternativas y retrasarse.
+\end{enumerate}

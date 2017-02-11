@@ -30,6 +30,7 @@ void printVectorInt(vector<int> vectorInts);
 vector<int> createVectorFromList(list<int> path);
 vector<int> getFlightsThatBlocks(int value, map<int, vector<int> > original);
 bool checkVectorContainsElement(vector<int> v, int value);
+bool checkVectorStringContainsElement(vector<string> v, string value);
 vector<string> removeDuplicatesVectorString(vector<string> vectorStrings);
 vector<int> removeDuplicatesVectorInt(vector<int> vectorInt);
 int getMinValueFomVector(vector<int> vector);
@@ -39,4 +40,5 @@ vector<int> arrayIntToVector(int *array);
 int** initializeMatrixRoutes();
 vector<int> removeElementsFromVector(vector<int> orignal, vector<int> elementsToDelete);
 bool vectorContainsAllValues(vector<int> orignal, vector<int> elementsToCheck);
+int getNumCommonElementsVectorString(vector<string> a, vector<string> b);
 #endif /* UTILITIES_H_ */

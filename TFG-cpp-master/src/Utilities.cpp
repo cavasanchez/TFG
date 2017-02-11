@@ -231,3 +231,22 @@ bool checkVectorContainsElement(vector<int> v, int value) {
 	return false;
 }
 
+bool checkVectorStringContainsElement(vector<string> v, string value) {
+	for (vector<string>::iterator it = v.begin(); it != v.end(); ++it) {
+		string currentValue = *it;
+		if (currentValue.compare(value) == 0)
+			return true;
+	}
+	return false;
+}
+
+int getNumCommonElementsVectorString(vector<string> a, vector<string> b) {
+	int common = 0;
+	for (vector<string>::iterator it = a.begin(); it != a.end(); ++it) {
+		if (checkVectorStringContainsElement(b, *it)) {
+			common++;
+		}
+	}
+	return common;
+
+}

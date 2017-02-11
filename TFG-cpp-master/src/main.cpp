@@ -28,12 +28,11 @@ int main() {
 
 	log << writeInLog("Executon start");
 
-
-	int numAirports = linesFile(RESORCES_FOLDER+"arports.csv");
-	int numFlights = linesFile(RESORCES_FOLDER+"flights.csv");
-	int numSectors = linesFile(RESORCES_FOLDER+"sectors.csv");
-	int numTrajectories = linesFile(RESORCES_FOLDER+"trajectories.csv");
-	int numWaypoints = linesFile(RESORCES_FOLDER+"waypoints.csv");
+	int numAirports = linesFile(RESORCES_FOLDER + "arports.csv");
+	int numFlights = linesFile(RESORCES_FOLDER + "flights.csv");
+	int numSectors = linesFile(RESORCES_FOLDER + "sectors.csv");
+	int numTrajectories = linesFile(RESORCES_FOLDER + "trajectories.csv");
+	int numWaypoints = linesFile(RESORCES_FOLDER + "waypoints.csv");
 
 	Problem *p = new Problem(numAirports, numSectors, numTrajectories, numWaypoints, numFlights);
 
@@ -61,16 +60,24 @@ int main() {
 	int currentFlightNoCanceled = 0;
 
 //	while (iterations < MAX_ITERATIONS) {
-		while (iterations < 1) {
+	while (iterations < 1) {
 
 		cout << "******************ITERACCION " << iterations << " ************************" << endl;
 		log << writeInLog("Step 2. trying to interchange flights");
 		p->interchangeFlights();
+
 		log << writeInLog("Step 3. Take off flights with delays");
 		p->flightsTakeOffWithDelays();
 
 		log << writeInLog("Step 4. Take off flights with alternatives routes");
 		p->flightsTakeOffAlternativeRoutes();
+
+		log << writeInLog("Step 5. Find waypoints not used and try to find any route through them ");
+		p->employUnusedWaypoints();
+
+		log << writeInLog("Step 6. Try to dlay an ok flight to set a cancel flight");
+		p->delayOkFlights();
+
 
 		int currentFlightNoCanceled = p->getNumFlightsNoCanceled();
 		iterations++;

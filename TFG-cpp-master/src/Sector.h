@@ -40,10 +40,6 @@ public:
 		_name = name;
 	}
 
-
-
-
-
 private:
 
 	int _id;

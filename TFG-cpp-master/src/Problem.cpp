@@ -117,7 +117,7 @@ void Problem::getInitialShortestRoutes() {
 void Problem::initialFlightsTakeOff() {
 	for (int i = 0; i < this->getNumFlights(); i++) {
 		int currentPosition = this->_orderFlights[i];
-		Djistra(_listFlights[i], OPTION_ONLY_INITIAL_SOLUTION);
+		Djistra(_listFlights[currentPosition], OPTION_ONLY_INITIAL_SOLUTION);
 	}
 
 //PRUEBAS
@@ -371,7 +371,7 @@ void Problem::createSectors() {
 			++i;
 		}
 
-		Sector *newSector = new Sector(cont, (array[0]), 1);
+		Sector *newSector = new Sector(cont, (array[0]), CAPACITY_SECTOR);
 		_listSectors[cont] = newSector;
 		cont++;
 	}
@@ -517,9 +517,9 @@ void Problem::updateTimesBetweenWaypoints(int lastInstantFlight, int newInstantF
 	}
 }
 
-int Problem::sectorIsFreeAtTime(int time, string sectorName) {
+int Problem::sectorIsFreeAtTime(int time, string sectorName, int incrementLimit) {
 	int sectorIsFree = 0;
-	if (_timeMomentlist[time]->getNumFlightsSector()[getIdSectorByName(sectorName)] == 0) {
+	if (_timeMomentlist[time]->getNumFlightsSector()[getIdSectorByName(sectorName)] == (0 - incrementLimit)) {
 		sectorIsFree = 1;
 	}
 	return sectorIsFree;
@@ -535,7 +535,11 @@ int Problem::conditionDjistraByOption(int option, int inTime, WaypointRoute *cur
 	switch (option) {
 		case OPTION_ONLY_INITIAL_SOLUTION:
 		case OPTION_ALTERNATIVE_ROUTES:
-			resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute) || isAirport);
+			resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute, 0) || isAirport);
+			break;
+
+		case OPTION_WITH_UNUSED_WAYPOINT:
+			resultCondition = (sectorIsFreeAtTime(inTime, sectorWaypointRoute, 1) || isAirport);
 			break;
 
 		case OPTION_SHORTEST_PATH:
@@ -546,7 +550,7 @@ int Problem::conditionDjistraByOption(int option, int inTime, WaypointRoute *cur
 			int currentWaypointId = currentWaypointRoute->getWaypointFather()->getId();
 			bool isWaypointsIncluded = checkVectorContainsElement(v, currentWaypointId);
 			bool destinyIsIncluded = checkVectorContainsElement(v, idWaypointDestiny);
-			bool noCapacityProblems = sectorIsFreeAtTime(inTime, sectorWaypointRoute);
+			bool noCapacityProblems = sectorIsFreeAtTime(inTime, sectorWaypointRoute, 0);
 			bool isAnAirport = isAirport;
 			resultCondition = (isWaypointsIncluded && destinyIsIncluded && noCapacityProblems) || isAnAirport;
 
@@ -567,7 +571,6 @@ int Problem::conditionDjistraByOption(int option, int inTime, WaypointRoute *cur
 }
 
 void Problem::createRoutes(Flight *flight) {
-//	cout<<"ENTRO"<<flight->getId()<<endl;
 
 	int newPosition = 2;
 
@@ -961,19 +964,19 @@ bool Problem::changeFlightForCandidates(int flightId, vector<int> solutions) {
 
 void Problem::cancelFlight(Flight* f, vector<int> path) {
 	updateTimeSector(path, f, -1);
-	f->setStatus(-1);
+	f->setStatus(FLIGHT_STATUS_CANCELED);
 }
 
 void Problem::setFlightOk(Flight* f, vector<int> path) {
 	updateTimeSector(path, f, 1);
 	f->setCurrentSolution(path);
-	f->setStatus(1);
+	f->setStatus(FLIGHT_STATUS_IN_TIME);
 }
 
 void Problem::setFlightDelayed(Flight* f, vector<int> path) {
 	updateTimeSector(path, f, 1);
 	f->setCurrentSolution(path);
-	f->setStatus(2);
+	f->setStatus(FLIGHT_STATUS_DELAYED);
 }
 
 void Problem::setFlightAlternativeRoute(Flight* f, vector<int> path, int newDuration) {
@@ -1004,7 +1007,7 @@ bool Problem::sectorCapacitiesAreOk(vector<int> solutions) {
 	return true;
 }
 
-vector<int> Problem::getIdWaypointsInIS(Flight *flight) {
+vector<int> Problem::getIdWRInIS(Flight *flight) {
 	vector<int> waypointIds;
 	vector<int> initialSolution = flight->getIntialSolution();
 
@@ -1058,57 +1061,58 @@ void Problem::createFileFlights() {
 					string name1 = w1->getName();
 					string name2 = w2->getName();
 
-				if (id1 != id2)
-				outfile << f->getId() << " " << id1 << " " << name1 << " " << id2 << " " << name2 <<" "<< wr2->getInTime()<<endl;
+					if (id1 != id2)
+						outfile << f->getId() << " " << id1 << " " << name1 << " " << id2 << " " << name2 << " "
+								<< wr2->getInTime() << endl;
+				}
 			}
 		}
 	}
-}
-outfile.close();
+	outfile.close();
 }
 
 void Problem::printStatusProblem() {
-int numOK = 0;
-int numDelayed = 0;
-int numDeflected = 0;
-int numDeflectedAndDelayed = 0;
-int numCanceled = 0;
-int numError = 0;
-int numNotLaunched = 0;
-for (int i = 0; i < getNumFlights(); i++) {
-	Flight *f = _listFlights[i];
-	switch (f->getStatus()) {
-		case FLIGHT_STATUS_ERROR:
-			numError++;
-			break;
-		case FLIGHT_STATUS_CANCELED:
-			numCanceled++;
-			break;
-		case FLIGHT_STATUS_NOT_LAUNCHED:
-			numNotLaunched++;
-			break;
-		case FLIGHT_STATUS_IN_TIME:
-			numOK++;
-			break;
-		case FLIGHT_STATUS_DELAYEYD:
-			numDelayed++;
-			break;
-		case FLIGHT_STATUS_DEFLECTED:
-			numDeflected++;
-			break;
-		case FLIGHT_STATUS_DELAYED_AND_DEFLECTED:
-			numDeflectedAndDelayed++;
-			break;
+	int numOK = 0;
+	int numDelayed = 0;
+	int numDeflected = 0;
+	int numDeflectedAndDelayed = 0;
+	int numCanceled = 0;
+	int numError = 0;
+	int numNotLaunched = 0;
+	for (int i = 0; i < getNumFlights(); i++) {
+		Flight *f = _listFlights[i];
+		switch (f->getStatus()) {
+			case FLIGHT_STATUS_ERROR:
+				numError++;
+				break;
+			case FLIGHT_STATUS_CANCELED:
+				numCanceled++;
+				break;
+			case FLIGHT_STATUS_NOT_LAUNCHED:
+				numNotLaunched++;
+				break;
+			case FLIGHT_STATUS_IN_TIME:
+				numOK++;
+				break;
+			case FLIGHT_STATUS_DELAYED:
+				numDelayed++;
+				break;
+			case FLIGHT_STATUS_DEFLECTED:
+				numDeflected++;
+				break;
+			case FLIGHT_STATUS_DELAYED_AND_DEFLECTED:
+				numDeflectedAndDelayed++;
+				break;
+		}
 	}
-}
-cout << "/////// Resultado final: ///////" << endl;
-cout << "Vuelos sin despegar: " << numNotLaunched << endl;
-cout << "Vuelos con error: " << numError << endl;
-cout << "Vuelos cancelados: " << numCanceled << endl;
-cout << "Vuelos en tiempo previsto: " << numOK << endl;
-cout << "Vuelos retrasados: " << numDelayed << endl;
-cout << "Vuelos desviados pero en tiempo: " << numDeflected << endl;
-cout << "Vuelos desviados y retrasados: " << numDeflectedAndDelayed << endl;
+	cout << "/////// Resultado final: ///////" << endl;
+	cout << "Vuelos sin despegar: " << numNotLaunched << endl;
+	cout << "Vuelos con error: " << numError << endl;
+	cout << "Vuelos cancelados: " << numCanceled << endl;
+	cout << "Vuelos en tiempo previsto: " << numOK << endl;
+	cout << "Vuelos retrasados: " << numDelayed << endl;
+	cout << "Vuelos desviados pero en tiempo: " << numDeflected << endl;
+	cout << "Vuelos desviados y retrasados: " << numDeflectedAndDelayed << endl;
 
 //	cout << "waypoints y sectores" << endl;
 //	for (int i = 0; i < getNumFlights(); i++) {
@@ -1123,3 +1127,222 @@ cout << "Vuelos desviados y retrasados: " << numDeflectedAndDelayed << endl;
 //	}
 }
 
+void Problem::employUnusedWaypoints() {
+	//first get unused waypoints in any time
+	vector<int> unusedWaypoints = this->getUnusedWaypoints();
+	vector<int> waypointsAlreadyMarked;
+
+	//check if any landed flight has some of unused waypoints
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		Flight *currentFlight = _listFlights[i];
+		//if no canceled and contain some unused waypoints
+
+		if (!currentFlight->isCanceled()) {
+			int idWaypointUnused = currentFlight->getSomeWaypointUnused(unusedWaypoints, waypointsAlreadyMarked);
+
+			if (idWaypointUnused > 0) {
+				Waypoint *w = getWaypointById(idWaypointUnused);
+//				cout << "El flight " << currentFlight->getId() << " pasa por uno sin usar que es " << w->getName()
+//						<< endl;
+				currentFlight->setWaypointNameToAvoid(w->getName());
+
+//				vector<int> solutionWithWaypointUnused = getSolutionWithWaypoint(currentFlight, w);
+				waypointsAlreadyMarked.push_back(idWaypointUnused);
+				Djistra(currentFlight, OPTION_WITH_UNUSED_WAYPOINT);
+			}
+		}
+	}
+}
+
+vector<int> Problem::getUnusedWaypoints() {
+	vector<int> waypointsInSolution = getWaypointsInSolutions();
+	vector<int> waypointsFree;
+	for (int i = 0; i < this->getNumWaypoints(); i++) {
+		int idWaypoint = _listWaypoints[i]->getId();
+		bool isFree = !checkVectorContainsElement(waypointsInSolution, idWaypoint);
+		if (isFree) {
+			waypointsFree.push_back(idWaypoint);
+		}
+	}
+	removeDuplicatesVectorInt(waypointsFree);
+	return waypointsFree;
+}
+
+vector<int> Problem::getWaypointsInSolutions() {
+	vector<int> waypointsInSolution;
+
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		Flight *currentFlight = _listFlights[i];
+		if (!currentFlight->isCanceled()) {
+			vector<int> flightSolution = currentFlight->getCurrentSolution();
+			for (vector<int>::iterator it = flightSolution.begin(); it != flightSolution.end(); ++it) {
+				int waypointId = currentFlight->getWRById(*it)->getWaypointFather()->getId();
+				waypointsInSolution.push_back(waypointId);
+			}
+		}
+	}
+	removeDuplicatesVectorInt(waypointsInSolution);
+	return waypointsInSolution;
+}
+
+int Problem::getRouteByFlightAndWaypoint(int flightId, string waypointName) {
+	int routeId = -1;
+
+	string s = RESORCES_FOLDER + "trajectories.csv";
+	const char* route = s.c_str();
+	ifstream fe(route);
+	std::string line;
+	while (std::getline(fe, line)) {
+		string array[7];
+		int i = 0;
+		stringstream ssin(line);
+		while (ssin.good() && i < 7) {
+			ssin >> array[i];
+			++i;
+		}
+
+		if (atoi(array[0].c_str()) == flightId && array[3].compare(waypointName) == 0) {
+			return atoi(array[1].c_str());
+		}
+	}
+
+	return routeId;
+}
+
+vector<string> Problem::getNameWaypointsByFlightAndouteId(int flightId, int routeId) {
+	vector<string> nameWaypoints;
+
+	string s = RESORCES_FOLDER + "trajectories.csv";
+	const char* route = s.c_str();
+	ifstream fe(route);
+	std::string line;
+	while (std::getline(fe, line)) {
+		string array[7];
+		int i = 0;
+		stringstream ssin(line);
+		while (ssin.good() && i < 7) {
+			ssin >> array[i];
+			++i;
+		}
+
+		if (atoi(array[0].c_str()) == flightId && atoi(array[1].c_str()) == routeId) {
+			nameWaypoints.push_back(array[3]);
+		}
+	}
+
+	return nameWaypoints;
+}
+
+vector<int> Problem::getWRByWaypointNames(Flight *f, vector<string> waypointNames) {
+	vector<int> result;
+	for (int i = 0; i < f->getNumWaypointsRoute(); i++) {
+		WaypointRoute *currentWR = f->getListWaypointsRoute()[i];
+//		cout<<currentWR->getCompleteName()<<endl;
+		if (currentWR->isAirport()
+				|| checkVectorStringContainsElement(waypointNames, currentWR->getWaypointFather()->getName())) {
+			result.push_back(currentWR->getId());
+		}
+	}
+	removeDuplicatesVectorInt(result);
+	return result;
+}
+
+void Problem::delayOkFlights() {
+
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		if (_listFlights[i]->isOnTimeOrDelayed()) {
+			vector<int> candidates = getFlightCandidatesDelay(_listFlights[i]);
+			cancelFlightOkAndTryCandidates(_listFlights[i], candidates);
+		}
+	}
+	cout << "---------- DESPUES DE RETRASAR VUELOS OK ----------" << endl;
+	printAllFlightStatus();
+
+}
+
+vector<int> Problem::getFlightCandidatesDelay(Flight *flightOk) {
+	std::vector<int> candidates;
+	//foreach canceled flight, check if share at least 3 waypoints
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		Flight *currentFlight = _listFlights[i];
+		if (currentFlight->getStatus() == FLIGHT_STATUS_CANCELED && currentFlight->getId() != flightOk->getId()) {
+			bool isCandidate = checkFlightsShare2Waypoints(flightOk, currentFlight);
+			if (isCandidate) {
+//				cout << "El " << currentFlight->getId() << " es un candidato cancelado del OK " << flightOk->getId()
+//						<< endl;
+				candidates.push_back(currentFlight->getId());
+			}
+		}
+	}
+	return candidates;
+}
+
+
+bool Problem::checkFlightsShare2Waypoints(Flight *flightOk, Flight *flightCancel) {
+	vector<string> waypointsFlightOk = flightOk->getAllWaypointNames();
+	vector<string> waypointsFlightCancel = flightCancel->getAllWaypointNames();
+
+	waypointsFlightOk = removeDuplicatesVectorString(waypointsFlightOk);
+	waypointsFlightCancel = removeDuplicatesVectorString(waypointsFlightCancel);
+
+//	printVectorString(waypointsFlightOk);
+//	cout << endl;
+//	printVectorString(waypointsFlightCancel);
+//	cout << endl;
+
+	int common = getNumCommonElementsVectorString(waypointsFlightOk, waypointsFlightCancel);
+//	cout << common << "*************" << endl;
+	return (common >= 2);
+}
+
+void Problem::cancelFlightOkAndTryCandidates(Flight *flightOk, vector<int> candidates) {
+	vector<int> originalSolution = flightOk->getCurrentSolution();
+	int lastStatus = flightOk->getStatus();
+//	cout << endl;
+//	cout << "el " << flightOk->getId() << " tiene de candidatos a ";
+//	printVectorInt(candidates);
+//	cout << endl;
+	//free sectors of flight ok
+	cancelFlight(flightOk, flightOk->getCurrentSolution());
+
+	//get one random candidate and try to set
+	std::random_shuffle(candidates.begin(), candidates.end());
+	for (vector<int>::iterator it = candidates.begin(); it != candidates.end(); ++it) {
+		Flight *candidateFlight = getFlightById(*it);
+
+		//first try to set the candidate
+		Djistra(candidateFlight, OPTION_ALTERNATIVE_ROUTES);
+		bool isCandidateOk = !candidateFlight->isCanceled();
+
+		if (isCandidateOk) {
+//			cout << "CANDIDATO VALIDO" << endl;
+			//try to re set the original flight
+			Djistra(flightOk, OPTION_ALTERNATIVE_ROUTES);
+			bool isOriginalOk = !flightOk->isCanceled();
+
+			if (isOriginalOk) {
+//				cout << "--------------------->SIIIIIIIIIIII" << endl;
+//				cout << "EL " << candidateFlight->getId() << " y el " << flightOk->getId() << endl;
+				break;
+			} else {
+				//Is not a valid candidate
+				cancelFlight(candidateFlight, candidateFlight->getCurrentSolution());
+			}
+		}
+	}
+
+//	cout << "AAAAAA " << flightOk->isCanceled() << endl;
+
+	//if at the end there is no solution, set ok again the original flight
+	if (flightOk->isCanceled()) {
+//		cout << "entro" << endl;
+//		cout << "antes " << flightOk->getStatus() << endl;
+		flightOk->setStatus(lastStatus);
+//		cout << "después " << flightOk->getStatus() << endl;
+
+		flightOk->setCurrentSolution(originalSolution);
+	}
+//	printAllFlightStatus();
+
+//	exit(1);
+}

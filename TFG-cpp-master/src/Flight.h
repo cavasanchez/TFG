@@ -28,6 +28,8 @@ public:
 	int isWaypointInList(int idWaypointRoute, int sizeList, int inTime, WaypointRoute **waypointsRoute);
 	void printStatus();
 	bool isCanceled();
+	bool isOnTimeOrDelayed();
+	int getSomeWaypointUnused(std::vector<int> waypointId, std::vector<int> waypointsToAvoid);
 
 	int getId() const {
 		return _id;
@@ -77,9 +79,7 @@ public:
 		_status = status;
 	}
 
-	const std::string* getListNameWaypoints() const {
-		return _listNameWaypoints;
-	}
+
 
 	int getGroundDelay() const {
 		return _groundDelay;
@@ -147,6 +147,22 @@ public:
 
 	std::vector<int> getIdSectorsIS();
 
+	const std::string& getWaypointNameToAvoid() const {
+		return _waypointNameToAvoid;
+	}
+
+	void setWaypointNameToAvoid(const std::string& waypointNameToAvoid) {
+		_waypointNameToAvoid = waypointNameToAvoid;
+	}
+
+	const std::vector<std::string>& getAllWaypointNames() const {
+		return _allWaypointNames;
+	}
+
+	void setAllWaypointNames(const std::vector<std::string>& allWaypointNames) {
+		_allWaypointNames = allWaypointNames;
+	}
+
 private:
 	int _id;
 	int _timeStart;
@@ -158,12 +174,13 @@ private:
 	int _status;
 	int _numRoutes;
 	int _timeFinish;
-	std::string *_listNameWaypoints;
+	std::vector<std::string> _allWaypointNames;
 	WaypointRoute **_listWaypointsRoute;
 	int _numWaypointsRoute;
 	std::vector<int> _initialSolution;	// in waypointsRouteId
 	std::vector<int> _currentSolution;	//
 	std::vector<Flight> _flightInterchangeCandidates;
+	std::string _waypointNameToAvoid;
 
 	/*
 	 * STATUS VUELO:

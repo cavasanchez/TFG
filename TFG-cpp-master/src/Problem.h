@@ -113,12 +113,12 @@ public:
 	bool solutionHasValidSectors(vector<int> vectorWaypointsRoute, Flight *flight);
 	bool sectorCapacitiesAreOk(vector<int> solutions);
 	void printAllFlightStatus();
-	vector<int> getIdWaypointsInIS(Flight *flight);
+	vector<int> getIdWRInIS(Flight *flight);
 	void getFlightsUnconnected();
 	bool flightIsUnconnected(vector<string> allWaypointsRoute, vector<string> flightWaypointsRoute);
 	std::vector<std::string> getUniqueWaypointsRouteByFlight(Flight *flight);
-	int sectorIsFreeAtTime(int time, string sectorName);
-	int conditionDjistraByOption(int option, int inTime, WaypointRoute *wr, vector<int> v,int wrDestiny);
+	int sectorIsFreeAtTime(int time, string sectorName, int incrementLimit);
+	int conditionDjistraByOption(int option, int inTime, WaypointRoute *wr, vector<int> v, int wrDestiny);
 	void updateTimesBetweenWaypoints(int lastInstantFlight, int newInstantFlight, int idSectorToUpdate);
 	void tryInterchageFlights();
 	vector<int> createFlightCandidatesInterchange(Flight *flight);
@@ -129,14 +129,24 @@ public:
 	bool tryInterchange(int flightId, vector<int> candidates);
 	vector<int> getSolutionInterchangeFlights(int flightId, vector<int> candidates, int minSize);
 	bool changeFlightForCandidates(int flightId, vector<int> allSolutions);
-
+	void employUnusedWaypoints();
+	void delayOkFlights();
 	void Djistra(Flight *flight, int option);
-
+	vector<int> getUnusedWaypoints();
+	vector<int> getWaypointsInSolutions();
+	vector<int> getSolutionWithWaypoint(Flight *f, Waypoint *w);
+	int getRouteByFlightAndWaypoint(int flightId, string waypointName);
+	vector<string> getNameWaypointsByFlightAndouteId(int flightId, int routeId);
+	vector<int> getWRByWaypointNames(Flight *f, vector<string> waypointNames);
+	vector<int> getFlightCandidatesDelay(Flight*f);
+	bool checkFlightsShare2Waypoints(Flight *flightOk, Flight *flightCancel);
+	void cancelFlightOkAndTryCandidates(Flight *flightOk, vector<int> candidates);
 	int sectorHasSpace(int inTime);
 	void updateTimeSector(vector<int> PathIdWaypointsRoute, Flight *flight, int option);
 	int isWaypointRouteInList(WaypointRoute **list, int idFather, int inTime, int sizeList);
 	void initialFlightsTakeOff();
 	void printStatusProblem();
+
 private:
 	int _numAirports;
 	int _numSectors;
@@ -147,7 +157,6 @@ private:
 	Sector **_listSectors;
 	TimeMoment **_timeMomentlist;
 	Flight **_listFlights;
-
 	std::vector<int> _orderFlights;
 	std::vector<int> _initialOverload;
 	int _iteration;
