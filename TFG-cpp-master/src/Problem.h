@@ -14,6 +14,7 @@
 #include "WaypointRoute.h"
 #include "Heuristic.h"
 #include "Constants.h"
+#include "Solution.h"
 #include <vector>
 #include <ctime>
 #include <fstream>
@@ -91,13 +92,13 @@ public:
 	void createRoutes(Flight *flight);
 	void createWaypointRoutesObject(Flight *flight);
 	void setProblemRouteAttributes(Flight *flight, int **matrix, int numWaypointsList, WaypointRoute **waypointsRoute);
-
+	int getMaxInTime();
 	void calculateAllShortestPath();
-	void createOrderFlights();
+	void createOrderFlights(vector<int>);
 	void updateTimes();
 	void getInitialOverloadSectors();
 	void getInitialShortestRoutes();
-	void initialValidations();
+	void initialSolutions();
 	void interchangeFlights();
 	void flightsTakeOffWithDelays();
 	void flightsTakeOffAlternativeRoutes();
@@ -146,6 +147,42 @@ public:
 	int isWaypointRouteInList(WaypointRoute **list, int idFather, int inTime, int sizeList);
 	void initialFlightsTakeOff();
 	void printStatusProblem();
+	void getBestSolution();
+
+	void addFlightsBestSolution();
+	void saveCurrentSolution(int numberIteration);
+	void setNewFlightsQueue(int);
+	Solution* getBestSolutionLastN(int);
+	vector<int> getFlightsAddToQueue(Solution *bestSolutionInLast);
+
+	void resetProblem();
+
+	map<int, pair<int, vector<int> > > createSolution();
+	int getValueSolution();
+
+	int getNumTimes() const {
+		return _numTimes;
+	}
+
+	void setNumTimes(int numTimes) {
+		_numTimes = numTimes;
+	}
+
+	const vector<int>& getQueueExtraFlights() const {
+		return _queueExtraFlights;
+	}
+
+	void setQueueExtraFlights(const vector<int>& queueExtraFlights) {
+		_queueExtraFlights = queueExtraFlights;
+	}
+
+	int getValueBestSolution() const {
+		return _valueBestSolution;
+	}
+
+	void setValueBestSolution(int valueBestSolution) {
+		_valueBestSolution = valueBestSolution;
+	}
 
 private:
 	int _numAirports;
@@ -153,6 +190,7 @@ private:
 	int _numTrajectories;
 	int _numWaypoints;
 	int _numFlights;
+	int _numTimes;
 	Waypoint **_listWaypoints;
 	Sector **_listSectors;
 	TimeMoment **_timeMomentlist;
@@ -161,7 +199,9 @@ private:
 	std::vector<int> _initialOverload;
 	int _iteration;
 	ofstream _log;
-
+	vector<int> _queueExtraFlights;
+	vector<Solution> _solutions;
+	int _valueBestSolution;
 };
 
 #endif /* PROBLEM_H_ */

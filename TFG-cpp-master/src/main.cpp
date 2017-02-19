@@ -50,19 +50,20 @@ int main() {
 	log << writeInLog("Initialization finished");
 
 	log << writeInLog("Calculating shortest paths");
-	p->initialValidations();
+	p->initialSolutions();
 
-	log << writeInLog("Step 1. Take off flights in random order");
-	p->initialFlightsTakeOff();
+	int iterations = 1;
 
-	int lastNumFlightsNoCancel = 0;
-	int iterations = 0;
-	int currentFlightNoCanceled = 0;
-
-//	while (iterations < MAX_ITERATIONS) {
-	while (iterations < 1) {
+	while (iterations < MAX_ITERATIONS) {
 
 		cout << "******************ITERACCION " << iterations << " ************************" << endl;
+
+		log << writeInLog("Step 0. Add best flights queue to listFlights");
+		p->addFlightsBestSolution();
+
+		log << writeInLog("Step 1. Take off flights in random order");
+		p->initialFlightsTakeOff();
+
 		log << writeInLog("Step 2. trying to interchange flights");
 		p->interchangeFlights();
 
@@ -75,17 +76,30 @@ int main() {
 		log << writeInLog("Step 5. Find waypoints not used and try to find any route through them ");
 		p->employUnusedWaypoints();
 
-		log << writeInLog("Step 6. Try to dlay an ok flight to set a cancel flight");
+		log << writeInLog("Step 6. Try to delay an ok flight to set a cancel flight");
 		p->delayOkFlights();
 
+		p->saveCurrentSolution(iterations);
 
-		int currentFlightNoCanceled = p->getNumFlightsNoCanceled();
+		if (iterations % NUM_SOULUTIONS_TO_EXAMINE == 0) {
+			cout<<"AMPLIAMOS COLA!!!"<<endl;
+			p->setNewFlightsQueue(iterations);
+		}
+
+		cout << "********TRAS LA ITERACCION " << iterations << " *********" << endl;
+//		p->printAllFlightStatus();
+		p->printStatusProblem();
+
+		if (iterations + 1 != MAX_ITERATIONS) {
+			p->resetProblem();
+		}
 		iterations++;
 	}
 
+	p->getBestSolution();
+
 	p->writeFileForHTML();
 
-	p->printStatusProblem();
 	log << writeInLog("Execution finished");
 
 	log.close();

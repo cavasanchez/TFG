@@ -52,63 +52,41 @@ Problem::Problem(int numAirports, int numSectors, int numTrajectories, int numWa
 	_numTrajectories = numTrajectories;
 	_numWaypoints = numWaypoints;
 	_numFlights = numFlights;
+	_numTimes = 1000;
 	_iteration = 0;
+	_valueBestSolution = 0;
 }
 
 /*
  * inicializa los datos del problema
  */
 void Problem::inizializeProblem() {
-//	cout << "crea los sectores" << endl;
 	createSectors();
 
-	//cout << "crea los waypoints" << endl;
 	createWaypoints();
 
-	//cout << "crea los flights" << endl;
 	createFlights();
 
-	//cout << "crea los times" << endl;
-	createTimes();
-
-	//cout << "crea las rutas" << endl;
 	createAllRoutes();
 
-	//cout << "crea los order" << endl;
-	createOrderFlights();
-
+	createTimes();
 }
 
 /**
  * Find flights with no problems and remove it from problem
  */
-void Problem::initialValidations() {
+void Problem::initialSolutions() {
 	cout << "busca los unconnected" << endl;
 	this->getFlightsUnconnected();
 
 	cout << "calcula el camino más corto para cada vuelo" << endl;
 	this->getInitialShortestRoutes();
-
-//	cout << "busca los sobrecargados iniciales" << endl;
-//	this->getInitialOverloadSectors();
-
-//	for (int i = 0; i < 15; i++) {
-//		cout << "****EN " << i << endl;
-//		printArrayInt(_timeMomentlist[i]->getNumFlightsSector(), this->getNumSectors());
-//	}
 }
 
 void Problem::getInitialShortestRoutes() {
 	for (int i = 0; i < this->getNumFlights(); i++) {
 		Djistra(_listFlights[i], OPTION_SHORTEST_PATH);
 	}
-
-//PRUEBAS
-//	Djistra(_listFlights[0], OPTION_SHORTEST_PATH);
-//	Djistra(_listFlights[1], OPTION_SHORTEST_PATH);
-//	Djistra(_listFlights[20], OPTION_SHORTEST_PATH);
-//	Djistra(_listFlights[21], OPTION_SHORTEST_PATH);
-
 }
 
 /**
@@ -117,24 +95,19 @@ void Problem::getInitialShortestRoutes() {
 void Problem::initialFlightsTakeOff() {
 	for (int i = 0; i < this->getNumFlights(); i++) {
 		int currentPosition = this->_orderFlights[i];
-		Djistra(_listFlights[currentPosition], OPTION_ONLY_INITIAL_SOLUTION);
+		if (_listFlights[currentPosition]->getStatus() == FLIGHT_STATUS_NOT_LAUNCHED) {
+			Djistra(_listFlights[currentPosition], OPTION_ONLY_INITIAL_SOLUTION);
+		}
 	}
-
-//PRUEBAS
-//	Djistra(_listFlights[0], OPTION_ONLY_INITIAL_SOLUTION);
-//	Djistra(_listFlights[1], OPTION_ONLY_INITIAL_SOLUTION);
-//	Djistra(_listFlights[20], OPTION_ONLY_INITIAL_SOLUTION);
-//	Djistra(_listFlights[21], OPTION_ONLY_INITIAL_SOLUTION);
-
 }
 /**
  * Try to interchange a bad
  */
 void Problem::interchangeFlights() {
-	cout << "---------- ANTES DE INTERCAMBIO ----------" << endl;
-	printAllFlightStatus();
+//	cout << "---------- ANTES DE INTERCAMBIO ----------" << endl;
+//	printAllFlightStatus();
 
-	//list of pairs with status,ok flight candidates that block a cancel flight
+//list of pairs with status,ok flight candidates that block a cancel flight
 	map<int, vector<int> > mapCanceledFlight_flightsBlockIt;
 
 	for (int i = 0; i < this->getNumFlights(); i++) {
@@ -156,54 +129,69 @@ void Problem::interchangeFlights() {
 	//Step 3: try to interchange an ok flight for 2 or more refused flights
 	int numInterchnges = tryAllInterchanges(mapFiltered);
 
-	cout << "---------- DESPUES DE INTERCAMBIO ----------" << endl;
-	printAllFlightStatus();
+//	cout << "---------- DESPUES DE INTERCAMBIO ----------" << endl;
+//	printAllFlightStatus();
 }
 
 void Problem::flightsTakeOffWithDelays() {
-//launch flights in random order
-	for (int i = 0; i < this->getNumFlights(); i++) {
-		if (_listFlights[i]->getStatus() == -1) {
-			Djistra(_listFlights[i], OPTION_ONLY_DELAYS);
+	srand(time(0));
+	random_shuffle(_orderFlights.begin(), _orderFlights.end());
 
+	//launch flights in random order
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		int currentPosition = this->_orderFlights[i];
+		if (_listFlights[currentPosition]->getStatus() == FLIGHT_STATUS_CANCELED) {
+			Djistra(_listFlights[currentPosition], OPTION_ONLY_DELAYS);
 		}
 	}
-	cout << "---------- DESPUES DE RETRASOS ----------" << endl;
-	printAllFlightStatus();
 }
 
 void Problem::flightsTakeOffAlternativeRoutes() {
-	for (int i = 0; i < this->getNumFlights(); i++) {
-		if (_listFlights[i]->getStatus() == -1) {
-			Djistra(_listFlights[i], OPTION_ALTERNATIVE_ROUTES);
+	srand(time(0));
+	random_shuffle(_orderFlights.begin(), _orderFlights.end());
 
+	//launch flights in random order
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		int currentPosition = this->_orderFlights[i];
+		if (_listFlights[currentPosition]->getStatus() == FLIGHT_STATUS_CANCELED) {
+			Djistra(_listFlights[currentPosition], OPTION_ALTERNATIVE_ROUTES);
 		}
 	}
-	cout << "---------- DESPUES DE RUTAS ALTERNATIVAS ----------" << endl;
-	printAllFlightStatus();
+
+//	cout << "---------- DESPUES DE RUTAS ALTERNATIVAS ----------" << endl;
+//	printAllFlightStatus();
 }
 
-void Problem::createOrderFlights() {
-	std::srand(unsigned(std::time(0)));
-	std::vector<int> myvector;
+void Problem::createOrderFlights(vector<int> listFlights) {
 
-	// set some values:
-	for (int i = 0; i < this->getNumFlights(); ++i)
-		myvector.push_back(i);
+	srand(time(0));
+	random_shuffle(listFlights.begin(), listFlights.end());
+	listFlights = removeDuplicatesVectorIntWithoutSort(listFlights);
+	this->_orderFlights = listFlights;
+}
 
-	// using built-in random generator:
-	std::random_shuffle(myvector.begin(), myvector.end());
-	this->_orderFlights = myvector;
-
-	// print out content:
-//	std::cout << "my vector contains:";
-//	for (std::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it)
-//		std::cout << ' ' << *it;
-
+//get max in time in all flights
+int Problem::getMaxInTime() {
+	int result = 0;
+	for (int i = 0; i < _numFlights; i++) {
+		Flight *f = _listFlights[i];
+		int numberWR = f->getNumWaypointsRoute();
+		for (int j = 0; j < numberWR; j++) {
+			WaypointRoute *wr = f->getListWaypointsRoute()[j];
+			if (wr->getInTime() > result) {
+				result = wr->getInTime();
+			}
+		}
+	}
+	return result;
 }
 
 void Problem::createTimes() {
-	int maxSize = 1000;
+//	int maxSize = this->getMaxInTime();
+//	cout<<maxSize<<endl;
+//	exit(1);
+	int maxSize = _numTimes;
+
 	_timeMomentlist = new TimeMoment*[maxSize];
 	cout << "creando times... " << endl;
 
@@ -896,7 +884,8 @@ vector<int> Problem::getSolutionInterchangeFlights(int flightId, vector<int> can
 	vector<int> sectorsToGet = getFlightById(flightId)->getIdSectorsIS();
 	vector<int> candidatesCopy = candidates;
 	//shuffle vector candidates
-	std::random_shuffle(candidatesCopy.begin(), candidatesCopy.end());
+	srand(time(0));
+	random_shuffle(candidatesCopy.begin(), candidatesCopy.end());
 
 	//get all combination of solutions
 	for (vector<int>::iterator it = candidatesCopy.begin(); it != candidatesCopy.end(); ++it) {
@@ -955,9 +944,9 @@ bool Problem::changeFlightForCandidates(int flightId, vector<int> solutions) {
 			cancelFlight(f, f->getIntialSolution());
 		}
 	} else {
-		cout << "SOLUCION VALIDA!!!. Cambio el " << flightId << " por ";
-		printVectorInt(solutions);
-		cout << endl;
+//		cout << "SOLUCION VALIDA!!!. Cambio el " << flightId << " por ";
+//		printVectorInt(solutions);
+//		cout << endl;
 	}
 	return result;
 }
@@ -1039,7 +1028,6 @@ void Problem::createFileSectors() {
 				<< endl;
 	}
 	outfile.close();
-
 }
 
 void Problem::createFileFlights() {
@@ -1164,7 +1152,7 @@ vector<int> Problem::getUnusedWaypoints() {
 			waypointsFree.push_back(idWaypoint);
 		}
 	}
-	removeDuplicatesVectorInt(waypointsFree);
+	waypointsFree = removeDuplicatesVectorIntWithoutSort(waypointsFree);
 	return waypointsFree;
 }
 
@@ -1181,7 +1169,7 @@ vector<int> Problem::getWaypointsInSolutions() {
 			}
 		}
 	}
-	removeDuplicatesVectorInt(waypointsInSolution);
+	removeDuplicatesVectorIntWithoutSort(waypointsInSolution);
 	return waypointsInSolution;
 }
 
@@ -1243,20 +1231,25 @@ vector<int> Problem::getWRByWaypointNames(Flight *f, vector<string> waypointName
 			result.push_back(currentWR->getId());
 		}
 	}
-	removeDuplicatesVectorInt(result);
+	removeDuplicatesVectorIntWithoutSort(result);
 	return result;
 }
 
 void Problem::delayOkFlights() {
+	srand(time(0));
+	random_shuffle(_orderFlights.begin(), _orderFlights.end());
 
+	//launch flights in random order
 	for (int i = 0; i < this->getNumFlights(); i++) {
-		if (_listFlights[i]->isOnTimeOrDelayed()) {
+		int currentPosition = this->_orderFlights[i];
+		if (_listFlights[currentPosition]->isOnTimeOrDelayed()) {
 			vector<int> candidates = getFlightCandidatesDelay(_listFlights[i]);
 			cancelFlightOkAndTryCandidates(_listFlights[i], candidates);
 		}
 	}
-	cout << "---------- DESPUES DE RETRASAR VUELOS OK ----------" << endl;
-	printAllFlightStatus();
+
+//	cout << "---------- DESPUES DE RETRASAR VUELOS OK ----------" << endl;
+//	printAllFlightStatus();
 
 }
 
@@ -1276,7 +1269,6 @@ vector<int> Problem::getFlightCandidatesDelay(Flight *flightOk) {
 	}
 	return candidates;
 }
-
 
 bool Problem::checkFlightsShare2Waypoints(Flight *flightOk, Flight *flightCancel) {
 	vector<string> waypointsFlightOk = flightOk->getAllWaypointNames();
@@ -1306,7 +1298,8 @@ void Problem::cancelFlightOkAndTryCandidates(Flight *flightOk, vector<int> candi
 	cancelFlight(flightOk, flightOk->getCurrentSolution());
 
 	//get one random candidate and try to set
-	std::random_shuffle(candidates.begin(), candidates.end());
+	srand(time(0));
+	random_shuffle(candidates.begin(), candidates.end());
 	for (vector<int>::iterator it = candidates.begin(); it != candidates.end(); ++it) {
 		Flight *candidateFlight = getFlightById(*it);
 
@@ -1346,3 +1339,175 @@ void Problem::cancelFlightOkAndTryCandidates(Flight *flightOk, vector<int> candi
 
 //	exit(1);
 }
+
+// createRandom order to launch
+void Problem::addFlightsBestSolution() {
+
+	//add default flights to array
+
+	vector<int> orderFlights;
+	for (int i = 0; i < this->getNumFlights(); ++i) {
+		orderFlights.push_back(i);
+	}
+
+	if (!_queueExtraFlights.empty()) {
+		for (int i = 0; i < this->_queueExtraFlights.size(); ++i) {
+			orderFlights.push_back(_queueExtraFlights[i] - 1);
+		}
+//		printVectorInt(orderFlights);
+//		cout << endl;
+//
+//		std::random_shuffle(orderFlights.begin(), orderFlights.end());
+//		printVectorInt(orderFlights);
+//		cout << endl;
+//		orderFlights=removeDuplicatesVectorIntWithoutSort(orderFlights);
+//		printVectorInt(orderFlights);
+//		cout << endl;
+
+	}
+
+	createOrderFlights(orderFlights);
+
+	//add flights in queue
+
+}
+void Problem::saveCurrentSolution(int numberIteration) {
+
+	//create solution
+	map<int, pair<int, vector<int> > > flights = createSolution();
+	int valueSolution = getValueSolution();
+
+	Solution *s = new Solution(numberIteration, flights, valueSolution);
+	_solutions.push_back(*s);
+
+}
+
+map<int, pair<int, vector<int> > > Problem::createSolution() {
+	map<int, pair<int, vector<int> > > result;
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		Flight *currentFlight = _listFlights[i];
+		pair<int, vector<int> > currentPair;
+		currentPair.first = currentFlight->getStatus();
+		currentPair.second = currentFlight->getCurrentSolution();
+		result[currentFlight->getId()] = currentPair;
+
+	}
+	return result;
+}
+
+int Problem::getValueSolution() {
+	int result = 0;
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		int statusFlight = _listFlights[i]->getStatus();
+		if (statusFlight == FLIGHT_STATUS_IN_TIME) {
+			result += 3;
+		} else if (statusFlight == FLIGHT_STATUS_DELAYED || statusFlight == FLIGHT_STATUS_DEFLECTED) {
+			result += 2;
+		} else if (statusFlight == FLIGHT_STATUS_DELAYED_AND_DEFLECTED) {
+			result += 1;
+		}
+	}
+	return result;
+}
+
+//Get best flights in previous iterations and add it to queue
+void Problem::setNewFlightsQueue(int numIteration) {
+	Solution *bestSolutionInLast = getBestSolutionLastN(numIteration);
+
+	//if we found a better solution, save it
+	if (bestSolutionInLast->getValue() > this->getValueBestSolution()) {
+		this->setValueBestSolution(bestSolutionInLast->getValue());
+		//add new flights to queue
+		vector<int> flghtsToAdd = getFlightsAddToQueue(bestSolutionInLast);
+		this->setQueueExtraFlights(flghtsToAdd);
+	}
+	//if dont find a better solution, delete queue candidates
+	else {
+		_queueExtraFlights.clear();
+	}
+
+}
+
+Solution* Problem::getBestSolutionLastN(int numIteration) {
+	Solution *bestSolution;
+	int bestValue = 0;
+	int start = numIteration - NUM_SOULUTIONS_TO_EXAMINE;
+	for (int i = start; i < numIteration; i++) {
+		Solution *currentSolution = &_solutions[i];
+		cout << "LA iteracción " << currentSolution->getIteration() << " tiene valor " << currentSolution->getValue()
+				<< endl;
+		if (currentSolution->getValue() > bestValue) {
+			bestValue = currentSolution->getValue();
+			bestSolution = currentSolution;
+		}
+	}
+	cout << "MEJOR SOLUCIÖN: " << bestSolution->getIteration();
+	return bestSolution;
+}
+
+vector<int> Problem::getFlightsAddToQueue(Solution *bestSolutionInLast) {
+	vector<int> result;
+	map<int, pair<int, vector<int> > > flights = bestSolutionInLast->getFlightSolutions();
+	for (std::map<int, pair<int, vector<int> > >::iterator it = flights.begin(); it != flights.end(); ++it) {
+		Flight *currentFlight = getFlightById(it->first);
+		if (currentFlight->isOnTimeOrDelayed()) {
+			result.push_back(it->first);
+		}
+	}
+
+	//get random elements of solution
+	srand(time(0));
+	random_shuffle(result.begin(), result.end());
+
+	//if solution is too big, get X random elements
+	if (result.size() > MAX_NUMBER_QUEUE) {
+		vector<int> shortResult;
+		for (int i = 0; i < MAX_NUMBER_QUEUE; i++) {
+			shortResult.push_back(result[i]);
+		}
+		return shortResult;
+	}
+
+	return result;
+}
+
+//Reset flights and capacity sectors
+void Problem::resetProblem() {
+
+	//reset flights
+	for (int i = 0; i < this->getNumFlights(); i++) {
+		Flight *currentFlight = _listFlights[i];
+		vector<int> empty;
+		currentFlight->setCurrentSolution(empty);
+		currentFlight->setStatus(FLIGHT_STATUS_NOT_LAUNCHED);
+	}
+
+	//reset capacities
+	for (int i = 0; i < this->getNumTimes(); i++) {
+		TimeMoment *tm = _timeMomentlist[i];
+		for (int j = 0; j < getNumSectors(); j++) {
+			int *initialSector = (int*) malloc(this->getNumSectors() * sizeof(int));
+			for (int i = 0; i < this->getNumSectors(); i++) {
+				initialSector[i] = 0;
+			}
+			tm->setNumFlightsSector(initialSector);
+		}
+	}
+}
+
+void Problem::getBestSolution() {
+	Solution *bestSolution;
+	int bestValue = 0;
+	for (int i = 0; i < MAX_ITERATIONS - 1; i++) {
+		Solution *currentSolution = &_solutions[i];
+//		cout << "La iteracción " << currentSolution->getIteration() << " tiene valor " << currentSolution->getValue()
+//				<< endl;
+		if (currentSolution->getValue() > bestValue) {
+			bestValue = currentSolution->getValue();
+			bestSolution = currentSolution;
+		}
+	}
+	cout << "MEJOR SOLUCIÖN DE TODAS ES: " << bestSolution->getIteration() << " con valor " << bestSolution->getValue()
+			<< endl;
+}
+

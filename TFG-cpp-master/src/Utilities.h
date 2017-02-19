@@ -41,4 +41,6 @@ int** initializeMatrixRoutes();
 vector<int> removeElementsFromVector(vector<int> orignal, vector<int> elementsToDelete);
 bool vectorContainsAllValues(vector<int> orignal, vector<int> elementsToCheck);
 int getNumCommonElementsVectorString(vector<string> a, vector<string> b);
+vector<int> removeDuplicatesVectorIntWithoutSort(vector<int> vectorInt);
+
 #endif /* UTILITIES_H_ */

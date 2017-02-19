@@ -26,6 +26,7 @@
 #include <iostream>
 #include <sstream>
 
+
 Flight::Flight() {
 
 }
@@ -35,8 +36,9 @@ Flight::Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, in
 	_timeStart = timeStart;
 	_idWaypointEnd = idWaypointEnd;
 	_idWaypointStart = idWaypointStart;
-	_status = 0;
+	_status = FLIGHT_STATUS_NOT_LAUNCHED;
 	_groundDelay = delayGround;
+	_status=FLIGHT_STATUS_NOT_LAUNCHED;
 }
 
 WaypointRoute* Flight::getWRById(int id) {
@@ -54,7 +56,7 @@ WaypointRoute* Flight::getWRById(int id) {
 int Flight::isWaypointInList(int idWaypointRouteFather, int sizeList, int inTime, WaypointRoute **waypointsRoute) {
 	int isInList = -1;
 	for (int i = 0; i < sizeList; i++) {
-//		cout << "Miro si " << idWaypointRouteFather << " = " << waypointsRoute[i]->getWaypointFather()->getId() << " y "
+//		cout << "Miro si " << idWaypointRnewSizeouteFather << " = " << waypointsRoute[i]->getWaypointFather()->getId() << " y "
 //				<< inTime << " = " << waypointsRoute[i]->getInTime() << endl;
 
 		if (idWaypointRouteFather == waypointsRoute[i]->getWaypointFather()->getId()

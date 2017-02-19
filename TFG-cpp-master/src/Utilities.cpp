@@ -108,6 +108,17 @@ vector<int> removeDuplicatesVectorInt(vector<int> vectorInt) {
 	return vectorInt;
 }
 
+vector<int> removeDuplicatesVectorIntWithoutSort(vector<int> vectorInt) {
+	vector<int> result;
+
+	for (std::vector<int>::iterator i = vectorInt.begin(); i != vectorInt.end(); ++i) {
+		if (!checkVectorContainsElement(result, *i)) {
+			result.push_back(*i);
+		}
+	}
+	return result;
+}
+
 vector<string> joinVectorString(vector<string> vectorA, vector<string> vectorB, vector<string> &finalVector) {
 	finalVector.reserve(vectorA.size() + vectorB.size()); // preallocate memory
 	finalVector.insert(finalVector.end(), vectorA.begin(), vectorA.end());

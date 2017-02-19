@@ -1,17 +1,711 @@
-11-02-2017 11:02:52 Executon start
+19-02-2017 06:32:32 Executon start
 Poblem characteristics:
 	 Num airports: 0
 	 Num flights: 22
 	 Num sectors: 44
 	 Num trajectories: 708
 	 Num waypoints: 206
-11-02-2017 11:02:52 Problem initialization
-11-02-2017 11:02:56 Initialization finished
-11-02-2017 11:02:56 Calculating shortest paths
-11-02-2017 11:02:56 Step 1. Take off flights in random order
-11-02-2017 11:02:56 Step 2. trying to interchange flights
-11-02-2017 11:02:56 Step 3. Take off flights with delays
-11-02-2017 11:02:56 Step 4. Take off flights with alternatives routes
-11-02-2017 11:02:56 Step 5. Find waypoints not used and try to find any route through them 
-11-02-2017 11:02:57 Step 6. Try to dlay an ok flight to set a cancel flight
-11-02-2017 11:02:57 Execution finished
+19-02-2017 06:32:32 Problem initialization
+19-02-2017 06:32:35 Initialization finished
+19-02-2017 06:32:35 Calculating shortest paths
+19-02-2017 06:32:35 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:35 Step 1. Take off flights in random order
+19-02-2017 06:32:35 Step 2. trying to interchange flights
+19-02-2017 06:32:35 Step 3. Take off flights with delays
+19-02-2017 06:32:36 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:36 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:36 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:36 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:36 Step 1. Take off flights in random order
+19-02-2017 06:32:36 Step 2. trying to interchange flights
+19-02-2017 06:32:36 Step 3. Take off flights with delays
+19-02-2017 06:32:37 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:37 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:37 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:37 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:37 Step 1. Take off flights in random order
+19-02-2017 06:32:37 Step 2. trying to interchange flights
+19-02-2017 06:32:37 Step 3. Take off flights with delays
+19-02-2017 06:32:37 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:37 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:38 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:38 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:38 Step 1. Take off flights in random order
+19-02-2017 06:32:38 Step 2. trying to interchange flights
+19-02-2017 06:32:38 Step 3. Take off flights with delays
+19-02-2017 06:32:38 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:38 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:38 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:39 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:39 Step 1. Take off flights in random order
+19-02-2017 06:32:39 Step 2. trying to interchange flights
+19-02-2017 06:32:39 Step 3. Take off flights with delays
+19-02-2017 06:32:39 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:39 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:39 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:39 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:39 Step 1. Take off flights in random order
+19-02-2017 06:32:39 Step 2. trying to interchange flights
+19-02-2017 06:32:39 Step 3. Take off flights with delays
+19-02-2017 06:32:40 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:40 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:40 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:40 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:40 Step 1. Take off flights in random order
+19-02-2017 06:32:40 Step 2. trying to interchange flights
+19-02-2017 06:32:40 Step 3. Take off flights with delays
+19-02-2017 06:32:40 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:40 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:41 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:41 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:41 Step 1. Take off flights in random order
+19-02-2017 06:32:41 Step 2. trying to interchange flights
+19-02-2017 06:32:41 Step 3. Take off flights with delays
+19-02-2017 06:32:41 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:41 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:41 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:41 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:41 Step 1. Take off flights in random order
+19-02-2017 06:32:41 Step 2. trying to interchange flights
+19-02-2017 06:32:41 Step 3. Take off flights with delays
+19-02-2017 06:32:42 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:42 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:42 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:42 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:42 Step 1. Take off flights in random order
+19-02-2017 06:32:42 Step 2. trying to interchange flights
+19-02-2017 06:32:42 Step 3. Take off flights with delays
+19-02-2017 06:32:42 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:42 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:43 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:43 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:43 Step 1. Take off flights in random order
+19-02-2017 06:32:43 Step 2. trying to interchange flights
+19-02-2017 06:32:43 Step 3. Take off flights with delays
+19-02-2017 06:32:43 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:43 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:43 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:43 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:43 Step 1. Take off flights in random order
+19-02-2017 06:32:43 Step 2. trying to interchange flights
+19-02-2017 06:32:43 Step 3. Take off flights with delays
+19-02-2017 06:32:44 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:44 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:44 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:44 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:44 Step 1. Take off flights in random order
+19-02-2017 06:32:44 Step 2. trying to interchange flights
+19-02-2017 06:32:44 Step 3. Take off flights with delays
+19-02-2017 06:32:44 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:44 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:45 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:45 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:45 Step 1. Take off flights in random order
+19-02-2017 06:32:45 Step 2. trying to interchange flights
+19-02-2017 06:32:45 Step 3. Take off flights with delays
+19-02-2017 06:32:45 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:45 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:45 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:45 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:45 Step 1. Take off flights in random order
+19-02-2017 06:32:45 Step 2. trying to interchange flights
+19-02-2017 06:32:45 Step 3. Take off flights with delays
+19-02-2017 06:32:46 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:46 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:46 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:46 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:46 Step 1. Take off flights in random order
+19-02-2017 06:32:46 Step 2. trying to interchange flights
+19-02-2017 06:32:46 Step 3. Take off flights with delays
+19-02-2017 06:32:47 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:47 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:47 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:47 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:47 Step 1. Take off flights in random order
+19-02-2017 06:32:47 Step 2. trying to interchange flights
+19-02-2017 06:32:47 Step 3. Take off flights with delays
+19-02-2017 06:32:47 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:47 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:48 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:48 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:48 Step 1. Take off flights in random order
+19-02-2017 06:32:48 Step 2. trying to interchange flights
+19-02-2017 06:32:48 Step 3. Take off flights with delays
+19-02-2017 06:32:48 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:48 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:48 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:48 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:48 Step 1. Take off flights in random order
+19-02-2017 06:32:48 Step 2. trying to interchange flights
+19-02-2017 06:32:48 Step 3. Take off flights with delays
+19-02-2017 06:32:49 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:49 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:49 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:49 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:49 Step 1. Take off flights in random order
+19-02-2017 06:32:49 Step 2. trying to interchange flights
+19-02-2017 06:32:49 Step 3. Take off flights with delays
+19-02-2017 06:32:49 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:49 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:50 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:50 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:50 Step 1. Take off flights in random order
+19-02-2017 06:32:50 Step 2. trying to interchange flights
+19-02-2017 06:32:50 Step 3. Take off flights with delays
+19-02-2017 06:32:50 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:50 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:50 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:50 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:50 Step 1. Take off flights in random order
+19-02-2017 06:32:50 Step 2. trying to interchange flights
+19-02-2017 06:32:50 Step 3. Take off flights with delays
+19-02-2017 06:32:51 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:51 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:51 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:51 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:51 Step 1. Take off flights in random order
+19-02-2017 06:32:51 Step 2. trying to interchange flights
+19-02-2017 06:32:51 Step 3. Take off flights with delays
+19-02-2017 06:32:51 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:51 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:52 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:52 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:52 Step 1. Take off flights in random order
+19-02-2017 06:32:52 Step 2. trying to interchange flights
+19-02-2017 06:32:52 Step 3. Take off flights with delays
+19-02-2017 06:32:52 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:52 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:52 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:52 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:52 Step 1. Take off flights in random order
+19-02-2017 06:32:52 Step 2. trying to interchange flights
+19-02-2017 06:32:52 Step 3. Take off flights with delays
+19-02-2017 06:32:53 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:53 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:53 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:53 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:53 Step 1. Take off flights in random order
+19-02-2017 06:32:53 Step 2. trying to interchange flights
+19-02-2017 06:32:53 Step 3. Take off flights with delays
+19-02-2017 06:32:53 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:54 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:54 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:54 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:54 Step 1. Take off flights in random order
+19-02-2017 06:32:54 Step 2. trying to interchange flights
+19-02-2017 06:32:54 Step 3. Take off flights with delays
+19-02-2017 06:32:54 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:54 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:55 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:55 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:55 Step 1. Take off flights in random order
+19-02-2017 06:32:55 Step 2. trying to interchange flights
+19-02-2017 06:32:55 Step 3. Take off flights with delays
+19-02-2017 06:32:55 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:55 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:55 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:55 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:55 Step 1. Take off flights in random order
+19-02-2017 06:32:55 Step 2. trying to interchange flights
+19-02-2017 06:32:55 Step 3. Take off flights with delays
+19-02-2017 06:32:56 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:56 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:56 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:56 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:56 Step 1. Take off flights in random order
+19-02-2017 06:32:56 Step 2. trying to interchange flights
+19-02-2017 06:32:56 Step 3. Take off flights with delays
+19-02-2017 06:32:56 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:56 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:57 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:57 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:57 Step 1. Take off flights in random order
+19-02-2017 06:32:57 Step 2. trying to interchange flights
+19-02-2017 06:32:57 Step 3. Take off flights with delays
+19-02-2017 06:32:57 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:57 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:57 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:57 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:57 Step 1. Take off flights in random order
+19-02-2017 06:32:57 Step 2. trying to interchange flights
+19-02-2017 06:32:57 Step 3. Take off flights with delays
+19-02-2017 06:32:58 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:58 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:58 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:58 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:58 Step 1. Take off flights in random order
+19-02-2017 06:32:58 Step 2. trying to interchange flights
+19-02-2017 06:32:58 Step 3. Take off flights with delays
+19-02-2017 06:32:59 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:59 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:32:59 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:32:59 Step 0. Add best flights queue to listFlights
+19-02-2017 06:32:59 Step 1. Take off flights in random order
+19-02-2017 06:32:59 Step 2. trying to interchange flights
+19-02-2017 06:32:59 Step 3. Take off flights with delays
+19-02-2017 06:32:59 Step 4. Take off flights with alternatives routes
+19-02-2017 06:32:59 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:00 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:00 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:00 Step 1. Take off flights in random order
+19-02-2017 06:33:00 Step 2. trying to interchange flights
+19-02-2017 06:33:00 Step 3. Take off flights with delays
+19-02-2017 06:33:00 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:00 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:00 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:00 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:00 Step 1. Take off flights in random order
+19-02-2017 06:33:00 Step 2. trying to interchange flights
+19-02-2017 06:33:00 Step 3. Take off flights with delays
+19-02-2017 06:33:01 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:01 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:01 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:01 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:01 Step 1. Take off flights in random order
+19-02-2017 06:33:01 Step 2. trying to interchange flights
+19-02-2017 06:33:01 Step 3. Take off flights with delays
+19-02-2017 06:33:01 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:01 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:02 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:02 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:02 Step 1. Take off flights in random order
+19-02-2017 06:33:02 Step 2. trying to interchange flights
+19-02-2017 06:33:02 Step 3. Take off flights with delays
+19-02-2017 06:33:02 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:02 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:02 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:03 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:03 Step 1. Take off flights in random order
+19-02-2017 06:33:03 Step 2. trying to interchange flights
+19-02-2017 06:33:03 Step 3. Take off flights with delays
+19-02-2017 06:33:03 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:03 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:03 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:03 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:03 Step 1. Take off flights in random order
+19-02-2017 06:33:03 Step 2. trying to interchange flights
+19-02-2017 06:33:03 Step 3. Take off flights with delays
+19-02-2017 06:33:04 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:04 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:04 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:04 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:04 Step 1. Take off flights in random order
+19-02-2017 06:33:04 Step 2. trying to interchange flights
+19-02-2017 06:33:04 Step 3. Take off flights with delays
+19-02-2017 06:33:04 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:04 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:05 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:05 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:05 Step 1. Take off flights in random order
+19-02-2017 06:33:05 Step 2. trying to interchange flights
+19-02-2017 06:33:05 Step 3. Take off flights with delays
+19-02-2017 06:33:05 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:05 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:05 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:05 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:05 Step 1. Take off flights in random order
+19-02-2017 06:33:05 Step 2. trying to interchange flights
+19-02-2017 06:33:05 Step 3. Take off flights with delays
+19-02-2017 06:33:06 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:06 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:06 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:06 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:06 Step 1. Take off flights in random order
+19-02-2017 06:33:06 Step 2. trying to interchange flights
+19-02-2017 06:33:06 Step 3. Take off flights with delays
+19-02-2017 06:33:07 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:07 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:07 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:07 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:07 Step 1. Take off flights in random order
+19-02-2017 06:33:07 Step 2. trying to interchange flights
+19-02-2017 06:33:07 Step 3. Take off flights with delays
+19-02-2017 06:33:07 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:07 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:08 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:08 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:08 Step 1. Take off flights in random order
+19-02-2017 06:33:08 Step 2. trying to interchange flights
+19-02-2017 06:33:08 Step 3. Take off flights with delays
+19-02-2017 06:33:08 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:08 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:08 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:08 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:08 Step 1. Take off flights in random order
+19-02-2017 06:33:08 Step 2. trying to interchange flights
+19-02-2017 06:33:08 Step 3. Take off flights with delays
+19-02-2017 06:33:09 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:09 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:09 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:09 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:09 Step 1. Take off flights in random order
+19-02-2017 06:33:09 Step 2. trying to interchange flights
+19-02-2017 06:33:09 Step 3. Take off flights with delays
+19-02-2017 06:33:09 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:09 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:10 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:10 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:10 Step 1. Take off flights in random order
+19-02-2017 06:33:10 Step 2. trying to interchange flights
+19-02-2017 06:33:10 Step 3. Take off flights with delays
+19-02-2017 06:33:10 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:10 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:10 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:11 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:11 Step 1. Take off flights in random order
+19-02-2017 06:33:11 Step 2. trying to interchange flights
+19-02-2017 06:33:11 Step 3. Take off flights with delays
+19-02-2017 06:33:11 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:11 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:11 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:11 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:11 Step 1. Take off flights in random order
+19-02-2017 06:33:11 Step 2. trying to interchange flights
+19-02-2017 06:33:11 Step 3. Take off flights with delays
+19-02-2017 06:33:12 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:12 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:12 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:12 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:12 Step 1. Take off flights in random order
+19-02-2017 06:33:12 Step 2. trying to interchange flights
+19-02-2017 06:33:12 Step 3. Take off flights with delays
+19-02-2017 06:33:12 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:12 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:13 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:13 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:13 Step 1. Take off flights in random order
+19-02-2017 06:33:13 Step 2. trying to interchange flights
+19-02-2017 06:33:13 Step 3. Take off flights with delays
+19-02-2017 06:33:13 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:13 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:13 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:13 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:13 Step 1. Take off flights in random order
+19-02-2017 06:33:13 Step 2. trying to interchange flights
+19-02-2017 06:33:13 Step 3. Take off flights with delays
+19-02-2017 06:33:14 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:14 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:14 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:14 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:14 Step 1. Take off flights in random order
+19-02-2017 06:33:14 Step 2. trying to interchange flights
+19-02-2017 06:33:14 Step 3. Take off flights with delays
+19-02-2017 06:33:14 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:14 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:15 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:15 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:15 Step 1. Take off flights in random order
+19-02-2017 06:33:15 Step 2. trying to interchange flights
+19-02-2017 06:33:15 Step 3. Take off flights with delays
+19-02-2017 06:33:15 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:15 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:15 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:15 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:15 Step 1. Take off flights in random order
+19-02-2017 06:33:15 Step 2. trying to interchange flights
+19-02-2017 06:33:15 Step 3. Take off flights with delays
+19-02-2017 06:33:16 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:16 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:16 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:16 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:16 Step 1. Take off flights in random order
+19-02-2017 06:33:16 Step 2. trying to interchange flights
+19-02-2017 06:33:16 Step 3. Take off flights with delays
+19-02-2017 06:33:16 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:16 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:17 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:17 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:17 Step 1. Take off flights in random order
+19-02-2017 06:33:17 Step 2. trying to interchange flights
+19-02-2017 06:33:17 Step 3. Take off flights with delays
+19-02-2017 06:33:17 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:17 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:17 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:17 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:17 Step 1. Take off flights in random order
+19-02-2017 06:33:17 Step 2. trying to interchange flights
+19-02-2017 06:33:17 Step 3. Take off flights with delays
+19-02-2017 06:33:18 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:18 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:18 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:18 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:18 Step 1. Take off flights in random order
+19-02-2017 06:33:18 Step 2. trying to interchange flights
+19-02-2017 06:33:18 Step 3. Take off flights with delays
+19-02-2017 06:33:18 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:18 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:19 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:19 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:19 Step 1. Take off flights in random order
+19-02-2017 06:33:19 Step 2. trying to interchange flights
+19-02-2017 06:33:19 Step 3. Take off flights with delays
+19-02-2017 06:33:19 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:19 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:19 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:20 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:20 Step 1. Take off flights in random order
+19-02-2017 06:33:20 Step 2. trying to interchange flights
+19-02-2017 06:33:20 Step 3. Take off flights with delays
+19-02-2017 06:33:20 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:20 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:20 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:20 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:20 Step 1. Take off flights in random order
+19-02-2017 06:33:20 Step 2. trying to interchange flights
+19-02-2017 06:33:20 Step 3. Take off flights with delays
+19-02-2017 06:33:21 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:21 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:21 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:21 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:21 Step 1. Take off flights in random order
+19-02-2017 06:33:21 Step 2. trying to interchange flights
+19-02-2017 06:33:21 Step 3. Take off flights with delays
+19-02-2017 06:33:21 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:21 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:22 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:22 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:22 Step 1. Take off flights in random order
+19-02-2017 06:33:22 Step 2. trying to interchange flights
+19-02-2017 06:33:22 Step 3. Take off flights with delays
+19-02-2017 06:33:22 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:22 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:22 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:22 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:22 Step 1. Take off flights in random order
+19-02-2017 06:33:22 Step 2. trying to interchange flights
+19-02-2017 06:33:22 Step 3. Take off flights with delays
+19-02-2017 06:33:23 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:23 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:23 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:23 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:23 Step 1. Take off flights in random order
+19-02-2017 06:33:23 Step 2. trying to interchange flights
+19-02-2017 06:33:23 Step 3. Take off flights with delays
+19-02-2017 06:33:23 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:23 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:24 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:24 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:24 Step 1. Take off flights in random order
+19-02-2017 06:33:24 Step 2. trying to interchange flights
+19-02-2017 06:33:24 Step 3. Take off flights with delays
+19-02-2017 06:33:24 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:24 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:24 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:24 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:24 Step 1. Take off flights in random order
+19-02-2017 06:33:24 Step 2. trying to interchange flights
+19-02-2017 06:33:24 Step 3. Take off flights with delays
+19-02-2017 06:33:25 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:25 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:25 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:25 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:25 Step 1. Take off flights in random order
+19-02-2017 06:33:25 Step 2. trying to interchange flights
+19-02-2017 06:33:25 Step 3. Take off flights with delays
+19-02-2017 06:33:25 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:25 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:26 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:26 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:26 Step 1. Take off flights in random order
+19-02-2017 06:33:26 Step 2. trying to interchange flights
+19-02-2017 06:33:26 Step 3. Take off flights with delays
+19-02-2017 06:33:26 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:26 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:26 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:26 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:26 Step 1. Take off flights in random order
+19-02-2017 06:33:26 Step 2. trying to interchange flights
+19-02-2017 06:33:26 Step 3. Take off flights with delays
+19-02-2017 06:33:27 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:27 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:27 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:27 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:27 Step 1. Take off flights in random order
+19-02-2017 06:33:27 Step 2. trying to interchange flights
+19-02-2017 06:33:27 Step 3. Take off flights with delays
+19-02-2017 06:33:27 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:27 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:28 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:28 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:28 Step 1. Take off flights in random order
+19-02-2017 06:33:28 Step 2. trying to interchange flights
+19-02-2017 06:33:28 Step 3. Take off flights with delays
+19-02-2017 06:33:28 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:28 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:28 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:29 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:29 Step 1. Take off flights in random order
+19-02-2017 06:33:29 Step 2. trying to interchange flights
+19-02-2017 06:33:29 Step 3. Take off flights with delays
+19-02-2017 06:33:29 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:29 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:29 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:29 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:29 Step 1. Take off flights in random order
+19-02-2017 06:33:29 Step 2. trying to interchange flights
+19-02-2017 06:33:29 Step 3. Take off flights with delays
+19-02-2017 06:33:30 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:30 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:30 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:30 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:30 Step 1. Take off flights in random order
+19-02-2017 06:33:30 Step 2. trying to interchange flights
+19-02-2017 06:33:30 Step 3. Take off flights with delays
+19-02-2017 06:33:30 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:30 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:31 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:31 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:31 Step 1. Take off flights in random order
+19-02-2017 06:33:31 Step 2. trying to interchange flights
+19-02-2017 06:33:31 Step 3. Take off flights with delays
+19-02-2017 06:33:31 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:31 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:31 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:31 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:31 Step 1. Take off flights in random order
+19-02-2017 06:33:31 Step 2. trying to interchange flights
+19-02-2017 06:33:31 Step 3. Take off flights with delays
+19-02-2017 06:33:32 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:32 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:32 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:32 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:32 Step 1. Take off flights in random order
+19-02-2017 06:33:32 Step 2. trying to interchange flights
+19-02-2017 06:33:32 Step 3. Take off flights with delays
+19-02-2017 06:33:32 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:32 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:33 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:33 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:33 Step 1. Take off flights in random order
+19-02-2017 06:33:33 Step 2. trying to interchange flights
+19-02-2017 06:33:33 Step 3. Take off flights with delays
+19-02-2017 06:33:33 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:33 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:33 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:33 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:33 Step 1. Take off flights in random order
+19-02-2017 06:33:33 Step 2. trying to interchange flights
+19-02-2017 06:33:33 Step 3. Take off flights with delays
+19-02-2017 06:33:34 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:34 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:34 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:34 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:34 Step 1. Take off flights in random order
+19-02-2017 06:33:34 Step 2. trying to interchange flights
+19-02-2017 06:33:34 Step 3. Take off flights with delays
+19-02-2017 06:33:34 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:34 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:35 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:35 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:35 Step 1. Take off flights in random order
+19-02-2017 06:33:35 Step 2. trying to interchange flights
+19-02-2017 06:33:35 Step 3. Take off flights with delays
+19-02-2017 06:33:35 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:35 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:35 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:35 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:35 Step 1. Take off flights in random order
+19-02-2017 06:33:35 Step 2. trying to interchange flights
+19-02-2017 06:33:35 Step 3. Take off flights with delays
+19-02-2017 06:33:36 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:36 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:36 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:36 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:36 Step 1. Take off flights in random order
+19-02-2017 06:33:36 Step 2. trying to interchange flights
+19-02-2017 06:33:36 Step 3. Take off flights with delays
+19-02-2017 06:33:36 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:37 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:37 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:37 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:37 Step 1. Take off flights in random order
+19-02-2017 06:33:37 Step 2. trying to interchange flights
+19-02-2017 06:33:37 Step 3. Take off flights with delays
+19-02-2017 06:33:37 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:37 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:38 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:38 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:38 Step 1. Take off flights in random order
+19-02-2017 06:33:38 Step 2. trying to interchange flights
+19-02-2017 06:33:38 Step 3. Take off flights with delays
+19-02-2017 06:33:38 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:38 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:38 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:38 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:38 Step 1. Take off flights in random order
+19-02-2017 06:33:38 Step 2. trying to interchange flights
+19-02-2017 06:33:38 Step 3. Take off flights with delays
+19-02-2017 06:33:39 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:39 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:39 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:39 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:39 Step 1. Take off flights in random order
+19-02-2017 06:33:39 Step 2. trying to interchange flights
+19-02-2017 06:33:39 Step 3. Take off flights with delays
+19-02-2017 06:33:39 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:39 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:40 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:40 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:40 Step 1. Take off flights in random order
+19-02-2017 06:33:40 Step 2. trying to interchange flights
+19-02-2017 06:33:40 Step 3. Take off flights with delays
+19-02-2017 06:33:40 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:40 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:40 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:40 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:40 Step 1. Take off flights in random order
+19-02-2017 06:33:40 Step 2. trying to interchange flights
+19-02-2017 06:33:40 Step 3. Take off flights with delays
+19-02-2017 06:33:41 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:41 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:41 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:41 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:41 Step 1. Take off flights in random order
+19-02-2017 06:33:41 Step 2. trying to interchange flights
+19-02-2017 06:33:41 Step 3. Take off flights with delays
+19-02-2017 06:33:41 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:41 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:42 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:42 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:42 Step 1. Take off flights in random order
+19-02-2017 06:33:42 Step 2. trying to interchange flights
+19-02-2017 06:33:42 Step 3. Take off flights with delays
+19-02-2017 06:33:42 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:42 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:42 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:42 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:42 Step 1. Take off flights in random order
+19-02-2017 06:33:42 Step 2. trying to interchange flights
+19-02-2017 06:33:42 Step 3. Take off flights with delays
+19-02-2017 06:33:43 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:43 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:43 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:43 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:43 Step 1. Take off flights in random order
+19-02-2017 06:33:43 Step 2. trying to interchange flights
+19-02-2017 06:33:43 Step 3. Take off flights with delays
+19-02-2017 06:33:43 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:43 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:44 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:44 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:44 Step 1. Take off flights in random order
+19-02-2017 06:33:44 Step 2. trying to interchange flights
+19-02-2017 06:33:44 Step 3. Take off flights with delays
+19-02-2017 06:33:44 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:44 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:44 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:45 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:45 Step 1. Take off flights in random order
+19-02-2017 06:33:45 Step 2. trying to interchange flights
+19-02-2017 06:33:45 Step 3. Take off flights with delays
+19-02-2017 06:33:45 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:45 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:45 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:45 Step 0. Add best flights queue to listFlights
+19-02-2017 06:33:45 Step 1. Take off flights in random order
+19-02-2017 06:33:45 Step 2. trying to interchange flights
+19-02-2017 06:33:45 Step 3. Take off flights with delays
+19-02-2017 06:33:46 Step 4. Take off flights with alternatives routes
+19-02-2017 06:33:46 Step 5. Find waypoints not used and try to find any route through them 
+19-02-2017 06:33:46 Step 6. Try to delay an ok flight to set a cancel flight
+19-02-2017 06:33:46 Execution finished
