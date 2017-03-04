@@ -28,7 +28,8 @@
 #include <cstdlib>      // std::rand, std::srand
 #include <algorithm>    // std::for_each
 #include <map>
-
+#include <stdio.h>
+#include <string.h>
 #include <limits> // for numeric_limits
 
 #include <queue>
@@ -60,7 +61,7 @@ Problem::Problem(int numAirports, int numSectors, int numTrajectories, int numWa
 /*
  * inicializa los datos del problema
  */
-void Problem::inizializeProblem() {
+void Problem::inizializeProblem(int numSimulation) {
 	createSectors();
 
 	createWaypoints();
@@ -70,16 +71,38 @@ void Problem::inizializeProblem() {
 	createAllRoutes();
 
 	createTimes();
+
+	createFileResult(numSimulation);
+}
+
+void Problem::createFileResult(int numSimuation) {
+
+	char *nameFile = "./Outputs/numSimuation.txt";
+
+	//only when file is not created yet
+	if (!std::ifstream(nameFile)) {
+//		std::cout << "File already exists" << std::endl;
+
+		std::ofstream outfile(nameFile);
+		if (!outfile) {
+			std::cout << "File could not be created" << std::endl;
+			exit(1);
+		}
+
+		outfile << "simulation;iteration;value_solution" << endl;
+
+		this->setRouteFileResults("./Outputs/numSimuation.txt");
+	}
 }
 
 /**
  * Find flights with no problems and remove it from problem
  */
 void Problem::initialSolutions() {
-	cout << "busca los unconnected" << endl;
+//	cout << "busca los unconnected" << endl;
 	this->getFlightsUnconnected();
 
-	cout << "calcula el camino más corto para cada vuelo" << endl;
+//	cout << "calcula el camino más corto para cada vuelo" << endl;
 	this->getInitialShortestRoutes();
 }
 
@@ -104,8 +127,6 @@ void Problem::initialFlightsTakeOff() {
  * Try to interchange a bad
  */
 void Problem::interchangeFlights() {
-//	cout << "---------- ANTES DE INTERCAMBIO ----------" << endl;
-//	printAllFlightStatus();
 
 //list of pairs with status,ok flight candidates that block a cancel flight
 	map<int, vector<int> > mapCanceledFlight_flightsBlockIt;
@@ -193,7 +214,7 @@ void Problem::createTimes() {
 	int maxSize = _numTimes;
 
 	_timeMomentlist = new TimeMoment*[maxSize];
-	cout << "creando times... " << endl;
+//	cout << "creando times... " << endl;
 
 	for (int id = 0; id < maxSize; id++) {
 		int **initialMatrix = (int **) malloc(this->getNumWaypoints() * sizeof(int*));
@@ -440,11 +461,11 @@ void Problem::getFlightsUnconnected() {
 	for (int i = 0; i < this->getNumFlights(); i++) {
 		vector<string> flightWaypointsRoute = this->getUniqueWaypointsRouteByFlight(_listFlights[i]);
 		if (this->flightIsUnconnected(allWaypointsRoute, flightWaypointsRoute)) {
-			cout << "SACAMOS EL " << i << endl;
+			//	cout << "SACAMOS EL " << i << endl;
 			_listFlights[i]->setStatus(2);
 		}
 	}
-	cout << endl;
+//	cout << endl;
 }
 //Return if all waypoints route of flight only appears once in allWaypointsRoute
 bool Problem::flightIsUnconnected(vector<string> allWaypointsRoute, vector<string> flightWaypointsRoute) {
@@ -1102,17 +1123,6 @@ void Problem::printStatusProblem() {
 	cout << "Vuelos desviados pero en tiempo: " << numDeflected << endl;
 	cout << "Vuelos desviados y retrasados: " << numDeflectedAndDelayed << endl;
 
-//	cout << "waypoints y sectores" << endl;
-//	for (int i = 0; i < getNumFlights(); i++) {
-//		Flight *f = _listFlights[i];
-//		cout << "****************** " << f->getId() << endl;
-//		vector<int> solution = f->getCurrentSolution();
-//		for (vector<int>::iterator it = solution.begin(); it != solution.end(); ++it) {
-//			WaypointRoute *wr = getWRById(f, *it);
-//			cout << "wr " << *it << " con waypoint " << wr->getWaypointFather()->getId() << " y sector "
-//					<< wr->getIdSector() << " en tiempo " << wr->getInTime() << endl;
-//		}
-//	}
 }
 
 void Problem::employUnusedWaypoints() {
@@ -1434,14 +1444,14 @@ Solution* Problem::getBestSolutionLastN(int numIteration) {
 	int start = numIteration - NUM_SOULUTIONS_TO_EXAMINE;
 	for (int i = start; i < numIteration; i++) {
 		Solution *currentSolution = &_solutions[i];
-		cout << "LA iteracción " << currentSolution->getIteration() << " tiene valor " << currentSolution->getValue()
-				<< endl;
+//		cout << "LA iteracción " << currentSolution->getIteration() << " tiene valor " << currentSolution->getValue()
+//				<< endl;
 		if (currentSolution->getValue() > bestValue) {
 			bestValue = currentSolution->getValue();
 			bestSolution = currentSolution;
 		}
 	}
-	cout << "MEJOR SOLUCIÖN: " << bestSolution->getIteration();
+	//cout << "MEJOR SOLUCIÖN: " << bestSolution->getIteration();
 	return bestSolution;
 }
 
@@ -1507,7 +1517,23 @@ void Problem::getBestSolution() {
 			bestSolution = currentSolution;
 		}
 	}
-	cout << "MEJOR SOLUCIÖN DE TODAS ES: " << bestSolution->getIteration() << " con valor " << bestSolution->getValue()
-			<< endl;
+//	cout << "MEJOR SOLUCIÖN DE TODAS ES: " << bestSolution->getIteration() << " con valor " << bestSolution->getValue()
+//			<< endl;
 }
 
+void Problem::writeResult(int simulation) {
+
+	int numSolutions = this->_solutions.size();
+	std::fstream fs;
+	fs.open("./Outputs/numSimuation.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+
+	for (int i = 0; i < numSolutions; i++) {
+		Solution *currentSolution = &_solutions[i];
+		int valueCurrentSolution = currentSolution->getValue();
+		fs << simulation << ";" << i << ";" << valueCurrentSolution << endl;
+
+	}
+
+	fs.close();
+
+}

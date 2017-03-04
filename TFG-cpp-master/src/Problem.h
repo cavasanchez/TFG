@@ -82,7 +82,7 @@ public:
 	int getIdSectorByName(std::string name);
 	Flight* getFlightById(int id);
 	WaypointRoute* getWRById(Flight *f, int id);
-	void inizializeProblem();
+	void inizializeProblem(int);
 	int nameInList(string nameWay, Waypoint **waypoints, int cont);
 	void createWaypoints();
 	void createSectors();
@@ -155,6 +155,9 @@ public:
 	Solution* getBestSolutionLastN(int);
 	vector<int> getFlightsAddToQueue(Solution *bestSolutionInLast);
 
+	void writeResult(int);
+	void createFileResult(int);
+
 	void resetProblem();
 
 	map<int, pair<int, vector<int> > > createSolution();
@@ -184,6 +187,14 @@ public:
 		_valueBestSolution = valueBestSolution;
 	}
 
+	const string& getRouteFileResults() const {
+		return routeFileResults;
+	}
+
+	void setRouteFileResults(const string& routeFileResults) {
+		this->routeFileResults = routeFileResults;
+	}
+
 private:
 	int _numAirports;
 	int _numSectors;
@@ -202,6 +213,7 @@ private:
 	vector<int> _queueExtraFlights;
 	vector<Solution> _solutions;
 	int _valueBestSolution;
+	string routeFileResults;
 };
 
 #endif /* PROBLEM_H_ */
