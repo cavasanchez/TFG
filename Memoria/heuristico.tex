@@ -1,17 +1,26 @@
 \section{Heurístico}
-El algoritmo se resume en el siguiente diagrama:
+El algoritmo que se ha creado para el problema está inspirado en el metahurístico constructivo \textit{GRASP (Greedy Randomized Adaptive Search Procedure)} se resume en el siguiente diagrama:
+
+\textcolor{red}{->IMAGEN DEL ALGORITMO EN UML<-}
+
 
 Los pasos son:
 \begin{enumerate}
-	\item \textbf{Lanzamientos iniciales:} Lanzar vuelos solo con la mejor solución (solución inicial)
-	\item \textbf{Intercambio de vuelos: }solo con las soluciones iniciales (sin retardos ni rutas alternativas), intentamos cambiar un vuelo ok por 2 O MAS vuelos que fueron cancelados. para ello:
-	\begin{enumerate}
-		\item Vemos si algún vuelo ok bloquea más de 2 vuelos cancelados. Comparamos los sectores que bloquea cada uno en un momento de tiempo t. Obtenemos una tupla <vueloOK,candidatos vuelos cancelados>
-		\item De todos los candidatos, escogemos una combinación (al azar) de vuelos que puedan ser una solución válida respecto al número de sectores(un vuelo ok que bloquea 4 sectores necesitará como mucho 2 vuelos de 2 sectores cada uno)
-		\item Con esa selección de candidatos, vemos si lanzando esos vuelos y cancelando el anterior ok la solución es válida.
-		\item Si es válida, hacemos el cambio. Si no, nada.
-	\end{enumerate} 
 	
-	\item \textbf{Vuelos con retrasos}: los vuelos pueden retrasarse, pero no optar por las rutas alternativas.
-	\item \textbf{Vuelos sin restricciones}: pueden coger rutas alternativas y retrasarse.
+	\item \textbf{Se intentan colocar vuelos con su mejor solución:} se lanzan todos los vuelos de manera aleatoria sin permitir retrasos o desvíos, solo la solución inicial.
+	
+	\item \textbf{Intercambio de vuelos: } se intenta sustituir uno de los vuelos exitosos del paso anterior por 2 o más vuelos aleatorios a los que no se les halló solución. Para ello:
+	
+	\item \textbf{Se intentan colocar vuelos permitiendo retrasos}: se lanzan los vuelos que aun no tienen solución, permitiendo retrasos en sus rutas, pero no desvíos.
+	
+	\item \textbf{Se intentan colocar vuelos permitiendo retrasos y desvíos}: se lanzan los vuelos que aun no tienen solución, permitiendo retrasos y desvíos en sus rutas.
+	
+	\item \textbf{Se intentan colocar vuelos permitiendo retrasos}: se lanzan los vuelos que aun no tienen solución, permitiendo retrasos en sus rutas, pero no desvíos. En este punto si un vuelo tiene alguna solución factible, se le asignará.
+	
+	\item \textbf{Se buscan los waypoints sin usar y se les asigna una ruta}: se localizan los waypoints por los que no pasa ningún vuelo a lo largo de todo el problema. Si algún vuelo tiene alguna solución que utilice alguno de estos waypoints, y es factible, se la asigna
+	
+	\item \textbf{Retrasar vuelos con solución para colocar 2 o más cancelados}: se intenta retrasar alguno de los vuelos con solución factible para poder encontrar de forma aleatoria uno o más vuelos que estaban cancelados.
+	
 \end{enumerate}
+
+Este esquema se repite el número de iteraciones indicadas. para que no sea un proceso totalmente aleatorio, se han añadido 2 técnicas utilizadas en los algoritmos metahurísticos: La \textit{búqueda tabú} y el \textit{arranque multistart}
