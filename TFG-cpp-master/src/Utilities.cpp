@@ -201,7 +201,6 @@ vector<int> removeElementsFromVector(vector<int> orignal, vector<int> elementsTo
 			elementToDelete != elementsToDelete.end(); ++elementToDelete) {
 		for (vector<int>::iterator it = erased.begin(); it != erased.end(); ++it) {
 			if (*it == *elementToDelete) {
-//				cout << "borro el" << *it << endl;
 				erased.erase(it);
 				break;
 			}

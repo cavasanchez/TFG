@@ -1,11 +1,6 @@
-04-03-2017 08:02:24 Executon start
 Poblem characteristics:
 	 Num airports: 0
-	 Num flights: 22
-	 Num sectors: 44
-	 Num trajectories: 708
-	 Num waypoints: 206
-04-03-2017 08:02:24 Problem initialization
-04-03-2017 08:02:27 Initialization finished
-04-03-2017 08:02:27 Calculating shortest paths
-04-03-2017 08:03:37 Execution finished
+	 Num flights: 100
+	 Num sectors: 112
+	 Num trajectories: 1406
+	 Num waypoints: 2364

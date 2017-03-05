@@ -12,7 +12,6 @@
 #include "TimeMoment.h"
 #include "Flight.h"
 #include "WaypointRoute.h"
-#include "Heuristic.h"
 #include "Constants.h"
 #include "Solution.h"
 #include <vector>

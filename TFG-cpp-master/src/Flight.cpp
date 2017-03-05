@@ -56,18 +56,13 @@ WaypointRoute* Flight::getWRById(int id) {
 int Flight::isWaypointInList(int idWaypointRouteFather, int sizeList, int inTime, WaypointRoute **waypointsRoute) {
 	int isInList = -1;
 	for (int i = 0; i < sizeList; i++) {
-//		cout << "Miro si " << idWaypointRnewSizeouteFather << " = " << waypointsRoute[i]->getWaypointFather()->getId() << " y "
-//				<< inTime << " = " << waypointsRoute[i]->getInTime() << endl;
-
 		if (idWaypointRouteFather == waypointsRoute[i]->getWaypointFather()->getId()
 				&& inTime == waypointsRoute[i]->getInTime()) {
 			isInList = i;
 			break;
 		}
 	}
-//	cout << "inlist es " << isInList << endl;
 	return isInList;
-
 }
 
 int Flight::getAllWaypointsFlight() {
@@ -94,17 +89,13 @@ int Flight::getAllWaypointsFlight() {
 }
 
 int Flight::isNewWaypoint(std::string newPoint, std::string oldPoints[], int cont) {
-//cout<<"me entra "<<newPoint<<endl;
-
 	int isNew = 1;
 	for (int i = 0; i < cont; i++) {
-		//	cout<<"MIRO SI "<<newPoint<< " es "<<oldPoints[i]<<endl;
 		if (oldPoints[i].compare(newPoint) == 0) {
 			isNew = 0;
 			break;
 		}
 	}
-//	cout<<"Es nuevo "<<isNew<<endl;
 	return isNew;
 }
 
@@ -112,7 +103,6 @@ int Flight::isNewWaypoint(std::string newPoint, std::string oldPoints[], int con
 int Flight::numWaypointsFlight(int idFlight, int numWaypoints) {
 	int numDifferentWaypoints = 0;
 	int cont = 0;
-//REVISA ESTO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	std::string oldNames[numWaypoints];
 	string s = RESORCES_FOLDER + "trajectories.csv";
@@ -140,7 +130,6 @@ int Flight::numWaypointsFlight(int idFlight, int numWaypoints) {
 
 		}
 	}
-//std::cout << "EL " << idFlight << "tiene "<<numDifferentWaypoints<< std::endl;
 	return numDifferentWaypoints;
 }
 
@@ -154,14 +143,6 @@ vector<int> Flight::getIdSectorsIS() {
 	return removeDuplicatesVectorInt(sectors);
 }
 
-/*
- * STATUS VUELO:
- * 0= sin salir
- * 1= llegó en tiempo
- * 2= llega con delay
- * -1= cancelado
- * -10= sin solución inicial -> ERROR DATOS
- */
 
 void Flight::printStatus() {
 	cout << "El vuelo " << this->_id << " está ";
@@ -204,15 +185,12 @@ bool Flight::isOnTimeOrDelayed(){
 
 int Flight::getSomeWaypointUnused(vector<int> waypointId, vector<int>waypointsToAvoid) {
 	bool waypointUnused = -1;
-//	printVectorInt(waypointId);
-//	cout << endl;
+
 	for (int i = 0; i < this->getNumWaypointsRoute(); i++) {
 		WaypointRoute *wr = this->getListWaypointsRoute()[i];
 		bool contains = checkVectorContainsElement(waypointId, wr->getWaypointFather()->getId());
 		if (contains && !checkVectorContainsElement(waypointsToAvoid, wr->getWaypointFather()->getId())) {
-//			cout<<"está el"<<endl;
-//			cout << wr->getWaypointFather()->getId() << endl;
-//			cout << wr->getWaypointFather()->getName() << endl;
+
 			return wr->getWaypointFather()->getId();
 		}
 	}

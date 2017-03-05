@@ -9,7 +9,6 @@
 #define FLIGHT_H_
 
 #include <string>
-#include "Heuristic.h"
 #include <vector>
 
 #include "Waypoint.h"
@@ -181,15 +180,6 @@ private:
 	std::vector<int> _currentSolution;	//
 	std::vector<Flight> _flightInterchangeCandidates;
 	std::string _waypointNameToAvoid;
-
-	/*
-	 * STATUS VUELO:
-	 * 0= sin salir
-	 * 1= llegó en tiempo
-	 * 2= llega con delay
-	 * -1= cancelado
-	 * -10= sin solución inicial -> ERROR DATOS
-	 */
 
 };
 

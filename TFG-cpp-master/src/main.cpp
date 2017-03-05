@@ -28,7 +28,7 @@ int main() {
 
 		log.open("log.txt");
 
-		log << writeInLog("Executon start");
+	//	log << writeInLog("Executon start");
 
 		int numAirports = linesFile(RESORCES_FOLDER + "arports.csv");
 		int numFlights = linesFile(RESORCES_FOLDER + "flights.csv");
@@ -47,74 +47,68 @@ int main() {
 		log << "\t Num trajectories: " << p->getNumTrajectories() << endl;
 		log << "\t Num waypoints: " << p->getNumWaypoints() << endl;
 
-		log << writeInLog("Problem initialization");
+		//log << writeInLog("Problem initialization");
 		p->inizializeProblem(numSimulation);
-		log << writeInLog("Initialization finished");
+		//log << writeInLog("Initialization finished");
 
-		log << writeInLog("Calculating shortest paths");
+	//	log << writeInLog("Calculating shortest paths");
 		p->initialSolutions();
 
 		int iterations = 1;
 
 		while (iterations < MAX_ITERATIONS) {
 
-			cout << "******************ITERACCION " << iterations << " ************************" << endl;
+		//	cout << "******************ITERACCION " << iterations << " ************************" << endl;
 
-//			log << writeInLog("Step 0. Add best flights queue to listFlights");
+			//log << writeInLog("Step 0. Add best flights queue to listFlights");
 			p->addFlightsBestSolution();
 
-//			log << writeInLog("Step 1. Take off flights in random order");
+			//log << writeInLog("Step 1. Take off flights in random order");
 			p->initialFlightsTakeOff();
 
-//			log << writeInLog("Step 2. trying to interchange flights");
+			//log << writeInLog("Step 2. trying to interchange flights");
 			p->interchangeFlights();
 
-//			log << writeInLog("Step 3. Take off flights with delays");
+			//log << writeInLog("Step 3. Take off flights with delays");
 			p->flightsTakeOffWithDelays();
 
-//			log << writeInLog("Step 4. Take off flights with alternatives routes");
+			//log << writeInLog("Step 4. Take off flights with alternatives routes");
 			p->flightsTakeOffAlternativeRoutes();
 
-//			log << writeInLog("Step 5. Find waypoints not used and try to find any route through them ");
+			//log << writeInLog("Step 5. Find waypoints not used and try to find any route through them ");
 			p->employUnusedWaypoints();
 
-//			log << writeInLog("Step 6. Try to delay an ok flight to set a cancel flight");
+			//log << writeInLog("Step 6. Try to delay an ok flight to set a cancel flight");
 			p->delayOkFlights();
 
 			p->saveCurrentSolution(iterations);
 
 			if (iterations % NUM_SOULUTIONS_TO_EXAMINE == 0) {
-				//cout << "AMPLIAMOS COLA!!!" << endl;
 				p->setNewFlightsQueue(iterations);
 			}
-
-			//cout << "********TRAS LA ITERACCION " << iterations << " *********" << endl;
-			//p->printStatusProblem();
-
 
 			if (iterations + 1 != MAX_ITERATIONS) {
 				p->resetProblem();
 			}
-
-			//write results
 
 			iterations++;
 		}
 
 		p->writeResult(numSimulation);
 
-
 		p->getBestSolution();
 
 		p->writeFileForHTML();
 
-		log << writeInLog("Execution finished");
+		p->printStatusProblem();
+
+		// log << writeInLog("Execution finished");
 
 		log.close();
 
 		delete p;
 
-		cout << "FIN";
+		cout << "END";
 	}
 }
 
