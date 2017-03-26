@@ -210,7 +210,7 @@ private:
 	int _iteration;
 	ofstream _log;
 	vector<int> _queueExtraFlights;
-	vector<Solution> _solutions;
+	vector<Solution*> _solutions;
 	int _valueBestSolution;
 	string routeFileResults;
 };

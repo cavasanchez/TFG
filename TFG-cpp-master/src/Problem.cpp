@@ -45,7 +45,27 @@ Problem::Problem() {
 }
 
 Problem::~Problem() {
-	// TODO Auto-generated destructor stub
+
+	for (int i = 0; i < this->getNumSectors(); i++)
+		delete _listSectors[i];
+
+	for (int i = 0; i < this->getNumWaypoints(); i++)
+		delete _listWaypoints[i];
+
+	for (int i = 0; i < this->_solutions.size(); i++) {
+		delete _solutions[i];
+	}
+	for (int i = 0; i < this->_numTimes; i++)
+		delete _timeMomentlist[i];
+
+	for (int i = 0; i < this->getNumFlights(); i++)
+		delete _listFlights[i];
+
+	free( _timeMomentlist);
+	free(_listWaypoints);
+	free(_listFlights);
+	free(_listSectors);
+
 }
 Problem::Problem(int numAirports, int numSectors, int numTrajectories, int numWaypoints, int numFlights) {
 	_numAirports = numAirports;
@@ -215,7 +235,8 @@ void Problem::createTimes() {
 		}
 
 		inicializeMatrixTo0(initialMatrix, this->getNumWaypoints());
-		TimeMoment *t = new TimeMoment(initialMatrix, initialSector);
+
+		TimeMoment *t = new TimeMoment(initialMatrix, initialSector, this->getNumWaypoints());
 
 		_timeMomentlist[id] = t;
 	}
@@ -275,15 +296,14 @@ Sector* Problem::getSectorById(int id) {
 }
 
 int Problem::getIdWaypointByName(std::string name) {
-	Waypoint *w;
-
+	int result = -1;
 	for (int i = 0; i < this->getNumWaypoints(); i++) {
 		if (_listWaypoints[i]->getName().compare(name) == 0) {
-			w = _listWaypoints[i];
+			result = _listWaypoints[i]->getId();
 			break;
 		}
 	}
-	return w->getId();
+	return result;
 }
 
 Sector* Problem::getSectorByName(std::string name) {
@@ -642,6 +662,7 @@ void Problem::createRoutes(Flight *flight) {
 								WaypointRoute *w = new WaypointRoute(numWaypointsList,
 										times + waypointsRoute[j]->getInTime(),
 										getWaypointById(getIdWaypointByName(pointsArray[i])));
+
 								waypointsRoute[numWaypointsList] = w;
 
 								matrix[numWaypointsList][waypointsRoute[j]->getId()] = timeMin;
@@ -690,6 +711,7 @@ void Problem::setProblemRouteAttributes(Flight *flight, int **matrix, int numWay
 	flight->setNumWaypointsRoute(numWaypointsList);
 	flight->setRoutes(matrix);
 	flight->setListWaypointsRoute(waypointsRoute);
+
 }
 
 int Problem::isWaypointRouteInList(WaypointRoute **list, int idFather, int inTime, int sizeList) {
@@ -1017,7 +1039,7 @@ void Problem::printStatusProblem() {
 	Solution *bestSolution;
 	int bestValue = 0;
 	for (int i = 0; i < MAX_ITERATIONS - 1; i++) {
-		Solution *currentSolution = &_solutions[i];
+		Solution *currentSolution = _solutions[i];
 
 		if (currentSolution->getValue() > bestValue) {
 			bestValue = currentSolution->getValue();
@@ -1072,7 +1094,8 @@ void Problem::printStatusProblem() {
 	cout << "Vuelos desviados pero en tiempo: " << numDeflected << endl;
 	cout << "Vuelos desviados y retrasados: " << numDeflectedAndDelayed << endl;
 
-	float percentage=(numOK + numDelayed + numDeflected + numDeflectedAndDelayed)*100 / (float)this->getNumFlights();
+	float percentage = (numOK + numDelayed + numDeflected + numDeflectedAndDelayed) * 100
+			/ (float) this->getNumFlights();
 	cout << percentage << endl;
 
 }
@@ -1302,7 +1325,7 @@ void Problem::saveCurrentSolution(int numberIteration) {
 	int valueSolution = getValueSolution();
 
 	Solution *s = new Solution(numberIteration, flights, valueSolution);
-	_solutions.push_back(*s);
+	_solutions.push_back(s);
 
 }
 
@@ -1357,7 +1380,7 @@ Solution* Problem::getBestSolutionLastN(int numIteration) {
 	int bestValue = 0;
 	int start = numIteration - NUM_SOULUTIONS_TO_EXAMINE;
 	for (int i = start; i < numIteration; i++) {
-		Solution *currentSolution = &_solutions[i];
+		Solution *currentSolution = _solutions[i];
 
 		if (currentSolution->getValue() > bestValue) {
 			bestValue = currentSolution->getValue();
@@ -1421,7 +1444,7 @@ void Problem::getBestSolution() {
 	Solution *bestSolution;
 	int bestValue = 0;
 	for (int i = 0; i < MAX_ITERATIONS - 1; i++) {
-		Solution *currentSolution = &_solutions[i];
+		Solution *currentSolution = _solutions[i];
 
 		if (currentSolution->getValue() > bestValue) {
 			bestValue = currentSolution->getValue();
@@ -1437,7 +1460,7 @@ void Problem::writeResult(int simulation) {
 	fs.open("./Outputs/numSimuation.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 
 	for (int i = 0; i < numSolutions; i++) {
-		Solution *currentSolution = &_solutions[i];
+		Solution *currentSolution = _solutions[i];
 		int valueCurrentSolution = currentSolution->getValue();
 		fs << simulation << ";" << i << ";" << valueCurrentSolution << endl;
 

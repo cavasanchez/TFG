@@ -1,1 +1,29 @@
+\chapter{Introducción y nuevos objetivos}
+
 \section{Introducción}
+\textcolor{red}{Introducción contando la stuación actual}
+
+
+\section{Versiones anteriores}
+Este Trabajo Final de Grado es la continuación del trabajo que llevaron a cabo Diego Ruiz Aguado y Gonzalo Quevedo García en 2012 en sus Proyectos Finales de Carrera, los cuales se apoyaron a su vez en la Tesis Doctoral de Alba Agustín  Martín (2011).\\
+
+A continuación se hace una breve descripción del trabajo de  Diego Ruiz Aguado y Gonzalo Quevedo García:
+\begin{enumerate}
+	\item Los datos del problema se encontraban en una base de datos no relacional con redundancias. El primer paso consistió en migrar esta base de datos no relacional a una base de datos MySQL relacional y bien estructurada.
+	\item Para obtener los datos que necesitaba el problema, se realizó un programa en JAVA que se conectaba a la BBDD y creaba varios ficheros .txt en la que se volcaba toda la información necesaria para el posterior modelado del problema.
+	\item A continuación, el programa en java leía estos ficheros .txt y creaba las estructuras de datos necesarias(árbol de rutas, vuelos, wapoints, etc).
+	\item Posteriormente una subrutina en C se encargaba de definir un problema de CIPLEX con la función objetivo y las restricciones necesarias.
+	\item Finalmente, se ejecutaba el problema de optimización mediante la librería CIPLEX para obtener la mejor solución del problema.
+\end{enumerate}
+
+
+\section{Nuevos objetivos}
+La versión anterior del problema adolecía de un importante inconveniente: no podía salir de los máximos locales, ya que el heurístico que se utilizaba para lanzar los vuelos era un algoritmo voraz. De esta forma, el resultado del problema dependía en gran medida del orden en que se intentara encontrar una solución para cada vuelo.\\
+
+Por tanto los objetivos marcados para este Trabajo de Fin de Grado han sido los siguientes (ordenados en decreciente prioridad):
+\begin{enumerate}
+	\item \textbf{Mejorar heurístico: }el objetivo principal de este TFG consiste en sustituir el algoritmo voraz por un heurístico que permita al problema escapar de los máximos locales, y por tanto encontraqr una solución mejor al problema.
+	\item \textbf{Desacoplar el programa de CIPLEX: }con la implementación de los nuevos heurísticos no es necesaria la librería de optimización. Se pasará de un sistema clásico de optimización (función objetivo y restricciones) a una estructura de objetos que permitan un manejo óptimo de las estructuras de datos durante la ejecución del algoritmo.
+	\item \textbf{Mejorar el sistema de lectura de datos: }la versión actual del programa crea ficheros .txt en los que se vuelca toda la A2 del problema (vuelos, waypoints, routas, etc) que pueden superar las 100.000 lineas. Estos ficheros auxiliares pueden sustituirse por ficheros mucho más pequeños en los que se exporta la A2 de la base de datos, y de forma interna el problema se encarga de crear las estructuras necesarias.
+	\item \textbf{Representación gráfica: }aunque estrictamente no aporta a mejorar la solución del problema, su representación gráfica puede ayudar a modelizar mejor el algoritmo, ya que permite visualizar de manera rápida y sencilla el estado del problema .
+\end{enumerate}

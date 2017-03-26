@@ -12,6 +12,11 @@ Sector::Sector() {
 
 }
 
+Sector::~Sector() {
+
+}
+
+
 Sector::Sector(int id, std::string name, int capacity) {
 	_id = id;
 	_name = name;

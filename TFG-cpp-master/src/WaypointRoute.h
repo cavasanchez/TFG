@@ -16,6 +16,8 @@ class WaypointRoute {
 public:
 	WaypointRoute();
 
+	virtual ~WaypointRoute();
+
 	WaypointRoute(int id, int inTime, Waypoint *waypointFather);
 
 	int getId() const {

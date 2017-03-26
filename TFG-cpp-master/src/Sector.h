@@ -14,7 +14,10 @@ class Sector {
 public:
 	Sector();
 
+	virtual ~Sector();
+
 	Sector(int id, std::string name, int capacity);
+
 
 	int getCapacity() const {
 		return _capacity;

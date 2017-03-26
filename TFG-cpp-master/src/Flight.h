@@ -16,9 +16,12 @@
 
 class Flight {
 public:
+
 	Flight();
 
 	Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, int delayGround);
+
+	virtual ~Flight();
 
 	int numWaypointsFlight(int idFlight, int numWaypoints);
 	WaypointRoute* getWRById(int id);

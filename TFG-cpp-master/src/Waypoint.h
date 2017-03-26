@@ -17,6 +17,8 @@ public:
 
 	Waypoint(int id, std::string name, Sector *sector1);
 
+	virtual ~Waypoint();
+
 	int getId() const {
 		return _id;
 	}

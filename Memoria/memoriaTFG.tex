@@ -1,4 +1,5 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[12pt,a4paper,twoside,openright,titlepage,final, svgnames]{book}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -18,16 +19,37 @@
 \setlength{\oddsidemargin}{6mm}
 \setlength{\evensidemargin}{28mm}
 \setlength{\topmargin}{-5mm}
+
+\usepackage{lscape}
+\usetikzlibrary{babel}
+\usepackage[]{algorithm2e}
+
+\usepackage{color}
+\usepackage{float}
+\usepackage[top=2cm,bottom=4cm,outer=2cm,inner=2cm]{geometry}
+\usepackage{fancybox}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{times}
+\usepackage{verbatim}
+\usetikzlibrary{arrows,shapes,positioning}
+\usepackage{emptypage} % Para eliminar encabezado de las páginas en blanco
+\usepackage{chngcntr}
+\usepackage{etoolbox}
+\usepackage{listings}
+\usepackage{standalone}
+
+
 \begin{document}
 	\input{./portada}
 	\newpage
 	\tableofcontents
 	\newpage
+	\listoffigures
+	\newpage
 	\input{./introduccion.tex}
 	\newpage
 	\input{./descripcion-del-problema.tex}
-	\newpage
-	\input{./versiones-anteriores.tex}
 	\newpage
 	\input{./tecnologias.tex}
 	\newpage

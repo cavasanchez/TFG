@@ -90,8 +90,8 @@ int main() {
 			if (iterations + 1 != MAX_ITERATIONS) {
 				p->resetProblem();
 			}
-
 			iterations++;
+
 		}
 
 		p->writeResult(numSimulation);
@@ -106,6 +106,8 @@ int main() {
 
 		log.close();
 
+
+		//delete all problem structures
 		delete p;
 
 		cout << "END";

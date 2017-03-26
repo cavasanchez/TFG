@@ -15,7 +15,7 @@
 #include "TimeMoment.h"
 #include "Waypoint.h"
 #include "Sector.h"
-#include "Utilities.h""
+#include "Utilities.h"
 
 #include <ctime>
 #include <fstream>
@@ -26,8 +26,21 @@
 #include <iostream>
 #include <sstream>
 
-
 Flight::Flight() {
+
+}
+
+Flight::~Flight() {
+	for (int i = 0; i < 1000; i++) {
+		delete _listWaypointsRoute[i];
+	}
+
+	delete _listWaypointsRoute;
+
+	for (int i = 0; i < 1000; i++) {
+		free(_routes[i]);
+	}
+	free(_routes);
 
 }
 
@@ -38,11 +51,11 @@ Flight::Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, in
 	_idWaypointStart = idWaypointStart;
 	_status = FLIGHT_STATUS_NOT_LAUNCHED;
 	_groundDelay = delayGround;
-	_status=FLIGHT_STATUS_NOT_LAUNCHED;
+	_status = FLIGHT_STATUS_NOT_LAUNCHED;
 }
 
 WaypointRoute* Flight::getWRById(int id) {
-	WaypointRoute *wr = new WaypointRoute();
+	WaypointRoute *wr;
 	for (int i = 0; i < this->getNumWaypointsRoute(); i++) {
 		if (_listWaypointsRoute[i]->getId() == id) {
 			wr = _listWaypointsRoute[i];
@@ -143,7 +156,6 @@ vector<int> Flight::getIdSectorsIS() {
 	return removeDuplicatesVectorInt(sectors);
 }
 
-
 void Flight::printStatus() {
 	cout << "El vuelo " << this->_id << " está ";
 	switch (this->_status) {
@@ -178,13 +190,12 @@ bool Flight::isCanceled() {
 	return (_status == FLIGHT_STATUS_ERROR || _status == FLIGHT_STATUS_CANCELED || _status == FLIGHT_STATUS_NOT_LAUNCHED);
 }
 
-bool Flight::isOnTimeOrDelayed(){
+bool Flight::isOnTimeOrDelayed() {
 	return (_status == FLIGHT_STATUS_DELAYED || _status == FLIGHT_STATUS_IN_TIME);
 
 }
 
-int Flight::getSomeWaypointUnused(vector<int> waypointId, vector<int>waypointsToAvoid) {
-	bool waypointUnused = -1;
+int Flight::getSomeWaypointUnused(vector<int> waypointId, vector<int> waypointsToAvoid) {
 
 	for (int i = 0; i < this->getNumWaypointsRoute(); i++) {
 		WaypointRoute *wr = this->getListWaypointsRoute()[i];

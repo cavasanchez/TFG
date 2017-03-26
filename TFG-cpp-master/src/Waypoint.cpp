@@ -15,6 +15,12 @@ Waypoint::Waypoint(int id, std::string name, Sector *sector1) {
 	_isAirport = 0;
 
 }
+
+
 Waypoint::Waypoint() {
+
+}
+
+Waypoint::~Waypoint() {
 
 }

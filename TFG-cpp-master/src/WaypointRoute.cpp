@@ -19,6 +19,11 @@
 WaypointRoute::WaypointRoute() {
 
 }
+
+WaypointRoute::~WaypointRoute() {
+
+}
+
 WaypointRoute::WaypointRoute(int id, int inTime, Waypoint *waypointFather) {
 	_id = id;
 	_inTime = inTime;

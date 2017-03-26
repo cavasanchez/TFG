@@ -20,5 +20,5 @@ const static int MAX_NUMBER_QUEUE=5;
 
 const static int CAPACITY_SECTOR = 1;
 
-const static std::string RESORCES_FOLDER = "./Resources/BLO2-100flights/";
+const static std::string RESORCES_FOLDER = "./Resources/BLO2-65flights/";
 

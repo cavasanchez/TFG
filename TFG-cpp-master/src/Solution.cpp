@@ -19,6 +19,8 @@ Solution::Solution(int iteration, map<int, pair<int, vector<int> > > flights, in
 }
 
 Solution::~Solution() {
+
+
 	// TODO Auto-generated destructor stub
 }
 

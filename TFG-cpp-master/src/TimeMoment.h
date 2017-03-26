@@ -11,7 +11,9 @@
 class TimeMoment {
 public:
 
-	TimeMoment(int **numFlightsMatrix, int* numFlightsSector);
+	TimeMoment(int **numFlightsMatrix, int* numFlightsSector, int numWaypoints);
+
+	virtual ~TimeMoment();
 
 	int** getNumFlightsMatrix() const {
 		return _numFlightsMatrix;
@@ -32,6 +34,7 @@ public:
 private:
 	int **_numFlightsMatrix;
 	int *_numFlightsSector;
+	int _numWaypoints;
 };
 
 #endif /* TIMEMOMENT_H_ */
