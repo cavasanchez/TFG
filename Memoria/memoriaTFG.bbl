@@ -1,0 +1,30 @@
+\begin{thebibliography}{}
+
+\bibitem[c++, 2017]{c++}
+ (2017).
+\newblock Documentación c++.
+\newblock http://www.cplusplus.com/reference/.
+
+\bibitem[Aguado, 2012]{tfg-diego}
+Aguado, D.~R. (2012).
+\newblock Una herramienta informÁtica para la planificaciÓn del trÁfico
+  aÉreo bajo incertidumbre: gestión de la infomración, modelados de vuelos y
+  optimización.
+
+\bibitem[Alonso-ayuso, 2010]{thesis-alba}
+Alonso-ayuso, A. (2010).
+\newblock {Mathematical Optimization in Air Traffic Management}.
+\newblock {\em BEIO (Bolet{\'{i}}n de Estad{\'{i}}stica e Investigaci{\'{o}}n
+  Operativa)}, 26(1):25--41.
+
+\bibitem[García, 2012]{tfg-gonzalo}
+García, G.~Q. (2012).
+\newblock Una herramienta informÁtica para la planificaciÓn del trÁfico
+  aÉreo bajo incertidumbre: Construcción y optimización de un modelo
+  matemático.
+
+\bibitem[Muñoz, ]{metaheurísticas}
+Muñoz, A.~D.
+\newblock {\em Metaheurísticas}.
+
+\end{thebibliography}

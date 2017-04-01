@@ -1,20 +1,15 @@
 \chapter{Descripción del problema}
-\section{Introducción}
-\textcolor{red}{Intro hablando de que es un problema clásico}
-
-1. explicar problema: nodos, rutas retrasos,		\\
-2. Restricciones\\
-3 ejemplo vuelo pequeño con su arbol de rutas\\
-
-El modelo se puede resumir como un problema de optimización en el que una serie de vuelos con unas rutas ....:XXXXXXXXXXXXXX
 
 
-Las entidades por tanto que tenemos en el modelo son las siguientes:
+El modelo implementado se puede resumir como un espacio aéreo dividido en diferentes sectores por el que viajan una serie de aviones. Los vuelos parten y finalizan de un aeropuerto, y tienen una serie de rutas para llegar a su destino.\\
+El objetivo del problema es encontrar una solución factible al mayor número de vuelos cumpliendo una serie de restricciones que se explicarán más adelante. Las entidades por tanto que tenemos en el modelo son las siguientes:
 \section{Sectores}
-Representan las zonas del espacio en el que se encuentran los waypoints. Los sectores pueden tener waypoints en su zona interior o en la frontera, de modo que para pasar de un sector a otro habrá que atravesar siempre un waypoint. Los sectores tienen un límite de capacidad, de modo que para un instante e tiempo $t$ solo pueden haber un número $n$ de vuelos simultáneamente. De este modo, Si un vuelo tiene programada una ruta en un momento de tiempo que pasa por un sector que está al límite de su capacidad, esa ruta no será válida, por lo que tendrá que intentar retrasar su ruta, intentar una ruta alternativa, y si no tiene otra alternativa, cancelarse.\\
+Representan las diferentes zonas en las que dividimos el espacio aéreo. Los sectores tienen un límite de capacidad, de modo que para un instante e tiempo $t$ solo pueden haber un número $n$ de vuelos simultáneamente. De este modo, Si un vuelo tiene programada una ruta en un momento de tiempo que pasa por un sector que está al límite de su capacidad, esa ruta no será válida, por lo que tendrá que intentar retrasar su ruta, intentar una ruta alternativa, y si no tiene otra alternativa, cancelarse.\\
 Para las pruebas que hemos realizado se ha considerado el escenario más restrictivo posible: la capacidad de un sector en cada instante de tiempo es 1.
+
 \section{Waypoints}
-Los waypoints representan puntos de ruta en las trayectorias de los vuelos. Como ya se ha explicado, un waypoint puede pertenecer a un sector o a varios, dependiendo de si es un waypoint interior o de frontera, respectivamente.
+Los waypoints representan los puntos de ruta en las trayectorias de los vuelos a través de los sectores. Dependiendo de su ubicación, los waypoints pueden estar en el interior del sector, por ejemplo en el caso de los aeropuertos, o en la intersección entre dos o más sectores para simular el paso de un sector a otro.
+
 
 \begin{figure}[H]
 	\begin{center}
@@ -26,20 +21,22 @@ Los waypoints representan puntos de ruta en las trayectorias de los vuelos. Como
 \end{figure}
 
 \section{Vuelos}
-Los vuelos son los elementos que tenemos que optimizar. Tienen una serie de rutas o trayectorias predefinidas, las cuales siempre empiezan y finalizan en un aeropuerto. Cada vuelo tiene una ruta predefinida, que será siempre igual o mejor (más rápida) que el resto de sus rutas. Tanto en los aeropuertos como en cada trayectoria entre waypoints, se permite un retraso máximo, de forma que entre 2 waypoints un vuelo puede recorrer esa distancia entre $[T_{mín}, T_{máx}]$ .Esto significa que un vuelo puede retrasar alguna de sus trayectorias entre 2 waypoints si el próximo sector al que va a acceder está sobrecargado o el arco por el que pretende pasar ya contiene otro vuelo.\\
+Los vuelos son los elementos que tenemos que maximizar. Tienen una serie de rutas o trayectorias predefinidas, las cuales siempre empiezan y finalizan en un aeropuerto. Cada vuelo tiene una ruta predefinida, que será siempre igual o mejor (más rápida) que el resto de sus rutas.\\
+Tanto en los aeropuertos como en cada trayectoria entre waypoints, se permite un retraso máximo de forma que entre 2 waypoints un vuelo puede recorrer esa distancia entre $[T_{mín}, T_{máx}]$. Esto significa que un vuelo puede retrasar alguna de sus trayectorias entre 2 waypoints si el próximo sector al que va a acceder está sobrecargado o el arco por el que pretende pasar ya contiene otro vuelo.\\
 
 Además, los vuelos tienen un coste de cancelación y están asociados a determinadas aerolíneas. En este problema consideramos que el todos los vuelos son iguales en importancia, por tanto el coste de cancelación de todos ellos es el mismo, independientemente de la longitud de su ruta, sectores que atraviesa, momento de despegue, etc.\\
 
-Los vuelos a los que si se les encuentre solución, podrán ser  de diferentes tipos:
+Los vuelos a los que sí se les encuentre solución podrán ser  de diferentes tipos:
 \begin{itemize}
 	\item \textbf{Solución por defecto:} la solución del vuelo es la ruta inicial sin retrasos. Es el mejor resultado posible.
-	\item \textbf{Retrasado:} se encuentra una solución factible en la ruta por defecto del vuelo, pero se ha producido un retrasos entre alguno de sus waypoints
+	\item \textbf{Retrasado:} se encuentra una solución factible en la ruta por defecto del vuelo, pero se ha producido un retrasos entre alguno de sus waypoints.
 	\item \textbf{Desviado:} la solución encontrada para el vuelo no es la ruta a priori. Puede ser an corta como la solución por defecto.
 \end{itemize}
 
 
 \section{Rutas}
-Las rutas son el conjunto de trayectorias que tiene un vuelo para llegar desde su aeropuerto de origen al de destino. En el problema las representamos como un grafo ponderado y dirigido, en el que el coste de cada arista coincide con el intervalo de valores entre los cuales un vuelo puede hacer el trayecto entre 2 waypoints. Para modelar que los aeropuertos no tienen capacidad, creamos unos waypoints $aeropuerto'$ que simulan el waypoint en el que los vuelon aterrizan o despegan (estos waypoints sí que tienen las restricciones habituales del resto de waypoints).
+Las rutas son el conjunto de trayectorias que tiene un vuelo para llegar desde su aeropuerto de origen al de destino. En el problema las representamos como un grafo ponderado y dirigido, en el que el coste de cada arista coincide con el intervalo de valores entre los cuales un vuelo puede hacer el trayecto entre 2 waypoints.\\
+Para modelar que los aeropuertos no tienen capacidad, creamos unos waypoints $aeropuerto'$ que simulan el waypoint en el que los vuelon aterrizan o despegan (estos waypoints sí que tienen las restricciones habituales del resto de waypoints).
 
 Por ejemplo, un vuelo entre 2 aeropuertos con un waypoint entre ellos en el que se permita en cada trayectoria un retraso de 1, daría como resultado el siguiente vuelo:
 \begin{figure}[H]
@@ -49,7 +46,8 @@ Por ejemplo, un vuelo entre 2 aeropuertos con un waypoint entre ellos en el que 
 	\label{fig: Ejemplo ruta de un vuelo}
 \end{figure}
 
-Para crear el grafo que represente las posibles rutas de este vuelo, tenemos que crear un nodo por cada posible waypoint en cada posible instante de tiempo $t$. De esta forma, tendremos un grafo con un conjunto de nodos de la forma $W_{t}$, siendo $W$ el nombre del waypoint y $t$ el instante de tiempo. De esta forma se obtiene que un vuelo puede estar en el mismo waypoint en diferentes modelos de tiempo (si se ha eleigo otra ruta más larga o se ha producido un retraso) en distintos momentos de tiempo. En el ejemplo anterior, la forma expandida del grafo sería (suponiendo que el vuelo despega en el instante $t=0$): 
+Para crear el grafo que represente las posibles rutas de este vuelo, tenemos que crear un nodo por cada posible waypoint en cada posible instante de tiempo $t$. De esta forma, tendremos un grafo con un conjunto de nodos de la forma $W_{t}$, siendo $W$ el nombre del waypoint y $t$ el instante de tiempo. De esta forma se obtiene que un vuelo puede estar en el mismo waypoint en diferentes momentos de tiempo (si se ha eleigo otra ruta más larga o se ha producido un retraso) en distintos momentos de tiempo.\\
+En el ejemplo anterior, la forma expandida del grafo sería (suponiendo que el vuelo despega en el instante $t=0$): 
 \begin{figure}[H]
 	\centering
 	\input{./diagramas/descripcion_del_problema/ejemplo1rutaexpandida.tex}
@@ -70,11 +68,12 @@ Su grafo de recorridos se compondría de forma análoga a los anteriores
 \section{Descripción del modelo}
 Por tanto, el modelo se puede expresar como
 \begin{itemize}
-	\item \textbf{Función objetivo: }hay que maximizar el valor de la función objetivo. Para ello se ha creado un sistema de evaluación de vuelos con solución factible: los vuelos colocados en su solución a priori aportan 5 pts, los retrasados 3, los desviados en tiempo 2 y los desviados y retrasados 1. Este sencillo sistema se ideó para evaluar lo factible que es una solución, ya que como se explicó anteriormente no estamos utilizando el coste de cancelación (en ese caso se trataría de un problema de minimización de costes, en vez de maximizar la solución).
-	\item \textbf{Restricciones:} serían tan sólo dos:
+	\item \textbf{Función objetivo: }hay que maximizar el número de vuelos a los que se les encuentra una solución factible.\\
+	 Dado que los vuelos no tienen solución binaria (cancelado/con solución), sino que dentro de las soluciones factibles hay unas mejores que otras, se ha creado un sistema de evaluación de vuelos con solución factible: los vuelos colocados en su solución a priori aportan 5 pts, los retrasados 3, los desviados en tiempo 2 y los desviados y retrasados 1. Este sencillo sistema se ideó para evaluar lo factible que es una solución, ya que como se explicó anteriormente no estamos utilizando el coste de cancelación (en ese caso se trataría de un problema de minimización de costes, en vez de maximizar la solución).
+	\item \textbf{Restricciones:} el modelo tiene tan sólo dos:
 	\begin{enumerate}
-		\item No pueden haber 2 o más aviones en un mismo arco que conecta dos waypoints en el mismo instante de tiempo.
-		\item No pueden haber 2 o más vuelos simultáneamente en el mismo sector.
+		\item Para cualquier instante de tiempo $t$, no puede haber más de 1 vuelo en un arco que conecta 2 waypoints. 
+		\item Dado cualquier instante de tiempo $t$, no puede haber más de $n$ vuelos simultáneamente en el mismo sector. Aunque $n$ es un parámetro variable, todas las pruebas que hemos realizado hemos usado $n=1$, poniéndonos así en el caso más estricto de todos.
 	\end{enumerate}
 	
 	

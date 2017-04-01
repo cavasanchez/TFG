@@ -14,11 +14,14 @@ const static int FLIGHT_STATUS_DELAYED = 2;
 const static int FLIGHT_STATUS_DEFLECTED = 3;
 const static int FLIGHT_STATUS_DELAYED_AND_DEFLECTED = 4;
 
-const static int NUM_SOULUTIONS_TO_EXAMINE=5;
 
-const static int MAX_NUMBER_QUEUE=5;
+//N
+const static int NUM_SOULUTIONS_TO_EXAMINE=2;
+
+//G
+const static int MAX_NUMBER_QUEUE=30;
 
 const static int CAPACITY_SECTOR = 1;
 
-const static std::string RESORCES_FOLDER = "./Resources/BLO2-65flights/";
+const static std::string RESORCES_FOLDER = "./Resources/BLO1-100flights/";
 

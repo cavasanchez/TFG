@@ -27,12 +27,12 @@ El algoritmo diseñado para este problema se resume en el siguiente pseducódigo
 	inizializarProblema()\;
 	\While{$N < iteracionesMáximas$}{
 		añadirVuelosEnColaCandidatos()\;
-		lanzarVuelosSoloSoluionesIniciales()\;
+		lanzarVuelosSoloSolucionesIniciales()\;
 		intercambiarVuelos()\;
 		lanzarVuelosPermitiendoRetrasos()\;
 		lanzarVuelosPermitiendoDesvíos()\;
 		buscarWaypointsSinUsar()\;
-		retrasarVuelos()\;
+		retrasarVuelosConSolución()\;
 		\If{$N\%númeroSolucionesExaminar== 0$}{
 			crearColaCandidatos()\;
 		}
@@ -56,7 +56,7 @@ A continuación se detalla cada función que se lleva a cabo en la fase construc
 		\begin{multline}\\
 			\{1,2,3,4,5\} \Rightarrow \{2,4,5,1,3\}\\
 		\end{multline}
-		\item Si por el contrario si que tenemos una cola de candidatos, juntaremos el array de ids de los vuelos del problema junto a el array de candidatos. posteriormente se ordenan y se descartan los elementos repetidos, de forma que los elementos que estén repetidos tendrán más posibilidades de estar al principio del array:
+		\item Si por el contrario sí que tenemos una cola de candidatos, juntaremos el array de ids de los vuelos del problema junto a el array de candidatos. posteriormente se ordenan y se descartan los elementos repetidos, de forma que los elementos que estén repetidos tendrán más posibilidades de estar al principio del array:
 		\begin{multline}\\
 		\{1,2,3,4,5\} + \{2,4\} = \{1,2,3,4,5,2,4\} \\
 		\{1,2,3,4,5,2,4\} \Rightarrow \{2,5,4,3,1\}  \\ 
@@ -92,7 +92,7 @@ A continuación se detalla cada función que se lleva a cabo en la fase construc
 	\end{figure}
 	
 	\item \textbf{Se intentan colocar vuelos permitiendo retrasos}: se lanzan aleatoriamente los vuelos que aun no tienen solución, permitiendo retrasos en sus rutas, pero no desvíos.\\
-	En el problema se considera que un vuelo retrasado es preferible a un vuelo desviado, así que primero se intenta encontrar soluciones que no conlleven desvíos. En este paso se colocan entr un 50\% y un 65\% de los vuelos.
+	En el problema se considera que un vuelo retrasado es preferible a un vuelo desviado, así que primero se intenta encontrar soluciones que no conlleven desvíos. En este paso se colocan ente un 50\% y un 65\% de los vuelos.
 	
 	\item \textbf{Se intentan colocar vuelos permitiendo retrasos y desvíos}: se lanzan aleatoriamente los vuelos que aun no tienen solución, permitiendo retrasos y desvíos en sus rutas.\\
 	En este punto si un vuelo tiene alguna solución factible, se le asignará. Se colocan con éxito entre el 20\% y el 30\%.
@@ -101,7 +101,7 @@ A continuación se detalla cada función que se lleva a cabo en la fase construc
 	
 	
 	\item \textbf{Retrasar vuelos con solución para colocar 2 o más cancelados}: se intenta retrasar alguno de los vuelos con solución factible para poder encontrar de forma aleatoria uno o más vuelos que estaban cancelados.\\
-	Este paso se asa en el mismo concepto que en el intercambio de vuelos: si a costa de empeorar la solución de vuelo (un vuelo en su solución inicial o uno ya retrasado) se consigue encontrar la solución de 1 o más vuelos cancelados, se esta mejorando el resultado global.
+	Este paso se basa en el mismo concepto que en el intercambio de vuelos: si a costa de empeorar la solución de vuelo (ya sea en su solución inicial o retrasado) se consigue encontrar la solución de 1 o más vuelos cancelados, se esta mejorando el resultado global.
 	
 \end{enumerate}
 \subsection{Fase de mejora}
@@ -111,11 +111,11 @@ Tras \textit{N} iteraciones, se estudian las soluciones obtenidas y se seleccion
 \end{equation}la \textit{RCL (Restricted Candidate List)}, para a continuación volver a evaluar a la lista de candidatos disponibles y repetir el proceso con la solución parcial actualizada.\\
 En este algoritmo se analizan las iteraciones anteriores y se trata de extraer lo mejor de ellas. El proceso se realiza en 2 fases: 
 \begin{enumerate}
-	\item \textbf{Analizar las soluciones anteriores:} de las $N$ iteraciones anteriores, calculamos el valor de la función objetivo para cada una de ellas para identificar así ``como de buena ha sido''.
+	\item \textbf{Analizar las soluciones anteriores:} de las $N$ iteraciones anteriores, calculamos el valor de la función objetivo para cada una de ellas para identificar así el valor de cada solución.
 	
 	\item \textbf{Selección proporcional de candidatos:} una vez asignado un valor a cada iteración, se seleccionan vuelos que fueron colocados o en su solución inicial o retrasados muy poco de forma proporcional al valor de la solución. El número máximo de vuelos que se seleccionan está marcado por el parámetro $G$.\\
 	
-	Por ejemplo, si tenemos $N=3$ y $G=3$, y las soluciones $a,b,c$ tienen valores de $100,200,300$ respectivamente, se escogerán vuelos de la solución $c$ con una probabilidad de $1/6$, e la solución $b$ $2/3$ y de la solución $c$ con $3/6$
+	Por ejemplo, si tenemos $N=3$ y $G=3$, y las soluciones $a,b,c$ tienen valores de $100,200,300$ respectivamente, se escogerán vuelos de la solución $a$ con una probabilidad de $1/6$, de la solución $b$ $2/3$ y de la solución $c$ con $3/6$
 	\begin{figure}[H]
 		\begin{center}
 			\centering
@@ -151,37 +151,5 @@ Tras realizar pruebas sobre distintos problemas, se ha obtenido que las mejores 
 
 De esta forma, un alto parámetro $G$ permitirá que muy probablemente muchos de los vuelos que en la mejor solución encontrada hasta ese momento fueron colocados con éxito, se lance, intentando así "reproducir" la mejor solución que se había encontrado. \\
 Por contra un bajo parámetro $N$ hará que se cree cada pocas iteraciones una nueva cola de vuelos candidatos, lo que permitirá que en caso de no encontrase rápidamente una solución mejor, se elimine la cola actual y se reinicie el problema.\\
-A continuación se muestran los datos obtenidos en una de las simulaciones:
-
-
-
-\begin{table}[]
-	\centering
-	\caption{Comparativa de parámetros $G$ y $N$. Ejemplo problema con 100 vuelos}
-	\label{fig: comparativa de parámetros $G$ y $N$. Ejemplo problema con 100 vuelos}
-	\begin{tabular}{lllllllllllll}
-		& N=2, G=10                                                             & N=2, G=30 & N=2, G=30 &  &  &  &  &  &  &  &  &  \\
-		Problema 1 & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}a\\ b\\ c\end{tabular}} &           &           &  &  &  &  &  &  &  &  &  \\
-		Problema 2 &                                                                       &           &           &  &  &  &  &  &  &  &  &  \\
-		Problema 3 &                                                                       &           &           &  &  &  &  &  &  &  &  & 
-	\end{tabular}
-\end{table}
-
-
-\begin{table}[]
-	\centering
-	\caption{My caption}
-	\label{my-label}
-	\begin{tabular}{lllllllllllll}
-		\hline
-		& N=2, G=10                                                                             & N=2, G=30 & N=2, G=50 & N=5, G=10 & N=5, G=30 & N=5, G=50 & N=10, G=10 & N=10, G=30 & N=10, G=50 & N=20, G=10 & N=20, G=30 & N=20, G=50 \\ \hline
-	
-		Problema 1 & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Máx: 1\\ Med: 2\\ Desv: 3\end{tabular}} &           &           &           &           &           &            &            &            &            &            &            \\
-	
-		Problema 2 &                                                                                       &           &           &           &           &           &            &            &            &            &            &            \\
-		
-		Problema 3 &                                                                                       &           &           &           &           &           &            &            &            &            &            &            \\ \hline
-	\end{tabular}
-\end{table}
-Como se puede comprobar, esta combinación de parámetros es la que aporta más aleatoriedad en los resultados, pero es también de media la que aporta mejores resultados, lo que indica que se las malas soluciones son descartadas rápidamente pero se permite explorar un máximo local.
+En el siguiente capítulo se mostrarán los resultados experimentales de variar estos parámetros.
 

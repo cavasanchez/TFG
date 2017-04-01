@@ -1,4 +1,11 @@
 \chapter{Resultados experimentales}
+
+\section{Comparación de parámetros $P$ y $N$}
+\section{Evolución de la función objetivo}
+\section{Pruebas realizadas}
+
+
+
 A continuación se detallan los resultados obtenidos en distintos problemas. Los resultados corresponden a la media de 100 simulaciones con 100 iteraciones cada una. En estos datos además con la hipótesis más estricta de que la capacidad de un sector en un instante $t$ es 1
 
 \section{Base de datos 1}
@@ -47,4 +54,43 @@ edge [bend right] node[right] {0.2} (4)
 edge [loop right] node {0.6} (4)
 edge [bend right] node[right] {0.2} (1);
 \end{tikzpicture}
+
+
+
+\begin{table}[htbp]
+	\centering
+	\caption{Comparativa de parámetros $G$ y $N$.}
+	\label{fig: comparativa de parámetros $G$ y $N$.}
+	\begin{tabular}{|c|l|l|l|l|l|l|l|l|l|}
+		\hline
+		\textbf{} & \textbf{N=2, G=10} & \textbf{N=2, G=30} & \textbf{N=2, G=50} & \textbf{N=5, G=10} & \textbf{N=5, G=30} & \textbf{N=5, G=50} & \textbf{N=10, G=10} & \textbf{N=10, G=30} & \textbf{N=10, G=50} \\ \hline
+		\textbf{Problema 1
+			100 vuelos} & \% éxito: 1 &  &  &  &  &  &  &  &  \\ \hline
+		\textbf{Problema 2
+			100 vuelos} &  &  &  &  &  &  &  &  &  \\ \hline
+		\textbf{Problema 3
+			100 vuelos} &  &  &  &  &  &  &  &  &  \\ \hline
+	\end{tabular}
+	
+\end{table}
+
+
+
+\begin{table}[]
+	\centering
+	\caption{My caption}
+	\label{my-label}
+	\begin{tabular}{lllllllllllll}
+		\hline
+		&  N=10, G=10 & N=10, G=30 & N=10, G=50 & N=20, G=10 & N=20, G=30 & N=20, G=50 \\ \hline
+		
+		Problema 1 & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Máx: 1\\ Med: 2\\ Desv: 3\end{tabular}} &           &           &           &           &           &            &            &            &            &            &            \\
+		
+		Problema 2 &                                                                                       &           &           &           &           &           &            &            &            &            &            &            \\
+		
+		Problema 3 &                                                                                       &           &           &           &           &           &            &            &            &            &            &            \\ \hline
+	\end{tabular}
+\end{table}
+Como se puede comprobar, esta combinación de parámetros es la que aporta más aleatoriedad en los resultados, pero es también de media la que aporta mejores resultados, lo que indica que se las malas soluciones son descartadas rápidamente pero se permite explorar un máximo local.
+
 
