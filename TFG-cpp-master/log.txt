@@ -1,6 +1,6 @@
 Poblem characteristics:
 	 Num airports: 0
 	 Num flights: 100
-	 Num sectors: 44
-	 Num trajectories: 2968
-	 Num waypoints: 204
+	 Num sectors: 112
+	 Num trajectories: 1406
+	 Num waypoints: 2364

@@ -1,8 +1,8 @@
 \chapter{Heurístico}
-El algoritmo heurístico que se ha creado para el problema está inspirado en el metahurístico \textit{GRASP (Greedy Randomized Adaptive Search Procedure)}, sobre el que se han realizado una serie de modificaciones para adaptarlo al modelo en cuestión. A continuación se explicará el funcionamiento de un GRASP, para después explicar el algoritmo propuesto comparando sus diferencias y semajanzas.
+El algoritmo heurístico que se ha creado para el problema está inspirado en el metahurístico \textit{GRASP (Greedy Randomized Adaptive Search Procedure)}, sobre el que se han realizado una serie de modificaciones para adaptarlo al modelo en cuestión. A continuación se explicará el funcionamiento de un GRASP, para después explicar el algoritmo propuesto comparando sus diferencias y semejanzas.
 
 \section{GRASP}
-Un Grasp es un metaheurístico constructivo desarrollado inicialmente por T. Feo   M. Resende, y se definie como \textcolor{red}{->cita libro Abraham<-} \textit{un GRASP es un procedimiento multiarranque en el que cada arranque se corresponde con una iteración. Cada iteracción tiene dos fases bien diferenciadas, la fase de construcción, que se encarga de obtener una solución factible de alta calidad; la fase de mejora, que se basa en la optimización (local) de la solución obtenida en la primera fase.}
+Un GRASP es un metaheurístico constructivo desarrollado inicialmente por T. Feo   M. Resende, y se definie como \textcolor{red}{->cita libro Abraham<-} \textit{un GRASP es un procedimiento multiarrranque en el que cada arranque se corresponde con una iteración. Cada iteracción tiene dos fases bien diferenciadas, la fase de construcción, que se encarga de obtener una solución factible de alta calidad; la fase de mejora, que se basa en la optimización (local) de la solución obtenida en la primera fase.}
 
 \subsection{Fase constructiva}
 La fase constructiva es un proceso iterativo en el que se construye una solución elemento a elemento.\\
@@ -140,16 +140,22 @@ Por tanto el heurístico depende de dos parámetros:
 \end{itemize}
 Tras realizar pruebas sobre distintos problemas, se ha obtenido que las mejores soluciones se tienen a alcanzar con un parámetro $N$ pequeño y $G$ grande, de forma que la cola de vuelos candidatos sea lo más grande posible y que la fase constructiva se realice con mucha frecuencia. Los resultados se pueden observar en la siguiente sección.
 
-\begin{figure}[H]
-	\begin{center}
-		\centering
-		\includegraphics[width=1\textwidth]{./imagenes/heuristico/comparativa_parametros_100_vuelos.png}
-		\caption{Comparativa de parámetros G y N}
-		\label{fig: Comparativa de parámetros G y N}
-	\end{center}
-\end{figure}
-
 De esta forma, un alto parámetro $G$ permitirá que muy probablemente muchos de los vuelos que en la mejor solución encontrada hasta ese momento fueron colocados con éxito, se lance, intentando así "reproducir" la mejor solución que se había encontrado. \\
 Por contra un bajo parámetro $N$ hará que se cree cada pocas iteraciones una nueva cola de vuelos candidatos, lo que permitirá que en caso de no encontrase rápidamente una solución mejor, se elimine la cola actual y se reinicie el problema.\\
 En el siguiente capítulo se mostrarán los resultados experimentales de variar estos parámetros.
 
+
+\section{Encontrar ruta óptima}
+En muchas de las fases del algoritmo es necesario encontrar la ruta óptima para un vuelo. Debido a que es el núcleo del algoritmo, vamos a explicarlo con más detalle.
+\subsection{Pre solución: creación del grafo}
+El primer paso es crear el grafo de rutas que tiene un vuelo. la creación de este grafo  va a depender del caso en el que estemos: por ejemplo, si estamos en la fase \textit{lanzarVuelosSoloSolucionesIniciales()}, solo crearemos un grafo con nodos que simulen la ruta inicial (sin retrasos ni rutas alternativas), o si estamos en la fase \textit{lanzarVuelosPermitiendoRetrasos()} crearemos solo un grafo en el que haya nodos  que pertenezcan a la ruta original.\\
+Esto implica que dependendo de la fase en la que estemos, el grafo de un vuelo será diferente. Esta decisión de diseño alivia en gran medid el esfuerzo computanciaonal del Djistra del siguiente paso, ya que el grafo para el que ejecutamos el algoritmo tiene solo soluciones válidas, excluyendo caminos que en dicha fase no estarían permitidos.\\
+Además, a la hora de crear el grafo se tienen en cuenta las condiciones y restricciones de cada instante de tiempo. Por ello, si un waypoint en un momento de tiempo fuera a ser añadido a la lista de waypoints pero no cumple con las restricciones del problema (ese arco ya está ocupado, o su sector está ya al máximo de capacidad), ese nodo no se añadirá. Esto implica que se pueden crear grafos no conexos, y por tanto sin solución.
+\subsection{Djistra}
+Una vez creado el grafo sobre el que tenemos que encontrar el camino más corto entre 2 puntos, ejecutamos un algoritmo de Djistra con lista, que con una complejidad de $O(n^{2})$, y dado que el número $n$ de nodos no va a ser muy elevado, permite que las operaciones se hagan con la rapidez necesaria.
+\subsection{Post solución: actualización de las restricciones}
+Tras ejecutar el algoritmo de Djistra, podemos obtener dos resultados:
+\begin{itemize}
+	\item \textbf{Se encuentra el camino más corto:} obtenemos los waypoints por el que pasa el camino más corto, así como su longitud. Con estos datos tenemos que actualizar las restricciones del problema para cada instante de tiempo $t$ en el que el vuelo ha estado en el aire. El estado del vuelo dependerá de la fase en la que estamos, si estamos en \textit{lanzarVuelosSoloSolucionesIniciales()}, el estado del vuelo pasará a ser solución inicial, mientras que si estamos en \textit{lanzarVuelosPermitiendoDesvíos()} el estado del vuelo será desviado y retrasado, o tan sólo retrasado, dependiendo de si la solucción encontrada es más o igual de larga que su solución iniciale
+	\item \textbf{no se encuentra solución:} este caso puede darse cuando debido a las restricciones del problema el grafo creado no es conexo. El vuelo se marca como cancelado.
+\end{itemize}
