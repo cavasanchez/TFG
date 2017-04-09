@@ -1,10 +1,10 @@
 \chapter{Descripción del problema}
-
-
 El modelo implementado se puede resumir como un espacio aéreo dividido en diferentes sectores por el que viajan una serie de aviones. Los vuelos parten y finalizan de un aeropuerto, y tienen una serie de rutas para llegar a su destino.\\
-El objetivo del problema es encontrar una solución factible al mayor número de vuelos cumpliendo una serie de restricciones que se explicarán más adelante. Las entidades por tanto que tenemos en el modelo son las siguientes:
+El objetivo del problema es encontrar una solución factible al mayor número de vuelos cumpliendo una serie de restricciones.\\
+Las entidades de las que se compone el modelo son las siguientes:
+
 \section{Sectores}
-Representan las diferentes zonas en las que dividimos el espacio aéreo. Los sectores tienen un límite de capacidad, de modo que para un instante e tiempo $t$ solo pueden haber un número $n$ de vuelos simultáneamente. De este modo, Si un vuelo tiene programada una ruta en un momento de tiempo que pasa por un sector que está al límite de su capacidad, esa ruta no será válida, por lo que tendrá que intentar retrasar su ruta, intentar una ruta alternativa, y si no tiene otra alternativa, cancelarse.\\
+Representan las diferentes zonas en las que dividimos el espacio aéreo. Los sectores tienen un límite de capacidad, de modo que para un instante e tiempo $t$ solo puede haber un número $n$ de vuelos simultáneamente en un sector. De este modo, si un vuelo tiene programado una ruta en un momento de tiempo que pasa por un sector que está al límite de su capacidad, esa ruta no será válida, por lo que tendrá que intentar retrasar su ruta, usar una ruta alternativa, y si no tiene otra opción, cancelarse.\\
 Para las pruebas que hemos realizado se ha considerado el escenario más restrictivo posible: la capacidad de un sector en cada instante de tiempo es 1.
 
 \section{Waypoints}
@@ -21,9 +21,7 @@ Los waypoints representan los puntos de ruta en las trayectorias de los vuelos a
 \end{figure}
 
 \section{Vuelos}
-Los vuelos son los elementos que tenemos que maximizar. Tienen una serie de rutas o trayectorias predefinidas, las cuales siempre empiezan y finalizan en un aeropuerto. Cada vuelo tiene una ruta predefinida, que será siempre igual o mejor (más rápida) que el resto de sus rutas.\\
-Tanto en los aeropuertos como en cada trayectoria entre waypoints, se permite un retraso máximo de forma que entre 2 waypoints un vuelo puede recorrer esa distancia entre $[T_{mín}, T_{máx}]$. Esto significa que un vuelo puede retrasar alguna de sus trayectorias entre 2 waypoints si el próximo sector al que va a acceder está sobrecargado o el arco por el que pretende pasar ya contiene otro vuelo.\\
-
+Los vuelos son los elementos que tenemos que maximizar. Tienen una serie de rutas o trayectorias preestablecidas, las cuales siempre empiezan y finalizan en un aeropuerto. Cada vuelo tiene una ruta predefinida, que será siempre igual o mejor (más rápida) que el resto de sus rutas.\\
 Además, los vuelos tienen un coste de cancelación y están asociados a determinadas aerolíneas. En este problema consideramos que el todos los vuelos son iguales en importancia, por tanto el coste de cancelación de todos ellos es el mismo, independientemente de la longitud de su ruta, sectores que atraviesa, momento de despegue, etc.\\
 
 Los vuelos a los que sí se les encuentre solución podrán ser  de diferentes tipos:
@@ -35,7 +33,14 @@ Los vuelos a los que sí se les encuentre solución podrán ser  de diferentes t
 
 
 \section{Rutas}
-Las rutas son el conjunto de trayectorias que tiene un vuelo para llegar desde su aeropuerto de origen al de destino. En el problema las representamos como un grafo ponderado y dirigido, en el que el coste de cada arista coincide con el intervalo de valores entre los cuales un vuelo puede hacer el trayecto entre 2 waypoints.\\
+Las rutas son el conjunto de trayectorias que tiene un vuelo para llegar desde su aeropuerto de origen al de destino. Uno de las características más importantes del modelo es que se permite que un vuelo se pueda retrasar su trayecto entre 2 waypoints, normalmente para no coincidir en el tiempo y el espacio con otro vuelo o porque el sector al que intenta acceder está sobrecargado. Por tanto en cada trayectoria entre waypoints se permite un retraso máximo, de forma que entre 2 waypoints un vuelo puede recorrer esa distancia entre
+\begin{equation}
+[T_{mín} , T_{máx}]
+\end{equation}
+
+donde 	$T_{mín}$ y $T_{máx}$ son el tiempo mínimo y máximo en el que un vuelo puede ir desde un waypoint a otro, respectivamente.
+
+ En el problema representamos las rutas como un grafo ponderado y dirigido, en el que el coste de cada arista coincide con el intervalo de valores entre los cuales un vuelo puede hacer el trayecto entre 2 waypoints.\\
 Para modelar que los aeropuertos no tienen capacidad, creamos unos waypoints $aeropuerto'$ que simulan el waypoint en el que los vuelon aterrizan o despegan (estos waypoints sí que tienen las restricciones habituales del resto de waypoints).
 
 Por ejemplo, un vuelo entre 2 aeropuertos con un waypoint entre ellos en el que se permita en cada trayectoria un retraso de 1, daría como resultado el siguiente vuelo:
@@ -46,7 +51,8 @@ Por ejemplo, un vuelo entre 2 aeropuertos con un waypoint entre ellos en el que 
 	\label{fig: Ejemplo ruta de un vuelo}
 \end{figure}
 
-Para crear el grafo que represente las posibles rutas de este vuelo, tenemos que crear un nodo por cada posible waypoint en cada posible instante de tiempo $t$. De esta forma, tendremos un grafo con un conjunto de nodos de la forma $W_{t}$, siendo $W$ el nombre del waypoint y $t$ el instante de tiempo. De esta forma se obtiene que un vuelo puede estar en el mismo waypoint en diferentes momentos de tiempo (si se ha eleigo otra ruta más larga o se ha producido un retraso) en distintos momentos de tiempo.\\
+Para crear el grafo que represente las posibles rutas de este vuelo, tenemos que crear un nodo por cada posible waypoint en cada posible instante de tiempo $t$. De esta forma, tendremos un grafo con un conjunto de nodos de la forma $W_{t}$, siendo $W$ el nombre del waypoint y $t$ el instante de tiempo. De esta forma se obtiene que un vuelo puede estar en el mismo waypoint en diferentes momentos de tiempo si se ha elegido otra ruta más larga o se ha producido un retraso.\\
+
 En el ejemplo anterior, la forma expandida del grafo sería (suponiendo que el vuelo despega en el instante $t=0$): 
 \begin{figure}[H]
 	\centering
@@ -55,7 +61,7 @@ En el ejemplo anterior, la forma expandida del grafo sería (suponiendo que el v
 	\label{fig: Ejemplo grafo de recorridos de un vuelo}
 \end{figure}
 
-Un vuelo puede además tener más de una ruta, de forma que si el ejemplo anterior tuviera una ruta adicional quedaría de la siguiente manera:
+Un vuelo puede además tener más de una ruta. En este caso el grafo de rutas tendrá más de un camino para llegar al nodo de destino:
 \begin{figure}[H]
 	\centering
 	\input{./diagramas/descripcion_del_problema/ejemplo2rutas.tex}
@@ -69,7 +75,8 @@ Su grafo de recorridos se compondría de forma análoga a los anteriores
 Por tanto, el modelo se puede expresar como
 \begin{itemize}
 	\item \textbf{Función objetivo: }hay que maximizar el número de vuelos a los que se les encuentra una solución factible.\\
-	 Dado que los vuelos no tienen solución binaria (cancelado/con solución), sino que dentro de las soluciones factibles hay unas mejores que otras, se ha creado un sistema de evaluación de vuelos con solución factible: los vuelos colocados en su solución a priori aportan 5 pts, los retrasados 3, los desviados en tiempo 2 y los desviados y retrasados 1. Este sencillo sistema se ideó para evaluar lo factible que es una solución, ya que como se explicó anteriormente no estamos utilizando el coste de cancelación (en ese caso se trataría de un problema de minimización de costes, en vez de maximizar la solución).
+	 Dado que los vuelos no tienen solución binaria (cancelado/con solución), sino que dentro de las soluciones factibles hay unas mejores que otras, se ha creado un sistema de evaluación de vuelos con solución factible: los vuelos colocados en su solución a priori aportan 5 pts, los retrasados 3, los desviados en tiempo 2 y los desviados y retrasados 1.\\
+	 Este sencillo sistema se ideó para evaluar lo factible que es una solución, ya que como se explicó anteriormente no estamos utilizando el coste de cancelación (en ese caso se trataría de un problema de minimización de costes, en vez de maximizar la solución).
 	\item \textbf{Restricciones:} el modelo tiene tan sólo dos:
 	\begin{enumerate}
 		\item Para cualquier instante de tiempo $t$, no puede haber más de 1 vuelo en un arco que conecta 2 waypoints. 
@@ -78,3 +85,7 @@ Por tanto, el modelo se puede expresar como
 	
 	
 \end{itemize}
+
+\section{Estructura de clases}
+El esquema de clases que se ha creado para modelar las entidades del modelo corresponden con los siguientes (para más información consultar en el \autoref{anexo2}):
+\textcolor{red}{IMAGEN CON DIAGRAMA DE CLASES}

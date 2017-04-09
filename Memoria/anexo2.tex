@@ -1,0 +1,80 @@
+\chapter{Anexo 2: Estructura de clases}
+\label{anexo2}
+Para diseñar la estructura del modelo, se ha creado un esquema de clases cuyas entidades y sus atributos son:
+\section{Flight}
+Es la clase que se encarga de representar a los vuelos en el problema.
+\begin{itemize}
+	\item \textbf{id}: identificador del vuelo.
+	\item \textbf{timeStart}: instante de tiempo en el que el vuelo tiene planeado el despegue.
+	\item \textbf{groundDelay}: matriz de costes del grafo de recorridos.
+	\item \textbf{routes}: lista de los waypoint route que possee el vuelo.
+	\item \textbf{numWaypoint}: número de waypoint que tiene un vuelo.
+	\item \textbf{idWaypointStart}: identificador del waypoint en el que se encuentra el aeropuerto de salida.
+	\item \textbf{idWaypointEnd}: identificador del waypoint en el que se encuentra el aeropuerto de llegada.
+	\item \textbf{status}: estado del vuelo.
+	\item \textbf{numRoutes}: número de rutas de las que dispone el vuelo
+	\item \textbf{timeFinish}: tiempo de llegada al aeropuerto de destino en su ruta por defecto.
+	\item \textbf{waypointnames}: listado de nombres de los waypoints que recorre en todas sus rutas.
+	\item \textbf{waypointRoute}: listado de los waypointRoutes que tiene el vuelo
+	\item \textbf{numWaypointRoute}: número de waypoint routes que tiene el vuelo.
+	\item \textbf{initialSolution}: listado de waypoint route que corresponde a la solución por defecto del vuelo.
+	\item \textbf{currentSolution}: solución que tiene el vuelo en cada iteración.
+	\item \textbf{flightInterchangeCandidates}: listado de vuelos con sol que el vuelo comparte sectores.
+\end{itemize}
+
+\section{Problem}
+Representa las características del problema
+\begin{itemize}
+	\item \textbf{numAirports}: número de aeropuertos que tiene el problema.
+	\item \textbf{numSectors}: número de sectores que tiene el problema.
+	\item \textbf{numTrajectories}: número de distintas trayectorias que en total tienen todos los vuelos del problema.
+	\item \textbf{numWaypoints}: número de waypoints que tiene el problema.
+	\item \textbf{numFlights}: número de vuelos que tiene el problema.
+	\item \textbf{numTimes}: número de instantes de tiempo que se analizan en el problema.
+	\item \textbf{listWaypoints}: listado de los diferentes waypoints de los que se compone el problema.
+	\item \textbf{listSectors}: listado de los diferentes sectores de los que se compone el problema.
+	\item \textbf{listTimeMoment}: listado de las capacidades y estado de los vuelos en los diferentes instantes de tiempo.
+	\item \textbf{listFlights}: listado de los diferentes vuelos de los que se compone el problema.
+	\item \textbf{iteration}: iteración en la que se encuentra el problema.
+	\item \textbf{log}: documento de teto en el que se guarda un registro de las operaciones que se producen.
+	\item \textbf{queueExtraFlights}: cola que contendrá los vuelos seleccionados durante la fase constructiva del algoritmo.
+	\item \textbf{solutions}: lista de las diferentes soluciones (estado de cada vuelo y su valor en la función objetivo) obtenidas en cada iteracción.
+	\item \textbf{valueBestSolution}: valor de la mejor solución encontrada hasta el momento.
+	\item \textbf{routeFlightResults}: ruta del documento en el que se volcarán los datos para su posterior visualización.
+\end{itemize}
+
+\section{Sector}
+\begin{itemize}
+	\item \textbf{id}: identificador del sector.
+	\item \textbf{name}: nombre del sector.
+	\item \textbf{capacity}: capacidad del sector. En nuestro problema todos los sectores tienen capacidad 1.
+\end{itemize}
+
+\section{Solution}
+Representa la solución obtenida en cada iteración del problema.
+\begin{itemize}
+	\item \textbf{flightSolutions}: es un mapa de la forma vuelo => solución del vuelo.
+	\item \textbf{value}: valor que tiene la solución. Se obtiene sumando el valor de todos los vuelos de una iteración
+\end{itemize}
+
+\section{TimeMoment}
+Representa las capacidades del problema para cada instante de tiempo.
+\begin{itemize}
+	\item \textbf{numFlightMatrix}: es una matriz en la que se indica en que arco de su grafo de recorridos se encuentra cada vuelos. Se utiliza para controlar que no haya 2 vuelos en el mismo instante de tiempo entre 2 waypoints.
+	\item \textbf{numFlightsSector}: indica el número de vuelos que hay en cada sector en un momento de tiempo
+\end{itemize}
+
+\section{Wapoint}
+\begin{itemize}
+	\item \textbf{id}: identificador del waypoint.
+	\item \textbf{name}: nombre del sector.
+	\item \textbf{sectors}: listado de los sectores a los que pertenece el waypoint.
+	\item \textbf{isAirport}: booleano que indica si el waypoint es un aeropuerto.
+\end{itemize}
+
+\section{WaypointRoute}
+Representa a los puntos de ruta que posee cada vuelo. Están formados por un waypoint y un instante de tiempo.
+\begin{itemize}
+	\item \textbf{id}: identificador del waypointRoute.
+	\item \textbf{inTime}: momento de tiempo en el que se da l waypointRoute
+\end{itemize}

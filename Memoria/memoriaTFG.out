@@ -8,42 +8,51 @@
 \BOOKMARK [1][-]{section.2.3}{Vuelos}{chapter.2}% 8
 \BOOKMARK [1][-]{section.2.4}{Rutas}{chapter.2}% 9
 \BOOKMARK [1][-]{section.2.5}{Descripci\363n del modelo}{chapter.2}% 10
-\BOOKMARK [0][-]{chapter.3}{Tecnolog\355as utilizadas}{}% 11
-\BOOKMARK [1][-]{section.3.1}{C++}{chapter.3}% 12
-\BOOKMARK [1][-]{section.3.2}{MySQL}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.3}{Bash scripting}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.4}{HTML y JavaScript}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.5}{Git y Github}{chapter.3}% 16
-\BOOKMARK [0][-]{chapter.4}{Heur\355stico}{}% 17
-\BOOKMARK [1][-]{section.4.1}{GRASP}{chapter.4}% 18
-\BOOKMARK [2][-]{subsection.4.1.1}{Fase constructiva}{section.4.1}% 19
-\BOOKMARK [2][-]{subsection.4.1.2}{Fase de mejora}{section.4.1}% 20
-\BOOKMARK [1][-]{section.4.2}{Heur\355stico implementado}{chapter.4}% 21
-\BOOKMARK [2][-]{subsection.4.2.1}{Introducci\363n}{section.4.2}% 22
-\BOOKMARK [2][-]{subsection.4.2.2}{Fase constructiva}{section.4.2}% 23
-\BOOKMARK [2][-]{subsection.4.2.3}{Fase de mejora}{section.4.2}% 24
-\BOOKMARK [2][-]{subsection.4.2.4}{Par\341metros heur\355stico}{section.4.2}% 25
-\BOOKMARK [1][-]{section.4.3}{Encontrar ruta \363ptima}{chapter.4}% 26
-\BOOKMARK [2][-]{subsection.4.3.1}{Pre soluci\363n: creaci\363n del grafo}{section.4.3}% 27
-\BOOKMARK [2][-]{subsection.4.3.2}{Djistra}{section.4.3}% 28
-\BOOKMARK [2][-]{subsection.4.3.3}{Post soluci\363n: actualizaci\363n de las restricciones}{section.4.3}% 29
-\BOOKMARK [0][-]{chapter.5}{Resultados experimentales}{}% 30
-\BOOKMARK [1][-]{section.5.1}{Comparaci\363n de par\341metros P y N}{chapter.5}% 31
-\BOOKMARK [1][-]{section.5.2}{Evoluci\363n de la funci\363n objetivo}{chapter.5}% 32
-\BOOKMARK [1][-]{section.5.3}{Resultado obtenidos}{chapter.5}% 33
-\BOOKMARK [0][-]{chapter.6}{Conclusiones}{}% 34
-\BOOKMARK [1][-]{section.6.1}{Valoraci\363n de los resultados}{chapter.6}% 35
-\BOOKMARK [1][-]{section.6.2}{Futuras l\355neas de trabajo}{chapter.6}% 36
-\BOOKMARK [0][-]{chapter.7}{Anexo 1: resultados experimentales}{}% 37
-\BOOKMARK [1][-]{section.7.1}{Base de datos 1}{chapter.7}% 38
-\BOOKMARK [2][-]{subsection.7.1.1}{20 vuelos}{section.7.1}% 39
-\BOOKMARK [2][-]{subsection.7.1.2}{100 vuelos}{section.7.1}% 40
-\BOOKMARK [2][-]{subsection.7.1.3}{812 vuelos}{section.7.1}% 41
-\BOOKMARK [1][-]{section.7.2}{Base de datos 2}{chapter.7}% 42
-\BOOKMARK [2][-]{subsection.7.2.1}{20 vuelos}{section.7.2}% 43
-\BOOKMARK [2][-]{subsection.7.2.2}{100 vuelos}{section.7.2}% 44
-\BOOKMARK [2][-]{subsection.7.2.3}{3196 vuelos}{section.7.2}% 45
-\BOOKMARK [1][-]{section.7.3}{Base de datos 3}{chapter.7}% 46
-\BOOKMARK [2][-]{subsection.7.3.1}{20 vuelos}{section.7.3}% 47
-\BOOKMARK [2][-]{subsection.7.3.2}{100 vuelos}{section.7.3}% 48
-\BOOKMARK [2][-]{subsection.7.3.3}{6475 vuelos}{section.7.3}% 49
+\BOOKMARK [1][-]{section.2.6}{Estructura de clases}{chapter.2}% 11
+\BOOKMARK [0][-]{chapter.3}{Tecnolog\355as utilizadas}{}% 12
+\BOOKMARK [1][-]{section.3.1}{C++}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.2}{MySQL}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.3}{Bash scripting}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.4}{HTML y JavaScript}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.5}{Git y Github}{chapter.3}% 17
+\BOOKMARK [0][-]{chapter.4}{Heur\355stico}{}% 18
+\BOOKMARK [1][-]{section.4.1}{GRASP}{chapter.4}% 19
+\BOOKMARK [2][-]{subsection.4.1.1}{Fase constructiva}{section.4.1}% 20
+\BOOKMARK [2][-]{subsection.4.1.2}{Fase de mejora}{section.4.1}% 21
+\BOOKMARK [1][-]{section.4.2}{Heur\355stico implementado}{chapter.4}% 22
+\BOOKMARK [2][-]{subsection.4.2.1}{Introducci\363n}{section.4.2}% 23
+\BOOKMARK [2][-]{subsection.4.2.2}{Fase constructiva}{section.4.2}% 24
+\BOOKMARK [2][-]{subsection.4.2.3}{Fase de mejora}{section.4.2}% 25
+\BOOKMARK [2][-]{subsection.4.2.4}{Par\341metros heur\355stico}{section.4.2}% 26
+\BOOKMARK [1][-]{section.4.3}{Encontrar ruta \363ptima}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.3.1}{Pre soluci\363n: creaci\363n del grafo}{section.4.3}% 28
+\BOOKMARK [2][-]{subsection.4.3.2}{Djistra}{section.4.3}% 29
+\BOOKMARK [2][-]{subsection.4.3.3}{Post soluci\363n: actualizaci\363n de las restricciones}{section.4.3}% 30
+\BOOKMARK [0][-]{chapter.5}{Resultados experimentales}{}% 31
+\BOOKMARK [1][-]{section.5.1}{Comparaci\363n de par\341metros P y N}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.2}{Evoluci\363n de la funci\363n objetivo}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.3}{Resultado obtenidos}{chapter.5}% 34
+\BOOKMARK [0][-]{chapter.6}{Conclusiones}{}% 35
+\BOOKMARK [1][-]{section.6.1}{Valoraci\363n de los resultados}{chapter.6}% 36
+\BOOKMARK [1][-]{section.6.2}{Futuras l\355neas de trabajo}{chapter.6}% 37
+\BOOKMARK [0][-]{chapter.7}{Anexo 1: resultados experimentales}{}% 38
+\BOOKMARK [1][-]{section.7.1}{Base de datos 1}{chapter.7}% 39
+\BOOKMARK [2][-]{subsection.7.1.1}{20 vuelos}{section.7.1}% 40
+\BOOKMARK [2][-]{subsection.7.1.2}{100 vuelos}{section.7.1}% 41
+\BOOKMARK [2][-]{subsection.7.1.3}{812 vuelos}{section.7.1}% 42
+\BOOKMARK [1][-]{section.7.2}{Base de datos 2}{chapter.7}% 43
+\BOOKMARK [2][-]{subsection.7.2.1}{20 vuelos}{section.7.2}% 44
+\BOOKMARK [2][-]{subsection.7.2.2}{100 vuelos}{section.7.2}% 45
+\BOOKMARK [2][-]{subsection.7.2.3}{3196 vuelos}{section.7.2}% 46
+\BOOKMARK [1][-]{section.7.3}{Base de datos 3}{chapter.7}% 47
+\BOOKMARK [2][-]{subsection.7.3.1}{20 vuelos}{section.7.3}% 48
+\BOOKMARK [2][-]{subsection.7.3.2}{100 vuelos}{section.7.3}% 49
+\BOOKMARK [2][-]{subsection.7.3.3}{6475 vuelos}{section.7.3}% 50
+\BOOKMARK [0][-]{chapter.8}{Anexo 2: Estructura de clases}{}% 51
+\BOOKMARK [1][-]{section.8.1}{Flight}{chapter.8}% 52
+\BOOKMARK [1][-]{section.8.2}{Problem}{chapter.8}% 53
+\BOOKMARK [1][-]{section.8.3}{Sector}{chapter.8}% 54
+\BOOKMARK [1][-]{section.8.4}{Solution}{chapter.8}% 55
+\BOOKMARK [1][-]{section.8.5}{TimeMoment}{chapter.8}% 56
+\BOOKMARK [1][-]{section.8.6}{Wapoint}{chapter.8}% 57
+\BOOKMARK [1][-]{section.8.7}{WaypointRoute}{chapter.8}% 58

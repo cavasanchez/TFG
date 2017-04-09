@@ -44,11 +44,8 @@ public:
 
 	bool isSameWaypointRoute(int inTime, int idFather);
 	bool isAirport();
-
 	std::string getCompleteName();
-
 	int getIdSector();
-
 
 private:
 	int _id;
