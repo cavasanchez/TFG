@@ -2,21 +2,25 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Viajeros en aeropuertos espa\IeC {\~n}oles\relax }}{7}{figure.caption.4}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Porcentaje retrasos en 2016\relax }}{8}{figure.caption.5}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Causas posibles de retraso de un vuelo\relax }}{9}{figure.caption.6}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces causas posibles de retraso de un vuelo\relax }}{9}{figure.caption.6}
 \contentsline {figure}{\numberline {1.4}{\ignorespaces Comparativa retrasos 2015-2016\relax }}{10}{figure.caption.7}
 \contentsline {figure}{\numberline {1.5}{\ignorespaces Retrasos en 2016\relax }}{10}{figure.caption.8}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Ejemplo sectores y waypoints\relax }}{14}{figure.caption.9}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Ejemplo ruta de un vuelo\relax }}{15}{figure.caption.10}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Ejemplo grafo de recorridos de un vuelo\relax }}{16}{figure.caption.11}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Ejemplo vuelo con 2 rutas\relax }}{16}{figure.caption.12}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Ejemplo vuelo con 2 rutas\relax }}{17}{figure.caption.12}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Ejemplo grafo recorridos con 2 rutas: ruta 1 en \leavevmode {\color {blue}azul} y ruta 2 en \leavevmode {\color {red}rojo} \relax }}{18}{figure.caption.13}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Ejemplo vuelo colocado en la fase 2\relax }}{23}{figure.caption.13}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Resultado tras el intercambio de vuelos\relax }}{24}{figure.caption.14}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Elecci\IeC {\'o}n ponderada de candidatos\relax }}{25}{figure.caption.15}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Ejemplo vuelo colocado en la fase 2\relax }}{25}{figure.caption.14}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Resultado tras el intercambio de vuelos\relax }}{26}{figure.caption.15}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Elecci\IeC {\'o}n ponderada de candidatos\relax }}{27}{figure.caption.16}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Comparativa de par\IeC {\'a}metros G y N\relax }}{30}{figure.caption.16}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Evoluci\IeC {\'o}n funci\IeC {\'o}n objetivo con $N=5$ y $G=20$ con ejemplo de 100 vuelos\relax }}{32}{figure.caption.20}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Representaci\IeC {\'o}n gr\IeC {\'a}fica de un problema de 20 vuelos\relax }}{33}{figure.caption.21}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Ejemplo rutas entre 2 aeropuertos\relax }}{34}{figure.caption.22}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Comparativa de par\IeC {\'a}metros G y N\relax }}{37}{figure.caption.23}
 \addvspace {10\p@ }

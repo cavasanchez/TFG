@@ -98,7 +98,7 @@ int main() {
 
 		p->getBestSolution();
 
-//		p->writeFileForHTML();
+		p->writeFileForHTML();
 
 		p->printStatusProblem();
 

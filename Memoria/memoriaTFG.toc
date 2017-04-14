@@ -8,52 +8,57 @@
 \contentsline {section}{\numberline {2.2}Waypoints}{13}{section.2.2}
 \contentsline {section}{\numberline {2.3}Vuelos}{14}{section.2.3}
 \contentsline {section}{\numberline {2.4}Rutas}{15}{section.2.4}
-\contentsline {section}{\numberline {2.5}Descripci\IeC {\'o}n del modelo}{17}{section.2.5}
-\contentsline {section}{\numberline {2.6}Estructura de clases}{17}{section.2.6}
-\contentsline {chapter}{\numberline {3}Tecnolog\IeC {\'\i }as utilizadas}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}C++}{19}{section.3.1}
-\contentsline {section}{\numberline {3.2}MySQL}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Bash scripting}{20}{section.3.3}
-\contentsline {section}{\numberline {3.4}HTML y JavaScript}{20}{section.3.4}
-\contentsline {section}{\numberline {3.5}Git y Github}{20}{section.3.5}
-\contentsline {chapter}{\numberline {4}Heur\IeC {\'\i }stico}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}GRASP}{21}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Fase constructiva}{21}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Fase de mejora}{22}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Heur\IeC {\'\i }stico implementado}{22}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Introducci\IeC {\'o}n}{22}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Fase constructiva}{22}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Fase de mejora}{24}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Par\IeC {\'a}metros heur\IeC {\'\i }stico}{25}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Encontrar ruta \IeC {\'o}ptima}{26}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Pre soluci\IeC {\'o}n: creaci\IeC {\'o}n del grafo}{26}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Djistra}{26}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Post soluci\IeC {\'o}n: actualizaci\IeC {\'o}n de las restricciones}{26}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {5}Resultados experimentales}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Comparaci\IeC {\'o}n de par\IeC {\'a}metros $P$ y $N$}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}Evoluci\IeC {\'o}n de la funci\IeC {\'o}n objetivo}{30}{section.5.2}
-\contentsline {section}{\numberline {5.3}Resultado obtenidos}{30}{section.5.3}
-\contentsline {chapter}{\numberline {6}Conclusiones}{31}{chapter.6}
-\contentsline {section}{\numberline {6.1}Valoraci\IeC {\'o}n de los resultados}{31}{section.6.1}
-\contentsline {section}{\numberline {6.2}Futuras l\IeC {\'\i }neas de trabajo}{31}{section.6.2}
-\contentsline {chapter}{\numberline {7}Anexo 1: resultados experimentales}{33}{chapter.7}
-\contentsline {section}{\numberline {7.1}Base de datos 1}{33}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}20 vuelos}{33}{subsection.7.1.1}
-\contentsline {subsection}{\numberline {7.1.2}100 vuelos}{33}{subsection.7.1.2}
-\contentsline {subsection}{\numberline {7.1.3}812 vuelos}{33}{subsection.7.1.3}
-\contentsline {section}{\numberline {7.2}Base de datos 2}{33}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}20 vuelos}{33}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}100 vuelos}{33}{subsection.7.2.2}
-\contentsline {subsection}{\numberline {7.2.3}3196 vuelos}{33}{subsection.7.2.3}
-\contentsline {section}{\numberline {7.3}Base de datos 3}{34}{section.7.3}
-\contentsline {subsection}{\numberline {7.3.1}20 vuelos}{34}{subsection.7.3.1}
-\contentsline {subsection}{\numberline {7.3.2}100 vuelos}{34}{subsection.7.3.2}
-\contentsline {subsection}{\numberline {7.3.3}6475 vuelos}{34}{subsection.7.3.3}
-\contentsline {chapter}{\numberline {8}Anexo 2: Estructura de clases}{35}{chapter.8}
-\contentsline {section}{\numberline {8.1}Flight}{35}{section.8.1}
-\contentsline {section}{\numberline {8.2}Problem}{36}{section.8.2}
-\contentsline {section}{\numberline {8.3}Sector}{36}{section.8.3}
-\contentsline {section}{\numberline {8.4}Solution}{37}{section.8.4}
-\contentsline {section}{\numberline {8.5}TimeMoment}{37}{section.8.5}
-\contentsline {section}{\numberline {8.6}Wapoint}{37}{section.8.6}
-\contentsline {section}{\numberline {8.7}WaypointRoute}{37}{section.8.7}
+\contentsline {section}{\numberline {2.5}Waypoint Route}{15}{section.2.5}
+\contentsline {section}{\numberline {2.6}Descripci\IeC {\'o}n del modelo}{18}{section.2.6}
+\contentsline {section}{\numberline {2.7}Estructura de clases}{19}{section.2.7}
+\contentsline {chapter}{\numberline {3}Tecnolog\IeC {\'\i }as utilizadas}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}C++}{21}{section.3.1}
+\contentsline {section}{\numberline {3.2}MySQL}{22}{section.3.2}
+\contentsline {section}{\numberline {3.3}Bash scripting}{22}{section.3.3}
+\contentsline {section}{\numberline {3.4}HTML y JavaScript}{22}{section.3.4}
+\contentsline {section}{\numberline {3.5}Git y Github}{22}{section.3.5}
+\contentsline {chapter}{\numberline {4}Heur\IeC {\'\i }stico}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}GRASP}{23}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Fase constructiva}{23}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Fase de mejora}{24}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Heur\IeC {\'\i }stico implementado}{24}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Introducci\IeC {\'o}n}{24}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Fase constructiva}{25}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Fase de mejora}{26}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Par\IeC {\'a}metros heur\IeC {\'\i }stico}{27}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Encontrar ruta \IeC {\'o}ptima}{28}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Pre soluci\IeC {\'o}n: creaci\IeC {\'o}n del grafo}{28}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Djistra}{28}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Post soluci\IeC {\'o}n: actualizaci\IeC {\'o}n de las restricciones}{28}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {5}Resultados experimentales}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Comparaci\IeC {\'o}n de par\IeC {\'a}metros $P$ y $N$}{31}{section.5.1}
+\contentsline {section}{\numberline {5.2}Resultado obtenidos}{31}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Valor de la funci\IeC {\'o}n objetivo}{31}{subsection.5.2.1}
+\contentsline {subsubsection}{Alto porcentaje de vuelos con soluci\IeC {\'o}n}{32}{section*.17}
+\contentsline {subsubsection}{Gran aleatoriedad}{32}{section*.18}
+\contentsline {subsubsection}{Evoluci\IeC {\'o}n de la funci\IeC {\'o}n objetivo}{32}{section*.19}
+\contentsline {section}{\numberline {5.3}Representaci\IeC {\'o}n gr\IeC {\'a}fica}{32}{section.5.3}
+\contentsline {chapter}{\numberline {6}Conclusiones}{35}{chapter.6}
+\contentsline {section}{\numberline {6.1}Valoraci\IeC {\'o}n de los resultados}{35}{section.6.1}
+\contentsline {section}{\numberline {6.2}Futuras l\IeC {\'\i }neas de trabajo}{35}{section.6.2}
+\contentsline {chapter}{\numberline {7}Anexo 1: resultados experimentales}{37}{chapter.7}
+\contentsline {section}{\numberline {7.1}Base de datos 1}{37}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}20 vuelos}{37}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}100 vuelos}{37}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}812 vuelos}{38}{subsection.7.1.3}
+\contentsline {section}{\numberline {7.2}Base de datos 2}{38}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}20 vuelos}{38}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}100 vuelos}{38}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}3196 vuelos}{38}{subsection.7.2.3}
+\contentsline {section}{\numberline {7.3}Base de datos 3}{38}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}20 vuelos}{38}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}100 vuelos}{38}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.3}6475 vuelos}{38}{subsection.7.3.3}
+\contentsline {chapter}{\numberline {8}Anexo 2: Estructura de clases}{39}{chapter.8}
+\contentsline {section}{\numberline {8.1}Flight}{39}{section.8.1}
+\contentsline {section}{\numberline {8.2}Problem}{40}{section.8.2}
+\contentsline {section}{\numberline {8.3}Sector}{40}{section.8.3}
+\contentsline {section}{\numberline {8.4}Solution}{41}{section.8.4}
+\contentsline {section}{\numberline {8.5}TimeMoment}{41}{section.8.5}
+\contentsline {section}{\numberline {8.6}Wapoint}{41}{section.8.6}
+\contentsline {section}{\numberline {8.7}WaypointRoute}{41}{section.8.7}
