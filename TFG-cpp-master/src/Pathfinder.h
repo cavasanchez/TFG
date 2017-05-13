@@ -295,6 +295,8 @@ void Problem::Djistra(Flight *flight, int option) {
 		switch (option) {
 			case OPTION_SHORTEST_PATH:
 				flight->setStatus(FLIGHT_STATUS_ERROR);
+				cout<<flight->getId()<<"<<<<<<<";
+				exit(-1);
 				break;
 
 			case OPTION_ONLY_INITIAL_SOLUTION:

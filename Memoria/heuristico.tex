@@ -1,20 +1,20 @@
 \chapter{Heurístico}
 \label{heurístico}
-El algoritmo heurístico que se ha creado para el problema está inspirado en el metahurístico \textit{GRASP (Greedy Randomized Adaptive Search Procedure)}, sobre el que se han realizado una serie de modificaciones para adaptarlo al modelo en cuestión. A continuación se explicará el funcionamiento de un GRASP, para después explicar el algoritmo propuesto comparando sus diferencias y semejanzas.
+El algoritmo heurístico que se ha creado para el problema está inspirado en el metahurístico \textit{GRASP (Greedy Randomized Adaptive Search Procedure)}, sobre el que se han realizado una serie de modificaciones para adaptarlo al modelo en cuestión. A continuación se explicará el funcionamiento de un GRASP, para después explicar el algoritmo propuesto, comparando sus diferencias y semejanzas.
 
 \section{GRASP}
 Un GRASP es un metaheurístico constructivo desarrollado inicialmente por T. Feo   M. Resende, y se definie como \textcolor{red}{->cita libro Abraham<-} \textit{un GRASP es un procedimiento multiarrranque en el que cada arranque se corresponde con una iteración. Cada iteracción tiene dos fases bien diferenciadas, la fase de construcción, que se encarga de obtener una solución factible de alta calidad; la fase de mejora, que se basa en la optimización (local) de la solución obtenida en la primera fase.}
 
 \subsection{Fase constructiva}
-La fase constructiva es un proceso iterativo en el que se construye una solución elemento a elemento.\\
-Inicialmente se parte de un componente o conjunto de componentes que conforman una solución parcial, y no serán seleccionables. Posteriormente se ordenan los elementos seleccionables utilizando una función voraz (Greedy), la cual asignará a cada elemento un valor que indique como variaría la función objetivo si se añade a la solución parcial.\\
+La fase constructiva es un proceso iterativo en el que se construye una solución elemento a elemento. Inicialmente se parte de un componente o conjunto de componentes que conforman una solución parcial, y no serán seleccionables. Posteriormente se ordenan los elementos seleccionables utilizando una función voraz (Greedy), la cual asignará a cada elemento un valor que indique como variaría la función objetivo si se añade a la solución parcial.
+
 Una vez están ordenados todos los elementos seleccionables, hay que seleccionar qué elemento es añadido a la solución parcial. GRASP no añade el mejor candidato posible, ya que esto no garantiza que se obtenga la solución óptima, sino que se elije aleatoriamente un candidato del conjunto de candidatos restringido (o RCL por sus siglas en inglés). Para crear esta RCl, se crea un conjunto de candidatos que cumplan
 \begin{equation}\\
 {RCL}_{umbral} = (c_{min}+\alpha(c_{max} - c_{min} ))
 \end{equation}
-donde $c_{min}$ y $c_{max}$ son respectivamente los valores más bajo y más alto del coste asignado a los elementos seleccionables, y el parámetro  :$\alpha : 0\leq \alpha \leq1$ determina el umbral permitido, de forma que se escoge un candidato aleatorio. Si fijamos $\alpha=1$, en la RCL solo contaríamos con el mejor candidato, y sería una función miope pura. Por el contrario si fijamos $\alpha=0$, serán seleccionados todos los candidatos.\\
+, donde $c_{min}$ y $c_{max}$ son respectivamente los valores más bajo y más alto del coste asignado a los elementos seleccionables, y el parámetro $\alpha$ que determina el umbra permitido oscila entre $0\leq \alpha \leq1$, de forma que se escoge un candidato aleatorio. Si fijamos $\alpha=1$, en la RCL solo contaríamos con el mejor candidato, y sería una función miope pura. Por el contrario si fijamos $\alpha=0$, serán seleccionados todos los candidatos.
 
-Una vez seleccionado el elemento o elementos, se introducen en la solución parcial y se les marca como no seleccionables. El resto de candidatos siguen siendo seleccionables, por tanto cuando se les vuelva a evaluar para ser candidatos, sus valores serán distintos a los de la iteración anterior, ya que la solución parcial ha variado al haber añadido el último elemento conjunto de candidatos.\\
+Una vez seleccionado el elemento o elementos, se introducen en la solución parcial y se les marca como no seleccionables. El resto de candidatos siguen siendo seleccionables, por tanto cuando se les vuelva a evaluar para ser candidatos, sus valores serán distintos a los de la iteración anterior, ya que la solución parcial ha variado al haber añadido el último elemento conjunto de candidatos.
 
 La fase constructiva finaliza cuando se dispone de una solución factible.
 \subsection{Fase de mejora}
@@ -23,62 +23,55 @@ Pero la fase constructiva no garantiza que la solución sea óptima respecto a s
 \subsection{Introducción}
 El algoritmo diseñado para este problema se resume en el siguiente pseducódigo:\\
 
-\begin{algorithm}[H]
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}{.7\linewidth}
+		\begin{algorithm}[H]
+			\SetAlgoLined
+			inizializarProblema()\;
+			\While{$N < iteracionesMáximas$}{
+				añadirVuelosEnColaCandidatos()\;
+				lanzarVuelosSoloSolucionesIniciales()\;
+				intercambiarVuelos()\;
+				lanzarVuelosPermitiendoRetrasos()\;
+				lanzarVuelosPermitiendoDesvíos()\;
+				buscarWaypointsSinUsar()\;
+				retrasarVuelosConSolución()\;
+				\If{$N\%númeroSolucionesExaminar== 0$}{
+					crearColaCandidatos()\;
+				}
+			}
+		\caption{Esquema algoritmo implementado}
+	\end{algorithm}
+\end{minipage}
+\end{figure}
 
-	inizializarProblema()\;
-	\While{$N < iteracionesMáximas$}{
-		añadirVuelosEnColaCandidatos()\;
-		lanzarVuelosSoloSolucionesIniciales()\;
-		intercambiarVuelos()\;
-		lanzarVuelosPermitiendoRetrasos()\;
-		lanzarVuelosPermitiendoDesvíos()\;
-		buscarWaypointsSinUsar()\;
-		retrasarVuelosConSolución()\;
-		\If{$N\%númeroSolucionesExaminar== 0$}{
-			crearColaCandidatos()\;
-		}
-}
-\caption{Esquema algoritmo implementado}
-\end{algorithm}
 
-Como se comentó anteriormente, al igual que un algoritmo GRASP tradicional, se compone de una fase constructiva en la que se obtiene una solución de alta calidad y una fase constructiva que se produce cada $N$ iteraciones, en la cual se analizarán las solucions anteriores para seleccionar los vuelos más prometedores y añadirlos al problema, de forma que tengan más posibilidad de ser seleccionados antes. A continuación se explican con más detalle ambas fases.
-
-
+Como se comentó anteriormente, al igual que un algoritmo GRASP tradicional, se compone de una fase constructiva en la que se obtiene una solución de alta calidad y una fase de mejora que se produce cada $N$ iteraciones, en la cual se analizarán las soluciones anteriores para seleccionar los vuelos más prometedores y añadirlos al problema, de forma que tengan más posibilidad de ser seleccionados antes. A continuación se explican con más detalle ambas fases.
 
 \subsection{Fase constructiva}
-Dado que este problema tiene siempre una solución factible (cancelar todos los vuelos), el objetivo de esta fase es conseguir una solución de alta calidad. 
-
-A continuación se detalla cada función que se lleva a cabo en la fase constructiva;:
+Dado que este problema tiene siempre una solución factible (cancelar todos los vuelos), el objetivo de esta fase es conseguir una solución de alta calidad. Esta fase consta de 6 subrutinas.
 \begin{enumerate}
 	
-	\item \textbf{Añadir vuelos a la cola de candidatos:} es el primer paso de la fase constructiva, y solo se lleva a cabo si en la iteración anterior se ha creado una cola de candidatos. Esta función se encarga de generar de forma aleatoria el orden en el que se lanzarán los vuelos en el siguiente paso del algoritmo. Funciona de la siguiente manera:
-	\begin{enumerate}
-		\item Si no hay cola de candidatos, se obtiene el id de cada vuelo del problema y se ordenan de forma aleatoria:
-		\begin{multline}\\
-			\{1,2,3,4,5\} \Rightarrow \{2,4,5,1,3\}\\
-		\end{multline}
-		\item Si por el contrario sí que tenemos una cola de candidatos, juntaremos el array de ids de los vuelos del problema junto a el array de candidatos. posteriormente se ordenan y se descartan los elementos repetidos, de forma que los elementos que estén repetidos tendrán más posibilidades de estar al principio del array:
-		\begin{multline}\\
-		\{1,2,3,4,5\} + \{2,4\} = \{1,2,3,4,5,2,4\} \\
-		\{1,2,3,4,5,2,4\} \Rightarrow \{2,5,4,3,1\}  \\ 
-		\end{multline}
-	\end{enumerate}
+	\item \textbf{Lanzar vuelos con las soluciones iniciales: }se lanzan todos los vuelos de manera aleatoria sin permitir retrasos o desvíos, la única ruta que se permite es la solución por defecto.
 	
-	\item \textbf{Lanzar vuelos con las soluciones iniciales: }se lanzan todos los vuelos de manera aleatoria sin permitir retrasos o desvíos, la única ruta que se permite es la solución por defecto.\\
-	Tras realizar varias pruebas, se ha podido comprobar que los pasos siguientes del algoritmo dependen en gran medida de los vuelos a los que se encuentra solución en esta fase. Esto se debe a que un ``mal'' vuelo colocado en su solución inicial puede sobrecargar sectores clave para otros muchos vuelos. En las pruebas que hemos realizado, en esta fase se colocan con éxito entre un 5\% y un 15\% de los vuelos.
+	Tras realizar varias pruebas, se ha podido comprobar que los pasos siguientes del algoritmo dependen en gran medida de los vuelos a los que se encuentra solución en esta fase. Esto se debe a que un ``mal'' vuelo colocado en su solución inicial puede sobrecargar sectores clave para otros muchos vuelos.
 	
-	\item \textbf{Intercambio de vuelos: } se intenta sustituir uno de los vuelos exitosos del paso anterior por 2 o más vuelos aleatorios a los que no se les halló solución.\\
-	Este paso fue introducido para paliar el problema que se indicaba en el paso anterior, y se realiza partiendo de una idea básica: si cancelando un vuelo que teníamos con solución conseguimos colocar con éxito 2 o más vuelos, será siempre una mejora.\\
+	En las pruebas que hemos realizado, en esta fase se colocan con éxito entre un 5\% y un 15\% de los vuelos.
 	
-	Por ejemplo, si en la fase anterior fue colocado con éxito un vuelo de la siguiente forma
+	\item \textbf{Intercambio de vuelos: } se intenta sustituir uno de los vuelos exitosos del paso anterior por 2 o más vuelos aleatorios a los que no se les halló solución.
+	
+	Este paso fue introducido para paliar el problema que se indicaba en el paso anterior, y se realiza partiendo de una idea básica: si cancelando un vuelo que teníamos con solución conseguimos colocar con éxito 2 o más vuelos, será siempre una mejora.
+	
+	Por ejemplo, si en la fase anterior fue colocado con éxito un vuelo de la siguiente forma:
 	\begin{figure}[H]
 		\centering
 		\input{./diagramas/heuristico/ejemplo1vuelolargo.tex}
-		\caption{Ejemplo vuelo colocado en la fase 2}
+		\caption{Ejemplo vuelo colocado en la fase 2.}
 		\label{fig: Ejemplo vuelo colocado en la fase 2}
 	\end{figure}
 	
-	Podría cancelarse para colocar 2 vuelos más cortos:
+	podría cancelarse para colocar 2 vuelos más cortos:
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}[H]{0.4\textwidth}
@@ -88,45 +81,63 @@ A continuación se detalla cada función que se lleva a cabo en la fase construc
 		\begin{minipage}[H]{0.4\textwidth}
 			\input{./diagramas/heuristico/ejemplo1vueloCortoB.tex}
 		\end{minipage}
-		\caption{Resultado tras el intercambio de vuelos}
+		\caption{Resultado tras el intercambio de vuelos.}
 		\label{Fig: Resultado tras el intercambio de vuelos}
 	\end{figure}
 	
-	\item \textbf{Se intentan colocar vuelos permitiendo retrasos}: se lanzan aleatoriamente los vuelos que aun no tienen solución, permitiendo retrasos en sus rutas, pero no desvíos.\\
-	En el problema se considera que un vuelo retrasado es preferible a un vuelo desviado, así que primero se intenta encontrar soluciones que no conlleven desvíos. En este paso se colocan ente un 50\% y un 65\% de los vuelos.
+	\item \textbf{Se intentan colocar vuelos permitiendo retrasos}: se lanzan aleatoriamente los vuelos que aun no tienen solución, permitiendo retrasos en sus rutas, pero no desvíos.	En el problema se considera que un vuelo retrasado es preferible a un vuelo desviado, así que primero se intenta encontrar soluciones que no conlleven desvíos.
 	
-	\item \textbf{Se intentan colocar vuelos permitiendo retrasos y desvíos}: se lanzan aleatoriamente los vuelos que aun no tienen solución, permitiendo retrasos y desvíos en sus rutas.\\
-	En este punto si un vuelo tiene alguna solución factible, se le asignará. Se colocan con éxito entre el 20\% y el 30\%.
+	En este paso se colocan ente un 50\% y un 65\% de los vuelos.
 	
-	\item \textbf{Se buscan los waypoints sin usar y se les intenta asignar una ruta}: se localizan los waypoints por los que no pasa ningún vuelo a lo largo de todo el problema. Si algún vuelo tiene alguna solución factible que utilice alguno de estos waypoints, se la asigna. \\
+	\item \textbf{Se intentan colocar vuelos permitiendo retrasos y desvíos}: se lanzan aleatoriamente los vuelos que aun no tienen solución, permitiendo retrasos y desvíos en sus rutas. En este punto si un vuelo tiene alguna solución factible, se le asignará. 
 	
+	Se colocan con éxito entre el 20\% y el 30\%.
+	
+	\item \textbf{Se buscan los waypoints sin usar y se les intenta asignar una ruta}: se localizan los waypoints por los que no pasa ningún vuelo a lo largo de todo el problema. Si algún vuelo tiene alguna solución factible que utilice alguno de estos waypoints, se la asigna. 
+	
+	Con los modelos de ejemplo con los que contábamos esta fase proporciona mejoras en solo un 5\% de los casos.
 	
 	\item \textbf{Retrasar vuelos con solución para colocar 2 o más cancelados}: se intenta retrasar alguno de los vuelos con solución factible para poder encontrar de forma aleatoria uno o más vuelos que estaban cancelados.\\
 	Este paso se basa en el mismo concepto que en el intercambio de vuelos: si a costa de empeorar la solución de vuelo (ya sea en su solución inicial o retrasado) se consigue encontrar la solución de 1 o más vuelos cancelados, se esta mejorando el resultado global.
 	
 \end{enumerate}
 \subsection{Fase de mejora}
-Tras \textit{N} iteraciones, se estudian las soluciones obtenidas y se selecciona de forma proporcional acorde a lo "buena" que haya sido la iteración, un número máximo de vuelos que se añadrán a la cola de vuelos adicionales. Aquí radica la mayor diferencia con un GRASP: en el metahurístico constructivo hay que evaluar y seleccionar  de los candidatos disponibles a uno o varios de ellos según la ya citada fórmula
+El objetivo de esta fase es analizar las últimas $N$ iteraciones, y escoger de entre ellas a los mejores vuelos de forma aleatoria para que en las siguientes $N$ iteraciones tengan más probabilidades de ser lanzados antes. Aquí radica la mayor diferencia con un GRASP: en el metahurístico constructivo hay que evaluar y seleccionar de los candidatos disponibles a uno o varios de ellos según la ya citada fórmula
 \begin{equation}
 {RCL}_{umbral} = (c_{min}+\alpha(c_{max} - c_{min} ))
-\end{equation}la \textit{RCL (Restricted Candidate List)}, para a continuación volver a evaluar a la lista de candidatos disponibles y repetir el proceso con la solución parcial actualizada.\\
-En este algoritmo se analizan las iteraciones anteriores y se trata de extraer lo mejor de ellas. El proceso se realiza en 2 fases: 
+\end{equation}
+para a continuación volver a evaluar a la lista de candidatos disponibles y repetir el proceso con la solución parcial actualizada. En este algoritmo se analizan las iteraciones anteriores y se trata de extraer lo mejor de ellas. El proceso se realiza en 2 fases: 
 \begin{enumerate}
-	\item \textbf{Analizar las soluciones anteriores:} de las $N$ iteraciones anteriores, calculamos el valor de la función objetivo para cada una de ellas para identificar así el valor de cada solución.
+	\item \textbf{Analizar las soluciones previas:} de las $N$ iteraciones anteriores, calculamos el valor de la función objetivo para cada una de ellas.
 	
 	\item \textbf{Selección proporcional de candidatos:} una vez asignado un valor a cada iteración, se seleccionan vuelos que fueron colocados o en su solución inicial o retrasados muy poco de forma proporcional al valor de la solución. El número máximo de vuelos que se seleccionan está marcado por el parámetro $G$.\\
 	
-	Por ejemplo, si tenemos $N=3$ y $G=3$, y las soluciones $a,b,c$ tienen valores de $100,200,300$ respectivamente, se escogerán vuelos de la solución $a$ con una probabilidad de $1/6$, de la solución $b$ $2/3$ y de la solución $c$ con $3/6$
+	Por ejemplo, si tenemos $N=3$ y $G=3$, y las soluciones anteriores $a,b,c$ tienen funciones objetivo con valores de $100,200,300$ respectivamente, se escogerán vuelos de la solución $a$ con una probabilidad de $1/6$, de la solución $b$ $2/3$ y de la solución $c$ con $3/6$
 	\begin{figure}[H]
 		\begin{center}
 			\centering
-			\includegraphics[width=0.5\textwidth]{./imagenes/heuristico/valorSoluciones.jpg}
-			\caption{Elección ponderada de candidatos}
+			\includegraphics[width=0.8\textwidth]{./imagenes/heuristico/valorSoluciones.jpg}
+			\caption{Elección ponderada de candidatos.}
 			\label{fig: Elección ponderada de candidatos}
 		\end{center}
 	\end{figure}
 	
-	\item \textbf{Creación de cola de vuelos extra:} estos vuelos conformarán la cola extra que se añadirá al conjunto de vuelos original, haciendo que éstos tengan mayor posibilidad de ser lanzados antes durante las siguientes \textit{N} iteraciones, tal y como se indica en la fase constructiva:
+	\item \textbf{Añadir vuelos a la cola de candidatos:} los vuelos seleccionados  en la fase anterior conforman la cola de vuelos extras.
+	
+		Cada $N$ iteraciones, antes de realizar la fase constructiva, se añadirán los vuelos de la cola de candidatos al resto de vuelos que conforman el problema. El proceso que se realiza es el siguiente:
+	\begin{enumerate}
+		\item Si no hay cola de candidatos, se obtiene el id de cada vuelo del problema y se ordenan de forma aleatoria:
+		\begin{multline}\\
+		\{1,2,3,4,5\} \Rightarrow \{2,4,5,1,3\}\\
+		\end{multline}
+		\item Si por el contrario sí que tenemos una cola de candidatos, la juntaremos con la cola de vuelos habituales. Posteriormente se ordenan y se descartan los elementos repetidos, de forma que los vuelos que añadimos de la cola de candidatos, al estar por duplicado o incluso triplicado, tienen altas probabilidades de quedar colocados los primeros de la cola resultante.
+		
+		Por ejemplo, si en el caso anterior obtenemos que hemos seleccionado los vuelos 2, 4 para añadir al problema, el orden para lanzar los vuelos en los siguientes pasos del algoritmo se calculará de la siguiente manera
+		\begin{multline}\\
+		\{1,2,3,4,5\} + \{2,4\} = \{1,2,3,4,5,2,4\} \\
+		\{1,2,3,4,5,2,4\} \Rightarrow \{2,5,4,3,1\}  \\ 
+		\end{multline}
+	\end{enumerate}
 	
 	\item \textbf{Descarte de mala solución} si la mejor de las $N$ soluciones candidatas que se analizan no supera el valor de la mejor solución encontrada hasta el momento, se descarta la cola actual y se reinicia el problema.
 	Si se da este caso, indicará que la última cola de candidatos que seleccionamos no ha conseguido mejorar la solución del problema, por tanto podemos descartarla.
@@ -139,24 +150,26 @@ Por tanto el heurístico depende de dos parámetros:
 	\item \textbf{$N$}: cada cuantas iteraciones actualizamos la cola de vuelos adicional.
 	\item \textbf{$G$}: el tamaño máximo de la cola de vuelos adicionales.
 \end{itemize}
-Tras realizar pruebas sobre distintos problemas, se ha obtenido que las mejores soluciones se tienen a alcanzar con un parámetro $N$ pequeño y $G$ grande, de forma que la cola de vuelos candidatos sea lo más grande posible y que la fase constructiva se realice con mucha frecuencia. Los resultados se pueden observar en la siguiente sección.
+Tras realizar pruebas sobre distintos problemas, se ha obtenido que las mejores soluciones se tienen a alcanzar con un parámetro $N$ pequeño y $G$ grande, de forma que la cola de vuelos candidatos sea lo más grande posible y que la fase constructiva se realice con mucha frecuencia. Los resultados se pueden observar en \autoref{resultados}.
 
-De esta forma, un alto parámetro $G$ permitirá que muy probablemente muchos de los vuelos que en la mejor solución encontrada hasta ese momento fueron colocados con éxito, se lance, intentando así "reproducir" la mejor solución que se había encontrado. \\
-Por contra un bajo parámetro $N$ hará que se cree cada pocas iteraciones una nueva cola de vuelos candidatos, lo que permitirá que en caso de no encontrase rápidamente una solución mejor, se elimine la cola actual y se reinicie el problema.\\
-En el siguiente capítulo se mostrarán los resultados experimentales de variar estos parámetros.
+De esta forma, un alto parámetro $G$ permitirá que muy probablemente muchos de los vuelos que en la mejor solución encontrada hasta ese momento fueron colocados con éxito, se lance, intentando así "reproducir" la mejor solución que se había encontrado. 
+
+Por contra un bajo parámetro $N$ hará que se cree cada pocas iteraciones una nueva cola de vuelos candidatos, lo que permitirá que en caso de no encontrase rápidamente una solución mejor, se elimine la cola actual y se reinicie el problema.
 
 
 \section{Encontrar ruta óptima}
 En muchas de las fases del algoritmo es necesario encontrar la ruta óptima para un vuelo. Debido a que es el núcleo del algoritmo, vamos a explicarlo con más detalle.
 \subsection{Pre solución: creación del grafo}
-El primer paso es crear el grafo de rutas que tiene un vuelo. la creación de este grafo  va a depender del caso en el que estemos: por ejemplo, si estamos en la fase \textit{lanzarVuelosSoloSolucionesIniciales()}, solo crearemos un grafo con nodos que simulen la ruta inicial (sin retrasos ni rutas alternativas), o si estamos en la fase \textit{lanzarVuelosPermitiendoRetrasos()} crearemos solo un grafo en el que haya nodos  que pertenezcan a la ruta original.\\
-Esto implica que dependendo de la fase en la que estemos, el grafo de un vuelo será diferente. Esta decisión de diseño alivia en gran medid el esfuerzo computanciaonal del Djistra del siguiente paso, ya que el grafo para el que ejecutamos el algoritmo tiene solo soluciones válidas, excluyendo caminos que en dicha fase no estarían permitidos.\\
-Además, a la hora de crear el grafo se tienen en cuenta las condiciones y restricciones de cada instante de tiempo. Por ello, si un waypoint en un momento de tiempo fuera a ser añadido a la lista de waypoints pero no cumple con las restricciones del problema (ese arco ya está ocupado, o su sector está ya al máximo de capacidad), ese nodo no se añadirá. Esto implica que se pueden crear grafos no conexos, y por tanto sin solución.
+El primer paso es crear el grafo de rutas que tiene un vuelo. La creación de este grafo va a depender del caso en el que estemos: por ejemplo, si estamos en la fase \textit{lanzarVuelosSoloSolucionesIniciales()}, solo crearemos un grafo con nodos que simulen la ruta inicial (sin retrasos ni rutas alternativas), o si estamos en la fase \textit{lanzarVuelosPermitiendoRetrasos()} crearemos solo un grafo en el que haya nodos  que pertenezcan a la ruta original.
+
+Esto implica que dependiendo de la fase en la que estemos, el grafo de un vuelo será diferente. Esta decisión de diseño alivia en gran medida el esfuerzo computacional del algoritmo de  Djistra del siguiente paso, ya que el grafo para el que ejecutamos el algoritmo tiene solo soluciones válidas, excluyendo así caminos que en dicha fase no estarían permitidos, y por tanto solo aumentarían el tiempo de ejecución sin llegar a aportar una solución válida.
+
+Además, a la hora de crear el grafo se tienen en cuenta las condiciones y restricciones de cada instante de tiempo. Por ello, si un waypoint en un momento de tiempo fuera a ser añadido a la lista de waypoints pero no cumple con las restricciones del problema (ese arco ya está ocupado, o su sector está ya al máximo de capacidad), ese nodo no se añadirá. Esto implica que se pueden crear grafos no conexos, y por tanto sin solución. Si se da este caso, el vuelo se marcará como cancelado.
 \subsection{Djistra}
-Una vez creado el grafo sobre el que tenemos que encontrar el camino más corto entre 2 puntos, ejecutamos un algoritmo de Djistra con lista, que con una complejidad de $O(n^{2})$, y dado que el número $n$ de nodos no va a ser muy elevado, permite que las operaciones se hagan con la rapidez necesaria.
+Una vez creado el grafo sobre el que tenemos que encontrar el camino más corto entre 2 puntos, ejecutamos un algoritmo de Djistra con lista, que con una complejidad de $O(n^{2})$, y dado que el número $n$ de nodos no va a ser muy elevado, permite que las operaciones se hagan con la rapidez suficiente.
 \subsection{Post solución: actualización de las restricciones}
 Tras ejecutar el algoritmo de Djistra, podemos obtener dos resultados:
 \begin{itemize}
-	\item \textbf{Se encuentra el camino más corto:} obtenemos los waypoints por el que pasa el camino más corto, así como su longitud. Con estos datos tenemos que actualizar las restricciones del problema para cada instante de tiempo $t$ en el que el vuelo ha estado en el aire. El estado del vuelo dependerá de la fase en la que estamos, si estamos en \textit{lanzarVuelosSoloSolucionesIniciales()}, el estado del vuelo pasará a ser solución inicial, mientras que si estamos en \textit{lanzarVuelosPermitiendoDesvíos()} el estado del vuelo será desviado y retrasado, o tan sólo retrasado, dependiendo de si la solucción encontrada es más o igual de larga que su solución iniciale
-	\item \textbf{no se encuentra solución:} este caso puede darse cuando debido a las restricciones del problema el grafo creado no es conexo. El vuelo se marca como cancelado.
+	\item \textbf{Se encuentra el camino más corto:} obtenemos los waypoints por el que pasa el camino más corto, así como su longitud. Con estos datos tenemos que actualizar las restricciones del problema para cada instante de tiempo $t$ en el que el vuelo ha estado en el aire. El estado del vuelo dependerá de la fase en la que estamos, si estamos en \textit{lanzarVuelosSoloSolucionesIniciales()}, el estado del vuelo pasará a ser solución inicial, mientras que si estamos en \textit{lanzarVuelosPermitiendoDesvíos()} el estado del vuelo será desviado y retrasado, o tan sólo retrasado, dependiendo de si la solución encontrada es más o igual de larga que su solución iniciale
+	\item \textbf{No se encuentra solución:} este caso puede darse cuando debido a las restricciones del problema el grafo creado no es conexo. El vuelo se marca como cancelado.
 \end{itemize}

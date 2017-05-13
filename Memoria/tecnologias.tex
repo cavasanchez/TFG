@@ -15,21 +15,27 @@ Aunque se comenzó utilizando C en las primeras versiones del TFG, finalmente se
                   
 
 \section{MySQL}
-MySQL es un sistema relacional de gestión de base de datos creado en 1995 por Michael Widenius, y actualmente es uno de los 3 sistemas de BBDD más utilizados del mundo, junto a Oracle y Microsoft SQL Server.\\
+MySQL es un sistema relacional de gestión de base de datos multiplataforma desarrollado en ANSI C y C++ en 1995 por Michael Widenius. Actualmente es uno de los 3 sistemas de BBDD más utilizados del mundo, junto a Oracle y Microsoft SQL Server.
+
+A pesar de ser un proyecto de Apache, está patrocinado por la empresa Oracle que posee la mayororía de los derechos, lo que ocasionó que en 2009 varios antiguos desarroladores de MySQL crearan MariaDB, un fork\footnote{Un fork es la creación de un proyecto software con un nuevo propósito a partir de código ya existente.} de MySQL con licencia opensource.\\
+
 Al igual que en la versión anterior del proyecto, la BBDD que usamos será la relacional que realizó Diego Ruiz Aguado en el 2012. En esta base de datos se encuentran todos los datos del problema: waypoints, rutas, aeropuertos, vuelos ... etc, los cuales serán utilizados para crear la estructura del problema.
 
-\section{Bash scripting}
-Se han desarrollado scripts que permitían importar las bases de datos a un fichero .txt con el formato debido para sistemas Linux. 
 
 \section{HTML y JavaScript}
-\textbf{HTML} es un lenguaje de marcado  creado por Tim Berners-Lee en 1991. Es el lenguaje más utilizado para la elaboración de páginas web, además de un estándar a cargo del consorcio WWW.
+\textbf{HTML} (HyperText Markup Language) es un lenguaje de marcado creado por Tim Berners-Lee en 1991 para la creación de páginas web. Es el lenguaje más utilizado para la elaboración de páginas web, además de un estándar a cargo del consorcio WWW.
+HTML se considera el lenguaje web más importante (entre todos los lenguajes alternativos a HTML no alcanzan el 0.001\% de uso ) y ha tenido un impacto muy importante en la expansión del WWW. Entre sus funcionalidades básicas de HTML 5 (la última versión liberada) se encuentran funcionionalidades como añadir audio, vídeo, canvas o \textit{drag and drop}.
 
-\textbf{JavaScript} es un lenguaje de programación interpretado, imperativo, dinámico, débilmente tipado y  orientado a objetos. Es parte del estándar ECMAScript, soportado por la gran mayoria de los navegadores desde 2012, lo que lo convierte en el lenguaje más utilizado para el lado cliente en aplicaciones web.
+\textbf{JavaScript} es un lenguaje de programación interpretado, imperativo, dinámico, débilmente tipado y  orientado a objetos. Es parte del estándar ECMAScript, soportado por la gran mayoría de los navegadores desde 2012, lo que lo convierte en el lenguaje más utilizado para el lado cliente en aplicaciones web. 
+JS se basa en el manejo del DOM (Document Object Model) de código HTML y algunas de sus funcionalidades más sencillas podrían ser el de crear contenido interactivo, animaciones o validacuión de formularios. Sin embargo, debido a la popularidad de los últimos años, las funcionalidades de JS, y principalmente, de frameworks para aplicaciones web \footnote{Un framework para aplicaciones web es un conjunto de tecnologías, módulos de desarrollo, y capas de abstracción destinadas a facilitar el desarrollo.} han hecho que el lenguaje incorporar un gran número de mejoras como peticiones asíncronas, funciones lambda, funciones de orientación a objetos,... etc.
+Actualmente el ritmo al que se crean nuevas tecnologías basadas en JavaScript es elevadísimo, habiendo multitud de frameworks como \href{https://angularjs.org/}{AngularJS} (desarrollado por Google), \href{https://facebook.github.io/react/}{ReactJS} (desarrolado por Facebook),\href{https://www.emberjs.com/}{EmberJS}, lenguajes derivados como \href{https://www.typescriptlang.org/}{TypeScript} que permiten añadir funcionalidades de tipado, o gran cantidad de librerías como \href{https://d3js.org/}{Data-Driven Documents}.\\
 
 Para la representación gráfica del problema se ha utilizado JS para leer y parsear la información almacenada en un fichero y HTML para su visualización (para la creación del grafo se ha utilizado la librería \href{http://visjs.org/docs/network/}{vis.js}).
 
 \section{Git y Github}
-Git es un software de control de versiones distribuido creado por Linus Torvalds en 2005, cuyos dos mayores sistemas de hosting son Bitbucket y Github.
+Git es un software de control de versiones distribuido creado por Linus Torvalds en 2005, cuyos dos mayores sistemas de hosting son Bitbucket y Github. Un sistema de control de versiones permite gestionar los cambios llevados a cabo sobre documentos a lo largo del tiempo, así como coordinar el trabajo de diferentes desarrolladores trabajando sobre el mismo documento simultáneamente.
 
-Se ha utilizado Git como sistema de versiones debido a las facilidades que otorga para trabajar desde distintos terminales, así como su fáil manejo de versiones . Todo el código se puede descargar y consultar en  \href{https://github.com/cavasanchez/TFG}{Github}.
+La importancia de Github en los últimos años ha ido en aumento al haberse convertido en el repositorio de proyectos openSource  muy importantes como el framework \href{https://github.com/twbs/bootstrap}{Bootstrap}, el lenguaje de lado de servidor \href{https://github.com/nodejs/node}{Node.js}, la librería \href{https://github.com/jquery/jquery}{Jquery} o el framework del lenguaje Ruby \href{https://github.com/jquery/jquery}{Rails}.\\
+
+Se ha utilizado Git como sistema de versiones debido a las facilidades que otorga para trabajar desde distintos terminales, así como su fácil manejo de versiones . Todo el código se puede descargar y consultar en  \href{https://github.com/cavasanchez/TFG}{Github}.
 

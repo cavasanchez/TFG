@@ -21,20 +21,21 @@
 using namespace std;
 
 int main() {
+	static ofstream log;
 
-	for (int numSimulation = 0; numSimulation < 1; numSimulation++) {
-
-		static ofstream log;
+	for (int numSimulation = 0; numSimulation < 25; numSimulation++) {
 
 		log.open("log.txt");
 
-	//	log << writeInLog("Executon start");
+		log << writeInLog("Executon start");
 
 		int numAirports = linesFile(RESORCES_FOLDER + "arports.csv");
 		int numFlights = linesFile(RESORCES_FOLDER + "flights.csv");
 		int numSectors = linesFile(RESORCES_FOLDER + "sectors.csv");
 		int numTrajectories = linesFile(RESORCES_FOLDER + "trajectories.csv");
 		int numWaypoints = linesFile(RESORCES_FOLDER + "waypoints.csv");
+
+		cout << "Simulación " << numSimulation << endl;
 
 		Problem *p = new Problem(numAirports, numSectors, numTrajectories, numWaypoints, numFlights);
 
@@ -47,38 +48,38 @@ int main() {
 		log << "\t Num trajectories: " << p->getNumTrajectories() << endl;
 		log << "\t Num waypoints: " << p->getNumWaypoints() << endl;
 
-		//log << writeInLog("Problem initialization");
+		log << writeInLog("Problem initialization");
 		p->inizializeProblem(numSimulation);
 		//log << writeInLog("Initialization finished");
 
-	//	log << writeInLog("Calculating shortest paths");
+		log << writeInLog("Calculating shortest paths");
 		p->initialSolutions();
 
 		int iterations = 1;
 
 		while (iterations < MAX_ITERATIONS) {
 
-		//	cout << "******************ITERACCION " << iterations << " ************************" << endl;
+//			cout << "******************ITERACCION " << iterations << " ************************" << endl;
 
-			//log << writeInLog("Step 0. Add best flights queue to listFlights");
+//			log << writeInLog("Step 0. Add best flights queue to listFlights");
 			p->addFlightsBestSolution();
 
-			//log << writeInLog("Step 1. Take off flights in random order");
+//			log << writeInLog("Step 1. Take off flights in random order");
 			p->initialFlightsTakeOff();
 
-			//log << writeInLog("Step 2. trying to interchange flights");
+//			log << writeInLog("Step 2. trying to interchange flights");
 			p->interchangeFlights();
 
-			//log << writeInLog("Step 3. Take off flights with delays");
+//			log << writeInLog("Step 3. Take off flights with delays");
 			p->flightsTakeOffWithDelays();
 
-			//log << writeInLog("Step 4. Take off flights with alternatives routes");
+//			log << writeInLog("Step 4. Take off flights with alternatives routes");
 			p->flightsTakeOffAlternativeRoutes();
 
-			//log << writeInLog("Step 5. Find waypoints not used and try to find any route through them ");
+//			log << writeInLog("Step 5. Find waypoints not used and try to find any route through them ");
 			p->employUnusedWaypoints();
 
-			//log << writeInLog("Step 6. Try to delay an ok flight to set a cancel flight");
+//			log << writeInLog("Step 6. Try to delay an ok flight to set a cancel flight");
 			p->delayOkFlights();
 
 			p->saveCurrentSolution(iterations);
@@ -94,7 +95,9 @@ int main() {
 
 		}
 
-		p->writeResult(numSimulation);
+//		p->writeResult(numSimulation);
+
+		p->writeResultBestSolution(numSimulation);
 
 		p->getBestSolution();
 
@@ -102,15 +105,14 @@ int main() {
 
 		p->printStatusProblem();
 
-		// log << writeInLog("Execution finished");
-
-		log.close();
-
-
-		//delete all problem structures
+		log << writeInLog("Execution finished");
 		delete p;
 
-		cout << "END";
 	}
+	log.close();
+
+	//delete all problem structures
+
+	cout << "END";
 }
 

@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,twoside,openright,titlepage,final, svgnames]{book}
+\documentclass[12pt,a4paper,titlepage,final, svgnames, twoside, openright]{book}
 \author{Carlos Vázquez Sánchez}
 
 \usepackage[utf8]{inputenc}
@@ -20,6 +20,9 @@
 \setlength{\oddsidemargin}{6mm}
 \setlength{\evensidemargin}{28mm}
 \setlength{\topmargin}{-5mm}
+\usepackage{longtable}
+\usepackage{ltxtable} 
+
 
 \usepackage{lscape}
 \usetikzlibrary{babel}
@@ -27,7 +30,8 @@
 
 \usepackage{color}
 \usepackage{float}
-\usepackage[top=2.5cm,bottom=4cm,outer=2.5cm,inner=2.5cm]{geometry}
+\usepackage[left=3cm,right=2cm, bottom=4cm]{geometry}
+
 \usepackage{fancybox}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -41,11 +45,13 @@
 \usepackage{standalone}
 
 \usepackage{fancyhdr}
+\input{./portada.tex}
 
 
 
 \begin{document}
-	\input{./portada}
+	\portada{Desarrollo e implementación de algoritmos heurísticos para la gestión óptima de flujo en tráfico aéreo}{Ingeniería del Software}{Curso 2016--2017}{Carlos Vázquez Sánchez}{Antonio Alonso Ayuso}
+
 	
 	\newpage
 	\tableofcontents

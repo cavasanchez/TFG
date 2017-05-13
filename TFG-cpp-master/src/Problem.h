@@ -146,7 +146,7 @@ public:
 	int isWaypointRouteInList(WaypointRoute **list, int idFather, int inTime, int sizeList);
 	void initialFlightsTakeOff();
 	void printStatusProblem();
-	void getBestSolution();
+	Solution* getBestSolution();
 
 	void addFlightsBestSolution();
 	void saveCurrentSolution(int numberIteration);
@@ -156,6 +156,9 @@ public:
 
 	void writeResult(int);
 	void createFileResult(int);
+	int getPercentageFlightsWithSolution();
+	void writeResultBestSolution(int);
+
 
 	void resetProblem();
 
@@ -213,6 +216,7 @@ private:
 	vector<Solution*> _solutions;
 	int _valueBestSolution;
 	string routeFileResults;
-};
+}
+;
 
 #endif /* PROBLEM_H_ */

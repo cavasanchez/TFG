@@ -30,19 +30,7 @@ Flight::Flight() {
 
 }
 
-Flight::~Flight() {
-	for (int i = 0; i < 1000; i++) {
-		delete _listWaypointsRoute[i];
-	}
 
-	delete _listWaypointsRoute;
-
-	for (int i = 0; i < 1000; i++) {
-		free(_routes[i]);
-	}
-	free(_routes);
-
-}
 
 Flight::Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, int delayGround) {
 	_id = id;
@@ -54,6 +42,21 @@ Flight::Flight(int id, int timeStart, int idWaypointStart, int idWaypointEnd, in
 	_status = FLIGHT_STATUS_NOT_LAUNCHED;
 }
 
+
+Flight::~Flight() {
+	for (int i = 0; i < this->getNumWaypointsRoute(); i++) {
+		delete _listWaypointsRoute[i];
+	}
+
+	delete _listWaypointsRoute;
+
+	for (int i = 0; i < 1000; i++) {
+		free(_routes[i]);
+	}
+
+	free(_routes);
+
+}
 WaypointRoute* Flight::getWRById(int id) {
 	WaypointRoute *wr;
 	for (int i = 0; i < this->getNumWaypointsRoute(); i++) {
