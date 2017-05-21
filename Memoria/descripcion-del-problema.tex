@@ -2,7 +2,7 @@
 \label{descripción}
 El modelo implementado se puede resumir como un espacio aéreo dividido en diferentes sectores por el que viajan una serie de aviones. Los vuelos parten y finalizan de un aeropuerto, y tienen una serie de rutas para llegar a su destino.
 
-El objetivo del problema es encontrar una solución factible al mayor número de vuelos cumpliendo una serie de restricciones. Las entidades de las que se compone el modelo son sectores, waypoints, vuelos, rutas y waypointsRoute. A continuación se describe co más detalle las características de cada uno de estos elementos.
+El objetivo del problema es encontrar una solución factible al mayor número de vuelos cumpliendo una serie de restricciones. Las entidades de las que se compone el modelo son sectores, waypoints, vuelos, rutas y waypointsRoute. A continuación se describe con más detalle las características de cada uno de estos elementos.
 
 
 \section{Sectores}
@@ -32,7 +32,7 @@ Por tanto, los vuelos se pueden clasificar en función de su estado al final del
 	\item \textbf{Vuelos programados:} se ha encontrado una ruta para el vuelo que cumple con las restricciones del problema. A su vez, los vuelos con solución se pueden subdividir en
 	\begin{itemize}
 		\item \textbf{Solución por defecto:} la solución del vuelo es la ruta inicial sin retrasos. Es el mejor resultado posible.
-		\item \textbf{Retrasado:} se encuentra una solución factible en la ruta por defecto del vuelo, pero se ha producido un retrasos entre alguno de sus waypoints.
+		\item \textbf{Retrasado:} se encuentra una solución factible en la ruta por defecto del vuelo, pero se ha producido un retraso entre alguno de sus waypoints.
 		\item \textbf{Desviado:} la solución encontrada para el vuelo no es la ruta a priori. Puede ser tan corta como la solución por defecto.
 	\end{itemize}
 	\item \textbf{Vuelos no programados} no se ha podido localizar ninguna ruta factible para el vuelo, por lo que se considera como cancelado.

@@ -23,8 +23,8 @@ A continuación se muestran los resultados de las pruebas que hemos realizados v
 		\textbf{N=2, G=10} & \% éxito: 64.1 & \% éxito: 94.2 &\% éxito: 99.5 & 85.93\% \\ \hline
 		\textbf{N=2, G=30} & \% éxito: 65.2 & \% éxito: 95.1 &\% éxito: 99.5  & 86.60\%\\ \hline
 		\textbf{N=2, G=50} & \% éxito: 66.1  & \% éxito: 95.6  &\% éxito: 99.6 & 87.10\%\\ \hline
-		\textbf{N=5, G=10} & \% éxito: 65.2  &\textcolor{blue}{\% éxito: 94.3 } &\% éxito: 99.4  &86.30\%\\ \hline
-		\textbf{N=5, G=30} & \% éxito: 65.7  &\% éxito: 95.7  &\% éxito: 99.8 &87.06\% \\ \hline
+		\textbf{N=5, G=10} & \% éxito: 65.2  & \% éxito: 94.3 &\% éxito: 99.4  &86.30\%\\ \hline
+		\textbf{N=5, G=30} & \% éxito: 65.7  &\textcolor{blue}{\% éxito: 95.7 } &\% éxito: 99.8 &87.06\% \\ \hline
 		\textbf{N=5, G=50} & \textcolor{blue}{\% éxito: 66.8} &\% éxito: 95.6  & \textcolor{blue}{\% éxito: 99.8}  &\textcolor{red}{87.40\%} \\ \hline
 		\textbf{N=10, G=10} & \% éxito: 64.2  &\% éxito: 94.1  &\% éxito: 99.3  &85.86\% \\  \hline
 		\textbf{N=10, G=30} & \% éxito: 65.2  &\% éxito: 95.1  &\% éxito: 99.5  &86.60\% \\ \hline
@@ -42,32 +42,34 @@ Las características de las simulaciones corresponden a las siguientes:
 
 \section{Resultados simulación}
 \subsection{Caso de pruebas A}
+Se considera como el peor escenario, ya que tiene un gran número de vuelos con rutas idénticas, lo que implica que una vez saturado todas las trayectorias de un vuelo, el resto que son similares serán cancelados.
 \subsubsection{20 vuelos}
+Resultados del problema A con 20 vuelos:
 \input{./tablas/P1_20vuelos.tex}
 
 \subsubsection{100 vuelos}
-
+Resultados del problema A con 100 vuelos:
 \input{./tablas/P1_100vuelos.tex}
 
 
 \section{Caso de pruebas B}
+Se considera un escenario moderado, hay varios vuelos similares pero parten en momentos de tiempo muy distanciados entre sí, por lo que salvo en contadas ocasiones no habrá conflictos entre vuelos similares.
 \subsubsection{20 vuelos}
-
+Resultados del problema B con 20 vuelos:
 \input{./tablas/P2_20vuelos.tex}
 
 \subsubsection{100 vuelos}
-
-Resultados del problema 2 con 100 vuelos:
+Resultados del problema B con 100 vuelos:
 \input{./tablas/P2_100vuelos.tex}
 
 
 \subsection{Caso de pruebas C}
+Se consdera el escenario más favorable: vuelos muy diferentes entre sí, con un varias rutas alternativas y con varios aeropuertos de salida.
 \subsubsection{20 vuelos}
-
-Resultados del problema 3 con 20 vuelos:
+Resultados del problema C con 20 vuelos:
 \input{./tablas/P3_20vuelos.tex}
 \subsubsection{100 vuelos}
 
-Resultados del problema 3 con 100 vuelos:
+Resultados del problema C con 100 vuelos:
 \input{./tablas/P3_100vuelos.tex}
 

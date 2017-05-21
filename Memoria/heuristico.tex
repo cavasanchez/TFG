@@ -3,16 +3,16 @@
 El algoritmo heurístico que se ha creado para el problema está inspirado en el metahurístico \textit{GRASP (Greedy Randomized Adaptive Search Procedure)}, sobre el que se han realizado una serie de modificaciones para adaptarlo al modelo en cuestión. A continuación se explicará el funcionamiento de un GRASP, para después explicar el algoritmo propuesto, comparando sus diferencias y semejanzas.
 
 \section{GRASP}
-Un GRASP es un metaheurístico constructivo desarrollado inicialmente por T. Feo   M. Resende, y se definie como \textcolor{red}{->cita libro Abraham<-} \textit{un GRASP es un procedimiento multiarrranque en el que cada arranque se corresponde con una iteración. Cada iteracción tiene dos fases bien diferenciadas, la fase de construcción, que se encarga de obtener una solución factible de alta calidad; la fase de mejora, que se basa en la optimización (local) de la solución obtenida en la primera fase.}
+Un GRASP es un metaheurístico constructivo desarrollado inicialmente por T. Feo   M. Resende, y se define como \cite{metaheurísticas} \textit{un procedimiento multiarrranque en el que cada arranque se corresponde con una iteración. Cada iteracción tiene dos fases bien diferenciadas, la fase de construcción, que se encarga de obtener una solución factible de alta calidad; la fase de mejora, que se basa en la optimización (local) de la solución obtenida en la primera fase.}
 
 \subsection{Fase constructiva}
 La fase constructiva es un proceso iterativo en el que se construye una solución elemento a elemento. Inicialmente se parte de un componente o conjunto de componentes que conforman una solución parcial, y no serán seleccionables. Posteriormente se ordenan los elementos seleccionables utilizando una función voraz (Greedy), la cual asignará a cada elemento un valor que indique como variaría la función objetivo si se añade a la solución parcial.
 
-Una vez están ordenados todos los elementos seleccionables, hay que seleccionar qué elemento es añadido a la solución parcial. GRASP no añade el mejor candidato posible, ya que esto no garantiza que se obtenga la solución óptima, sino que se elije aleatoriamente un candidato del conjunto de candidatos restringido (o RCL por sus siglas en inglés). Para crear esta RCl, se crea un conjunto de candidatos que cumplan
+Una vez están ordenados todos los elementos seleccionables, hay que seleccionar qué elemento es añadido a la solución parcial. GRASP no añade el mejor candidato posible, ya que esto no garantiza que se obtenga la solución óptima, sino que se elije aleatoriamente un candidato del conjunto de candidatos restringido (o RCL por sus siglas en inglés). Para crear esta RCL, se crea un conjunto de candidatos que cumplan
 \begin{equation}\\
 {RCL}_{umbral} = (c_{min}+\alpha(c_{max} - c_{min} ))
 \end{equation}
-, donde $c_{min}$ y $c_{max}$ son respectivamente los valores más bajo y más alto del coste asignado a los elementos seleccionables, y el parámetro $\alpha$ que determina el umbra permitido oscila entre $0\leq \alpha \leq1$, de forma que se escoge un candidato aleatorio. Si fijamos $\alpha=1$, en la RCL solo contaríamos con el mejor candidato, y sería una función miope pura. Por el contrario si fijamos $\alpha=0$, serán seleccionados todos los candidatos.
+, donde $c_{min}$ y $c_{max}$ son respectivamente los valores más bajo y más alto del coste asignado a los elementos seleccionables, y el parámetro $\alpha$ determina el umbral permitido, que oscila entre $0\leq \alpha \leq1$, de forma que se escoge un candidato aleatorio. Si fijamos $\alpha=1$, en la RCL solo contaríamos con el mejor candidato, y sería una función miope pura. Por el contrario si fijamos $\alpha=0$, serán seleccionados todos los candidatos.
 
 Una vez seleccionado el elemento o elementos, se introducen en la solución parcial y se les marca como no seleccionables. El resto de candidatos siguen siendo seleccionables, por tanto cuando se les vuelva a evaluar para ser candidatos, sus valores serán distintos a los de la iteración anterior, ya que la solución parcial ha variado al haber añadido el último elemento conjunto de candidatos.
 
@@ -95,9 +95,10 @@ Dado que este problema tiene siempre una solución factible (cancelar todos los 
 	
 	\item \textbf{Se buscan los waypoints sin usar y se les intenta asignar una ruta}: se localizan los waypoints por los que no pasa ningún vuelo a lo largo de todo el problema. Si algún vuelo tiene alguna solución factible que utilice alguno de estos waypoints, se la asigna. 
 	
-	Con los modelos de ejemplo con los que contábamos esta fase proporciona mejoras en solo un 5\% de los casos.
+	Con los modelos de ejemplo con los que contábamos, esta fase proporciona mejoras en solo un 5\% de los casos.
 	
-	\item \textbf{Retrasar vuelos con solución para colocar 2 o más cancelados}: se intenta retrasar alguno de los vuelos con solución factible para poder encontrar de forma aleatoria uno o más vuelos que estaban cancelados.\\
+	\item \textbf{Retrasar vuelos con solución para colocar 2 o más cancelados}: se intenta retrasar alguno de los vuelos con solución factible para poder encontrar de forma aleatoria uno o más vuelos que estaban cancelados.
+	
 	Este paso se basa en el mismo concepto que en el intercambio de vuelos: si a costa de empeorar la solución de vuelo (ya sea en su solución inicial o retrasado) se consigue encontrar la solución de 1 o más vuelos cancelados, se esta mejorando el resultado global.
 	
 \end{enumerate}
@@ -116,7 +117,7 @@ para a continuación volver a evaluar a la lista de candidatos disponibles y rep
 	\begin{figure}[H]
 		\begin{center}
 			\centering
-			\includegraphics[width=0.8\textwidth]{./imagenes/heuristico/valorSoluciones.jpg}
+			\includegraphics[width=0.7\textwidth]{./imagenes/heuristico/valorSoluciones.jpg}
 			\caption{Elección ponderada de candidatos.}
 			\label{fig: Elección ponderada de candidatos}
 		\end{center}
@@ -144,7 +145,7 @@ para a continuación volver a evaluar a la lista de candidatos disponibles y rep
 \end{enumerate}
 
 
-\subsection{Parámetros heurístico}
+\subsection{Parámetros del heurístico}
 Por tanto el heurístico depende de dos parámetros:
 \begin{itemize}
 	\item \textbf{$N$}: cada cuantas iteraciones actualizamos la cola de vuelos adicional.
@@ -160,13 +161,28 @@ Por contra un bajo parámetro $N$ hará que se cree cada pocas iteraciones una n
 \section{Encontrar ruta óptima}
 En muchas de las fases del algoritmo es necesario encontrar la ruta óptima para un vuelo. Debido a que es el núcleo del algoritmo, vamos a explicarlo con más detalle.
 \subsection{Pre solución: creación del grafo}
-El primer paso es crear el grafo de rutas que tiene un vuelo. La creación de este grafo va a depender del caso en el que estemos: por ejemplo, si estamos en la fase \textit{lanzarVuelosSoloSolucionesIniciales()}, solo crearemos un grafo con nodos que simulen la ruta inicial (sin retrasos ni rutas alternativas), o si estamos en la fase \textit{lanzarVuelosPermitiendoRetrasos()} crearemos solo un grafo en el que haya nodos  que pertenezcan a la ruta original.
+El primer paso es crear el grafo de rutas que tiene un vuelo. La creación de este grafo va a depender del caso en el que estemos: por ejemplo, si estamos en la fase \textit{lanzarVuelosSoloSolucionesIniciales}, solo crearemos un grafo con nodos que simulen la ruta inicial (sin retrasos ni rutas alternativas), o si estamos en la fase \textit{lanzarVuelosPermitiendoRetrasos} crearemos solo un grafo en el que haya nodos  que pertenezcan a la ruta original.
 
-Esto implica que dependiendo de la fase en la que estemos, el grafo de un vuelo será diferente. Esta decisión de diseño alivia en gran medida el esfuerzo computacional del algoritmo de  Djistra del siguiente paso, ya que el grafo para el que ejecutamos el algoritmo tiene solo soluciones válidas, excluyendo así caminos que en dicha fase no estarían permitidos, y por tanto solo aumentarían el tiempo de ejecución sin llegar a aportar una solución válida.
+Esto implica que dependiendo de la fase en la que estemos, el grafo de un vuelo será diferente. Esta decisión de diseño alivia en gran medida el esfuerzo computacional del algoritmo de  Djistra del siguiente paso, ya que el grafo para el que ejecutamos el algoritmo tiene solo soluciones válidas para la fase actual, excluyendo así caminos que en dicha fase no estarían permitidos, y por tanto solo aumentarían el tiempo de ejecución sin llegar a aportar una solución válida.
 
-Además, a la hora de crear el grafo se tienen en cuenta las condiciones y restricciones de cada instante de tiempo. Por ello, si un waypoint en un momento de tiempo fuera a ser añadido a la lista de waypoints pero no cumple con las restricciones del problema (ese arco ya está ocupado, o su sector está ya al máximo de capacidad), ese nodo no se añadirá. Esto implica que se pueden crear grafos no conexos, y por tanto sin solución. Si se da este caso, el vuelo se marcará como cancelado.
+Además, a la hora de crear el grafo se tienen en cuenta las condiciones y restricciones de cada instante de tiempo. Por ello, si un waypoint en un momento de tiempo fuera a ser añadido a la lista de waypoints pero no cumple con las restricciones del problema (ese arco ya está ocupado, o su sector está ya al máximo de capacidad), ese nodo no se añadirá. Esto implica que se pueden crear grafos no conexos, y por tanto sin solución. Si se da este caso, el vuelo se marcará como cancelado o sin solución encontrada en la fase actual.
+
 \subsection{Djistra}
 Una vez creado el grafo sobre el que tenemos que encontrar el camino más corto entre 2 puntos, ejecutamos un algoritmo de Djistra con lista, que con una complejidad de $O(n^{2})$, y dado que el número $n$ de nodos no va a ser muy elevado, permite que las operaciones se hagan con la rapidez suficiente.
+
+Además de obtener el camino más corto dado el grafo, era necesario que se guardara el recorrido realizado y el coste de cada arista en la solución final para poder actualizar las capacidades de arcos y sectores del modelo. Para ello se utilizó una variante del algoritmo de Djistra que guarda en una lista los nodos por los que transcurre la solución. Un ejemplo de los datos que nos devuelve el algoritmo tras encontrar la solución factible a un vuelo se puede ver en la \autoref{fig: Ejemplo resultado Djistra.}. El algoritmo fue desarrollado basándose en el ejemplo de \href{http://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/}{geeksforgeeks}.
+
+\begin{figure}[]
+	\begin{center}
+		\centering
+		\includegraphics[width=0.8\textwidth]{./imagenes/heuristico/recorrido.jpg}
+			\caption{Ejemplo resultado Djistra.}
+			\label{fig: Ejemplo resultado Djistra.}
+	\end{center}
+\end{figure}
+
+De esta manera, al obtener la arista del grafo en el que el vuelo se encontraba en cada instante de tiempo, podemos actualizar las capacidades y restricciones del modelo
+
 \subsection{Post solución: actualización de las restricciones}
 Tras ejecutar el algoritmo de Djistra, podemos obtener dos resultados:
 \begin{itemize}

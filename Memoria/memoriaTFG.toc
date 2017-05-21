@@ -25,9 +25,9 @@
 \contentsline {subsection}{\numberline {4.2.1}Introducci\IeC {\'o}n}{26}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Fase constructiva}{27}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Fase de mejora}{28}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Par\IeC {\'a}metros heur\IeC {\'\i }stico}{30}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.4}Par\IeC {\'a}metros del heur\IeC {\'\i }stico}{30}{subsection.4.2.4}
 \contentsline {section}{\numberline {4.3}Encontrar ruta \IeC {\'o}ptima}{30}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Pre soluci\IeC {\'o}n: creaci\IeC {\'o}n del grafo}{31}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.1}Pre soluci\IeC {\'o}n: creaci\IeC {\'o}n del grafo}{30}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Djistra}{31}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Post soluci\IeC {\'o}n: actualizaci\IeC {\'o}n de las restricciones}{31}{subsection.4.3.3}
 \contentsline {chapter}{\numberline {5}Resultados experimentales}{33}{chapter.5}
@@ -43,14 +43,14 @@
 \contentsline {section}{\numberline {7.1}Comparaci\IeC {\'o}n par\IeC {\'a}metros $G$ y $N$}{41}{section.7.1}
 \contentsline {section}{\numberline {7.2}Resultados simulaci\IeC {\'o}n}{42}{section.7.2}
 \contentsline {subsection}{\numberline {7.2.1}Caso de pruebas A}{42}{subsection.7.2.1}
-\contentsline {subsubsection}{20 vuelos}{42}{section*.28}
-\contentsline {subsubsection}{100 vuelos}{43}{section*.29}
+\contentsline {subsubsection}{20 vuelos}{42}{section*.29}
+\contentsline {subsubsection}{100 vuelos}{43}{section*.30}
 \contentsline {section}{\numberline {7.3}Caso de pruebas B}{44}{section.7.3}
-\contentsline {subsubsection}{20 vuelos}{44}{section*.30}
-\contentsline {subsubsection}{100 vuelos}{45}{section*.31}
+\contentsline {subsubsection}{20 vuelos}{44}{section*.31}
+\contentsline {subsubsection}{100 vuelos}{45}{section*.32}
 \contentsline {subsection}{\numberline {7.3.1}Caso de pruebas C}{46}{subsection.7.3.1}
-\contentsline {subsubsection}{20 vuelos}{46}{section*.32}
-\contentsline {subsubsection}{100 vuelos}{47}{section*.33}
+\contentsline {subsubsection}{20 vuelos}{46}{section*.33}
+\contentsline {subsubsection}{100 vuelos}{47}{section*.34}
 \contentsline {chapter}{\numberline {8}Anexo 2: Estructura de clases}{49}{chapter.8}
 \contentsline {section}{\numberline {8.1}Flight}{49}{section.8.1}
 \contentsline {section}{\numberline {8.2}Problem}{50}{section.8.2}

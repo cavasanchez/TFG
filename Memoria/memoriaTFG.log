@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.10)  13 MAY 2017 23:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.10)  20 MAY 2017 16:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1266,6 +1266,8 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 Package: filemod-expmin 2011/09/19 v1.2 Get and compare file modification times
  (expandable; minimal)
 ))
+Package hyperref Info: Option `colorlinks' set `true' on input line 54.
+
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip71
 \f@ncyO@elh=\skip72
@@ -1288,21 +1290,21 @@ LaTeX Info: Redefining \% on input line 24.
 )
 \openout1 = `memoriaTFG.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 52.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 60.
+LaTeX Font Info:    ... okay on input line 60.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 60.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1336,7 +1338,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box81
-Package hyperref Info: Link coloring ON on input line 52.
+Package hyperref Info: Link coloring ON on input line 60.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1346,16 +1348,16 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count168
 )
-LaTeX Info: Redefining \ref on input line 52.
-LaTeX Info: Redefining \pageref on input line 52.
-LaTeX Info: Redefining \nameref on input line 52.
+LaTeX Info: Redefining \ref on input line 60.
+LaTeX Info: Redefining \pageref on input line 60.
+LaTeX Info: Redefining \nameref on input line 60.
 
 (./memoriaTFG.out) (./memoriaTFG.out)
 \@outlinefile=\write5
 \openout5 = `memoriaTFG.out'.
 
-LaTeX Info: Redefining \. on input line 52.
-LaTeX Info: Redefining \% on input line 52.
+LaTeX Info: Redefining \. on input line 60.
+LaTeX Info: Redefining \% on input line 60.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1399,12 +1401,12 @@ Package caption Info: End \AtBeginDocument code.
 File: ./imagenes/logoUrjc.png Graphic file (type png)
 
 <use ./imagenes/logoUrjc.png>
-Package pdftex.def Info: ./imagenes/logoUrjc.png used on input line 53.
+Package pdftex.def Info: ./imagenes/logoUrjc.png used on input line 61.
 (pdftex.def)             Requested size: 321.20042pt x 128.48016pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 53.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 61.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 53.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 61.
  [1
 
 
@@ -1455,8 +1457,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write6
 \openout6 = `memoriaTFG.toc'.
 
-LaTeX Info: Redefining \. on input line 58.
-LaTeX Info: Redefining \% on input line 58.
+LaTeX Info: Redefining \. on input line 66.
+LaTeX Info: Redefining \% on input line 66.
  [4]
 (./memoriaTFG.lof
 LaTeX Info: Redefining \. on input line 1.
@@ -1475,7 +1477,7 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 3.
 
 <./imagenes/introduccion/Ranking_de_aeropuertos_espayoles_por_pasajeros_horiz.j
-pg, id=348, 803.0pt x 605.26125pt>
+pg, id=350, 803.0pt x 605.26125pt>
 File: ./imagenes/introduccion/Ranking_de_aeropuertos_espayoles_por_pasajeros_ho
 riz.jpg Graphic file (type jpg)
 
@@ -1496,7 +1498,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
 [7 <./imagenes/introduccion/Ranking_de_aeropuertos_espayoles_por_pasajeros_hori
 z.jpg>]
-<./imagenes/introduccion/retrasos.png, id=354, 705.63625pt x 469.755pt>
+<./imagenes/introduccion/retrasos.png, id=356, 705.63625pt x 469.755pt>
 File: ./imagenes/introduccion/retrasos.png Graphic file (type png)
 
 <use ./imagenes/introduccion/retrasos.png>
@@ -1504,7 +1506,7 @@ Package pdftex.def Info: ./imagenes/introduccion/retrasos.png used on input lin
 e 29.
 (pdftex.def)             Requested size: 364.19667pt x 242.45337pt.
 
-<./imagenes/introduccion/tiposRetrasos.png, id=355, 376.40625pt x 323.2075pt>
+<./imagenes/introduccion/tiposRetrasos.png, id=357, 376.40625pt x 323.2075pt>
 File: ./imagenes/introduccion/tiposRetrasos.png Graphic file (type png)
 
 <use ./imagenes/introduccion/tiposRetrasos.png>
@@ -1514,7 +1516,7 @@ t line 39.
 LaTeX Info: Redefining \. on input line 44.
 LaTeX Info: Redefining \% on input line 44.
  [8 <./imagenes/introduccion/retrasos.png>]
-<./imagenes/introduccion/retrasosSalida.png, id=361, 920.43875pt x 412.54124pt>
+<./imagenes/introduccion/retrasosSalida.png, id=363, 920.43875pt x 412.54124pt>
 File: ./imagenes/introduccion/retrasosSalida.png Graphic file (type png)
 <use ./imagenes/introduccion/retrasosSalida.png>
 Package pdftex.def Info: ./imagenes/introduccion/retrasosSalida.png used on inp
@@ -1523,7 +1525,7 @@ ut line 54.
 LaTeX Info: Redefining \. on input line 59.
 LaTeX Info: Redefining \% on input line 59.
  [9 <./imagenes/introduccion/tiposRetrasos.png>]
-<./imagenes/introduccion/rerouting.png, id=368, 615.29875pt x 394.47375pt>
+<./imagenes/introduccion/rerouting.png, id=370, 615.29875pt x 394.47375pt>
 File: ./imagenes/introduccion/rerouting.png Graphic file (type png)
 
 <use ./imagenes/introduccion/rerouting.png>
@@ -1563,7 +1565,7 @@ LaTeX Info: Redefining \% on input line 1.
  [12]
 Cap\'{\i }tulo 2.
 
-<./imagenes/descripcion_problema/sectoresYWaypoints.jpg, id=398, 796.47563pt x 
+<./imagenes/descripcion_problema/sectoresYWaypoints.jpg, id=400, 796.47563pt x 
 597.73312pt>
 File: ./imagenes/descripcion_problema/sectoresYWaypoints.jpg Graphic file (type
  jpg)
@@ -1649,7 +1651,7 @@ LaTeX Warning: No positions in optional float specifier.
 
 LaTeX Warning: Float too large for page by 38.36128pt on input line 96.
 
-<./imagenes/descripcion_problema/bbdd.png, id=430, 1752.5475pt x 1256.695pt>
+<./imagenes/descripcion_problema/bbdd.png, id=432, 1752.5475pt x 1256.695pt>
 File: ./imagenes/descripcion_problema/bbdd.png Graphic file (type png)
 
 <use ./imagenes/descripcion_problema/bbdd.png>
@@ -1725,32 +1727,44 @@ Overfull \hbox (24.13063pt too wide) in paragraph at lines 16--83
 LaTeX Info: Redefining \. on input line 93.
 LaTeX Info: Redefining \% on input line 93.
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
 
  []
 
 
-<./imagenes/heuristico/valorSoluciones.jpg, id=503, 494.84875pt x 456.70625pt>
+<./imagenes/heuristico/valorSoluciones.jpg, id=507, 494.84875pt x 456.70625pt>
 File: ./imagenes/heuristico/valorSoluciones.jpg Graphic file (type jpg)
 
 <use ./imagenes/heuristico/valorSoluciones.jpg>
 Package pdftex.def Info: ./imagenes/heuristico/valorSoluciones.jpg used on inpu
-t line 119.
-(pdftex.def)             Requested size: 364.19667pt x 336.12454pt.
-LaTeX Info: Redefining \. on input line 124.
-LaTeX Info: Redefining \% on input line 124.
+t line 120.
+(pdftex.def)             Requested size: 318.66948pt x 294.10287pt.
+LaTeX Info: Redefining \. on input line 125.
+LaTeX Info: Redefining \% on input line 125.
  [28]
-LaTeX Info: Redefining \. on input line 135.
-LaTeX Info: Redefining \% on input line 135.
+LaTeX Info: Redefining \. on input line 140.
+LaTeX Info: Redefining \% on input line 140.
  [29 <./imagenes/heuristico/valorSoluciones.jpg>]
-LaTeX Info: Redefining \. on input line 164.
-LaTeX Info: Redefining \% on input line 164.
- [30]) (./resultados.tex
+LaTeX Info: Redefining \. on input line 166.
+LaTeX Info: Redefining \% on input line 166.
+ [30]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 175.
+
+<./imagenes/heuristico/recorrido.jpg, id=535, 807.015pt x 559.08875pt>
+File: ./imagenes/heuristico/recorrido.jpg Graphic file (type jpg)
+
+<use ./imagenes/heuristico/recorrido.jpg>
+Package pdftex.def Info: ./imagenes/heuristico/recorrido.jpg used on input line
+ 178.
+(pdftex.def)             Requested size: 364.19667pt x 252.31274pt.
+LaTeX Info: Redefining \. on input line 191.
+LaTeX Info: Redefining \% on input line 191.
+ [31]) (./resultados.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [31] [32
-
-]
+ [32 <./imagenes/heuristico/recorrido.jpg>]
 Cap\'{\i }tulo 5.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -1770,8 +1784,10 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 11.
-[33]
-<./imagenes/resultados/evolucionFuncionObjetivo.png, id=546, 901.11656pt x 417.
+[33
+
+]
+<./imagenes/resultados/evolucionFuncionObjetivo.png, id=553, 901.11656pt x 417.
 05812pt>
 File: ./imagenes/resultados/evolucionFuncionObjetivo.png Graphic file (type png
 )
@@ -1785,7 +1801,7 @@ Underfull \vbox (badness 4805) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 51.
 LaTeX Info: Redefining \% on input line 51.
  [34 <./imagenes/resultados/evolucionFuncionObjetivo.png (PNG copy)>]
-<./imagenes/resultados/resumenRepresentaion.png, id=552, 1087.06125pt x 897.352
+<./imagenes/resultados/resumenRepresentaion.png, id=560, 1087.06125pt x 897.352
 5pt>
 File: ./imagenes/resultados/resumenRepresentaion.png Graphic file (type png)
  <use ./imagenes/resultados/resumenRepresentaion.png>
@@ -1798,7 +1814,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 78.
 LaTeX Info: Redefining \% on input line 78.
  [35]
-<./imagenes/resultados/representacionGrafica.png, id=560, 1106.1325pt x 928.468
+<./imagenes/resultados/representacionGrafica.png, id=567, 1106.1325pt x 928.468
 75pt>
 File: ./imagenes/resultados/representacionGrafica.png Graphic file (type png)
  <use ./imagenes/resultados/representacionGrafica.png>
@@ -1816,7 +1832,7 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 125.
 
 
-<./imagenes/resultados/tiemposejecucion.png, id=575, 455.45157pt x 255.95625pt>
+<./imagenes/resultados/tiemposejecucion.png, id=582, 455.45157pt x 255.95625pt>
 File: ./imagenes/resultados/tiemposejecucion.png Graphic file (type png)
 <use ./imagenes/resultados/tiemposejecucion.png>
 Package pdftex.def Info: ./imagenes/resultados/tiemposejecucion.png used on inp
@@ -1851,7 +1867,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 4.
 
 
-<./imagenes/heuristico/comparativa_parametros_100_vuelos.png, id=592, 881.54344
+<./imagenes/heuristico/comparativa_parametros_100_vuelos.png, id=599, 881.54344
 pt x 495.35063pt>
 File: ./imagenes/heuristico/comparativa_parametros_100_vuelos.png Graphic file 
 (type png)
@@ -1919,78 +1935,92 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--3
 Underfull \vbox (badness 10000) detected at line 22
  []
 
-) (./tablas/P3_100vuelos.tex
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
+[46]) (./tablas/P3_100vuelos.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--3
 []|\T1/ptm/b/n/12 Valor de la
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 22.
-LaTeX Info: Redefining \% on input line 22.
- [46]
 Underfull \vbox (badness 10000) detected at line 22
  []
 
-)) (./anexo2.tex
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
+[47])) (./anexo2.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [47] [48
+ [48]
+Cap\'{\i }tulo 8.
+[49
 
 ]
-Cap\'{\i }tulo 8.
-[49]
 LaTeX Info: Redefining \. on input line 49.
 LaTeX Info: Redefining \% on input line 49.
- [50])
-No file memoriaTFG.bbl.
-LaTeX Info: Redefining \. on input line 75.
-LaTeX Info: Redefining \% on input line 75.
-[51]
-LaTeX Info: Redefining \. on input line 75.
-LaTeX Info: Redefining \% on input line 75.
+ [50]) (./memoriaTFG.bbl
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [51]
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
  [52]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 75.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 75.
+Underfull \hbox (badness 10000) in paragraph at lines 19--23
+[]\T1/ptm/m/n/12 (2017).  Im-ple-men-ta-ción al-go-rit-mo djis-tra en c++.
+ []
+
+
+Underfull \hbox (badness 3690) in paragraph at lines 25--29
+[]\T1/ptm/m/n/12 (2017).  Im-ple-men-ta-ción grasp.  http://www.cleveralgorithm
+s.com/nature-
+ []
+
+) [53
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 83.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 83.
  (./memoriaTFG.aux
 LaTeX Info: Redefining \. on input line 24.
 LaTeX Info: Redefining \% on input line 24.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 75.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 75.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 83.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 83.
 Package rerunfilecheck Info: File `memoriaTFG.out' has not changed.
-(rerunfilecheck)             Checksum: A6C5AF69C0F1CBE743E126672259021E;3473.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 75.
+(rerunfilecheck)             Checksum: DECEEE125DA9459B93C8CFEC1AAC28E0;3477.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 83.
  ) 
 Here is how much of TeX's memory you used:
- 26315 strings out of 493029
- 489218 string characters out of 6136234
- 627743 words of memory out of 5000000
- 29014 multiletter control sequences out of 15000+600000
+ 26343 strings out of 493029
+ 489711 string characters out of 6136234
+ 631206 words of memory out of 5000000
+ 29026 multiletter control sequences out of 15000+600000
  88470 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,93p,912b,1058s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
-fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
-}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/pub
-lic/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/shar
-e/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm
-/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/
-fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pf
-b></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic
-/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
-rw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8
-a.pfb>
-Output written on memoriaTFG.pdf (52 pages, 1417898 bytes).
+pdfTeX warning (dest): name{cite.metaheur\355sticas} has been referenced but 
+does not exist, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fo
+nts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{
+/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/
+texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/l
+mr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fo
+nts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb>
+</usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type
+1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
+/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.
+pfb>
+Output written on memoriaTFG.pdf (53 pages, 1462045 bytes).
 PDF statistics:
- 759 PDF objects out of 1000 (max. 8388607)
- 666 compressed objects within 7 object streams
- 189 named destinations out of 1000 (max. 500000)
- 507 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 782 PDF objects out of 1000 (max. 8388607)
+ 687 compressed objects within 7 object streams
+ 202 named destinations out of 1000 (max. 500000)
+ 512 words of extra memory for PDF output out of 10000 (max. 10000000)
 

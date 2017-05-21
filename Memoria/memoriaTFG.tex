@@ -23,6 +23,11 @@
 \usepackage{longtable}
 \usepackage{ltxtable} 
 
+\addto\captionsspanish{\renewcommand{\figurename}{Figura}}
+
+\renewcommand*{\figureautorefname}{figura}
+\renewcommand*{\tableautorefname}{tabla}
+\renewcommand*{\chapterautorefname}{capítulo}
 
 \usepackage{lscape}
 \usetikzlibrary{babel}
@@ -43,7 +48,10 @@
 \usepackage{etoolbox}
 \usepackage{listings}
 \usepackage{standalone}
-
+\hypersetup{
+	colorlinks,
+	citecolor=Black,
+}
 \usepackage{fancyhdr}
 \input{./portada.tex}
 
