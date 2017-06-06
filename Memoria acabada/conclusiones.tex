@@ -1,0 +1,26 @@
+\chapter{Conclusiones}
+\label{conclusiones}
+\section{Valoración de los resultados}
+Al final del Trabajo de Fin de Grado se han cumplido todos los objetivos que se establecieron en su momento:
+\begin{itemize}
+	\item Modelar de nuevo el problema sin que éste dependiera de CPLEX.
+	\item Mejorar el sistema de lectura de datos. 
+	\item Mejora del heurístico para lanzar los vuelos.
+	\item Nueva estructura de objetos.
+	\item Creación de una simple representación visual del problema.
+\end{itemize}
+Aunque se han cumplido todos los objetivos cumplidos, hay que comparar los resultados obtenidos con el nuevo heurístico y los obtenidos en las anteriores versiones del modelo para saber si se obtiene una mejor solución. Comparando los resultados de ambas versiones, en junio de 2012 con una base de datos de 65 vuelos y las capacidades de los sectores a 1, se obtuvo un porcentaje de vuelos cancelados del 11\%. Con el nuevo algoritmo lo reducimos a un 3\%.
+
+Por tanto podemos concluir que la implementación del nuevo heurístico a mejorado notablemente la solución, y la estructura de búsqueda multiarrranque acompañada de una posterior fase de retrospectiva donde se extraen las características positivas de soluciones previas han sido beneficiosas para el modelo.
+
+También se ha enriquecido el problema añadiendo a todos las fases del heurístico un componente aleatorio, dando un gran número de casos de los que extraer información para futuras iteraciones. 
+\clearpage
+\section{Futuras líneas de trabajo}
+Las siguientes versiones del algoritmo podrían añadir algunas funcionalidades extra:
+\begin{itemize}
+	\item Para enriquecer más el modelo, se podrían añadir algunas de las restricciones que se eliminaron para simplificar el modelo. La más importante sería la de añadir el coste de cancelación de un vuelo, de forma que a la hora de elegir entre 2 vuelos similares se tenga en cuenta el coste de cancelación.
+	\item Considerar la cancelación de un vuelo como prácticamente inviable para acercar más el modelo a la realidad.
+	\item Optimizar los algoritmos de búsqueda para reducir el tiempo de ejecución del problema.
+\end{itemize}
+
+

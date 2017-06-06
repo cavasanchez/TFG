@@ -10,11 +10,11 @@ La fase constructiva es un proceso iterativo en el que se construye una solució
 
 Una vez están ordenados todos los elementos seleccionables, hay que seleccionar qué elemento es añadido a la solución parcial. GRASP no añade el mejor candidato posible, ya que esto no garantiza que se obtenga la solución óptima, sino que se elije aleatoriamente un candidato del conjunto de candidatos restringido (o RCL por sus siglas en inglés). Para crear esta RCL, se crea un conjunto de candidatos que cumplan
 \begin{equation}\\
-{RCL}_{umbral} = (c_{min}+\alpha(c_{max} - c_{min} ))
+{RCL}_{umbral} = (c_{min}+\alpha(c_{max} - c_{min} )),
 \end{equation}
-, donde $c_{min}$ y $c_{max}$ son respectivamente los valores más bajo y más alto del coste asignado a los elementos seleccionables, y el parámetro $\alpha$ determina el umbral permitido, que oscila entre $0\leq \alpha \leq1$, de forma que se escoge un candidato aleatorio. Si fijamos $\alpha=1$, en la RCL solo contaríamos con el mejor candidato, y sería una función miope pura. Por el contrario si fijamos $\alpha=0$, serán seleccionados todos los candidatos.
+donde $c_{min}$ y $c_{max}$ son respectivamente los valores más bajo y más alto del coste asignado a los elementos seleccionables, y el parámetro $\alpha$ determina el umbral permitido, que oscila entre $0\leq \alpha \leq1$, de forma que se escoge un candidato aleatorio. Si fijamos $\alpha=1$, en la RCL solo contaríamos con el mejor candidato, y sería una función miope pura. Por el contrario si fijamos $\alpha=0$, serán seleccionados todos los candidatos.
 
-Una vez seleccionado el elemento o elementos, se introducen en la solución parcial y se les marca como no seleccionables. El resto de candidatos siguen siendo seleccionables, por tanto cuando se les vuelva a evaluar para ser candidatos, sus valores serán distintos a los de la iteración anterior, ya que la solución parcial ha variado al haber añadido el último elemento conjunto de candidatos.
+Una vez seleccionado el elemento o elementos, se introducen en la solución parcial y se marcan como no seleccionables. El resto de candidatos siguen siendo seleccionables, y por tanto. cuando se les vuelva a evaluar para ser candidatos, sus valores serán distintos a los de la iteración anterior, ya que la solución parcial ha variado al haber añadido el último elemento conjunto de candidatos.
 
 La fase constructiva finaliza cuando se dispone de una solución factible.
 \subsection{Fase de mejora}
@@ -105,15 +105,15 @@ Dado que este problema tiene siempre una solución factible (cancelar todos los 
 \subsection{Fase de mejora}
 El objetivo de esta fase es analizar las últimas $N$ iteraciones, y escoger de entre ellas a los mejores vuelos de forma aleatoria para que en las siguientes $N$ iteraciones tengan más probabilidades de ser lanzados antes. Aquí radica la mayor diferencia con un GRASP: en el metahurístico constructivo hay que evaluar y seleccionar de los candidatos disponibles a uno o varios de ellos según la ya citada fórmula
 \begin{equation}
-{RCL}_{umbral} = (c_{min}+\alpha(c_{max} - c_{min} ))
+{RCL}_{umbral} = (c_{min}+\alpha(c_{max} - c_{min} )),
 \end{equation}
-para a continuación volver a evaluar a la lista de candidatos disponibles y repetir el proceso con la solución parcial actualizada. En este algoritmo se analizan las iteraciones anteriores y se trata de extraer lo mejor de ellas. El proceso se realiza en 2 fases: 
+para, a continuación, volver a evaluar a la lista de candidatos disponibles y repetir el proceso con la solución parcial actualizada. En este algoritmo se analizan las iteraciones anteriores y se trata de extraer lo mejor de ellas. El proceso se realiza en 2 fases: 
 \begin{enumerate}
-	\item \textbf{Analizar las soluciones previas:} de las $N$ iteraciones anteriores, calculamos el valor de la función objetivo para cada una de ellas.
+	\item \textbf{Analizar las soluciones previas:} de las $N$ iteraciones anteriores, calculando el valor de la función objetivo para cada una de ellas.
 	
 	\item \textbf{Selección proporcional de candidatos:} una vez asignado un valor a cada iteración, se seleccionan vuelos que fueron colocados o en su solución inicial o retrasados muy poco de forma proporcional al valor de la solución. El número máximo de vuelos que se seleccionan está marcado por el parámetro $G$.\\
 	
-	Por ejemplo, si tenemos $N=3$ y $G=3$, y las soluciones anteriores $a,b,c$ tienen funciones objetivo con valores de $100,200,300$ respectivamente, se escogerán vuelos de la solución $a$ con una probabilidad de $1/6$, de la solución $b$ $2/6$ y de la solución $c$ con $3/6$
+	Por ejemplo, si tenemos $N=3$ y $G=3$, y las soluciones anteriores $a,b,c$ tienen funciones objetivo con valores de $100,200,300$, respectivamente, se escogerán vuelos de la solución $a$ con una probabilidad de $1/6$, de la solución $b$ $2/6$ y de la solución $c$ con $3/6$
 	\begin{figure}[H]
 		\begin{center}
 			\centering
@@ -127,11 +127,11 @@ para a continuación volver a evaluar a la lista de candidatos disponibles y rep
 	
 		Cada $N$ iteraciones, antes de realizar la fase constructiva, se añadirán los vuelos de la cola de candidatos al resto de vuelos que conforman el problema. El proceso que se realiza es el siguiente:
 	\begin{enumerate}
-		\item Si no hay cola de candidatos, se obtiene el id de cada vuelo del problema y se ordenan de forma aleatoria:
+		\item Si no hay cola de candidatos, se obtiene el {\rm id} de cada vuelo del problema y se ordenan de forma aleatoria:
 		\begin{multline}\\
 		\{1,2,3,4,5\} \Rightarrow \{2,4,5,1,3\}\\
 		\end{multline}
-		\item Si por el contrario sí que tenemos una cola de candidatos, la juntaremos con la cola de vuelos habituales. Posteriormente se ordenan y se descartan los elementos repetidos, de forma que los vuelos que añadimos de la cola de candidatos, al estar por duplicado o incluso triplicado, tienen altas probabilidades de quedar colocados los primeros de la cola resultante.
+		\item Si, por el contrario, sí que tenemos una cola de candidatos, la juntaremos con la cola de vuelos habituales. Posteriormente se ordenan y se descartan los elementos repetidos, de forma que los vuelos que añadimos de la cola de candidatos, al estar por duplicado o incluso triplicado, tienen altas probabilidades de quedar colocados los primeros de la cola resultante.
 		
 		Por ejemplo, si en el caso anterior obtenemos que hemos seleccionado los vuelos 2, 4 para añadir al problema, el orden para lanzar los vuelos en los siguientes pasos del algoritmo se calculará de la siguiente manera
 		\begin{multline}\\
@@ -185,8 +185,8 @@ Además de obtener el camino más corto dado el grafo, era necesario que se guar
 De esta manera, al obtener la arista del grafo en el que el vuelo se encontraba en cada instante de tiempo, podemos actualizar las capacidades y restricciones del modelo
 
 \subsection{Post solución: actualización de las restricciones}
-Tras ejecutar el algoritmo de Djistra, podemos obtener dos resultados:
+Tras ejecutar el algoritmo de Djistra, se pueden obtener dos resultados:
 \begin{itemize}
-	\item \textbf{Se encuentra el camino más corto:} obtenemos los waypoints por el que pasa el camino más corto, así como su longitud. Con estos datos tenemos que actualizar las restricciones del problema para cada instante de tiempo $t$ en el que el vuelo ha estado en el aire. El estado del vuelo dependerá de la fase en la que estamos, si estamos en \textit{lanzarVuelosSoloSolucionesIniciales()}, el estado del vuelo pasará a ser solución inicial, mientras que si estamos en \textit{lanzarVuelosPermitiendoDesvíos()} el estado del vuelo será desviado y retrasado, o tan sólo retrasado, dependiendo de si la solución encontrada es más o igual de larga que su solución iniciale
-	\item \textbf{No se encuentra solución:} este caso puede darse cuando debido a las restricciones del problema el grafo creado no es conexo. El vuelo se marca como cancelado.
+	\item \textbf{Se encuentra el camino más corto:} obtenemos los waypoints por el que pasa el camino más corto, así como su longitud. Con estos datos tenemos que actualizar las restricciones del problema para cada instante de tiempo $t$ en el que el vuelo ha estado en el aire. El estado del vuelo dependerá de la fase en la que estamos, si estamos en \textit{lanzarVuelosSoloSolucionesIniciales()}, el estado del vuelo pasará a ser solución inicial, mientras que si estamos en \textit{lanzarVuelosPermitiendoDesvíos()} el estado del vuelo será desviado y retrasado, o tan solo retrasado, dependiendo de si la solución encontrada es más o igual de larga que su solución inicial.
+	\item \textbf{No se encuentra solución:} este caso puede darse cuando, debido a las restricciones del problema, el grafo creado no es conexo. El vuelo se marca como cancelado.
 \end{itemize}

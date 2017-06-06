@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage{tikz}
+%\usetikzlibrary{...}
+\begin{document}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+	thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+	
+	\node[main node] (1) {$A1$};
+	\node[main node] (2) [right of=1] {$W2$};
+	\node[main node] (3) [right of=2] {$A3$};
+		
+	\path[every node/.style={font=\sffamily\small}]
+	(1) edge node {2} (2)
+	(2) edge node {2} (3);
+
+	\end{tikzpicture}
+\end{document}

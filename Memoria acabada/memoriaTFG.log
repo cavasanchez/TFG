@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.10)  20 MAY 2017 16:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.10)  6 JUN 2017 23:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1366,21 +1366,21 @@ LaTeX Info: Redefining \% on input line 60.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
-* h-part:(L,W,R)=(85.35826pt, 455.24411pt, 56.9055pt)
-* v-part:(T,H,B)=(101.40665pt, 629.82918pt, 113.81102pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(85.35826pt, 645.87756pt, 113.81102pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=455.24411pt
-* \textheight=629.82918pt
+* \textwidth=426.79135pt
+* \textheight=645.87756pt
 * \oddsidemargin=13.08827pt
-* \evensidemargin=-15.36449pt
-* \topmargin=-2.73714pt
+* \evensidemargin=13.08827pt
+* \topmargin=-18.78552pt
 * \headheight=12.0pt
 * \headsep=19.8738pt
 * \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=88.0pt
+* \marginparwidth=38.0pt
 * \marginparsep=7.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
@@ -1388,8 +1388,8 @@ LaTeX Info: Redefining \% on input line 60.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -1397,7 +1397,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count169
-<./imagenes/logoUrjc.png, id=220, 401.5pt x 160.6pt>
+<./imagenes/logoUrjc.png, id=166, 401.5pt x 160.6pt>
 File: ./imagenes/logoUrjc.png Graphic file (type png)
 
 <use ./imagenes/logoUrjc.png>
@@ -1411,9 +1411,7 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./imagenes/logoUrjc.png>] 
-[2
-
-] (./memoriaTFG.toc
+(./memoriaTFG.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
@@ -1453,23 +1451,28 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [3])
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.35 ...numberline {6}Conclusiones}{35}{chapter.6}
+                                                   [1
+
+])
 \tf@toc=\write6
 \openout6 = `memoriaTFG.toc'.
 
 LaTeX Info: Redefining \. on input line 66.
 LaTeX Info: Redefining \% on input line 66.
- [4]
-(./memoriaTFG.lof
+ [2] (./memoriaTFG.lof
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
 \tf@lof=\write7
 \openout7 = `memoriaTFG.lof'.
 
- (./introduccion.tex [5
 
-] [6
+(./introduccion.tex [3
 
 ]
 Cap\'{\i }tulo 1.
@@ -1477,7 +1480,7 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 3.
 
 <./imagenes/introduccion/Ranking_de_aeropuertos_espayoles_por_pasajeros_horiz.j
-pg, id=350, 803.0pt x 605.26125pt>
+pg, id=274, 803.0pt x 605.26125pt>
 File: ./imagenes/introduccion/Ranking_de_aeropuertos_espayoles_por_pasajeros_ho
 riz.jpg Graphic file (type jpg)
 
@@ -1485,7 +1488,7 @@ riz.jpg Graphic file (type jpg)
 iz.jpg>
 Package pdftex.def Info: ./imagenes/introduccion/Ranking_de_aeropuertos_espayol
 es_por_pasajeros_horiz.jpg used on input line 8.
-(pdftex.def)             Requested size: 364.19667pt x 274.5169pt.
+(pdftex.def)             Requested size: 341.43437pt x 257.3573pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--12
 
@@ -1496,58 +1499,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
-[7 <./imagenes/introduccion/Ranking_de_aeropuertos_espayoles_por_pasajeros_hori
-z.jpg>]
-<./imagenes/introduccion/retrasos.png, id=356, 705.63625pt x 469.755pt>
+[4
+
+ <./imagenes/introduccion/Ranking_de_aeropuertos_espayoles_por_pasajeros_horiz.
+jpg>]
+<./imagenes/introduccion/retrasos.png, id=279, 705.63625pt x 469.755pt>
 File: ./imagenes/introduccion/retrasos.png Graphic file (type png)
 
 <use ./imagenes/introduccion/retrasos.png>
 Package pdftex.def Info: ./imagenes/introduccion/retrasos.png used on input lin
 e 29.
-(pdftex.def)             Requested size: 364.19667pt x 242.45337pt.
+(pdftex.def)             Requested size: 341.43437pt x 227.30048pt.
 
-<./imagenes/introduccion/tiposRetrasos.png, id=357, 376.40625pt x 323.2075pt>
+<./imagenes/introduccion/tiposRetrasos.png, id=280, 376.40625pt x 323.2075pt>
 File: ./imagenes/introduccion/tiposRetrasos.png Graphic file (type png)
 
 <use ./imagenes/introduccion/tiposRetrasos.png>
 Package pdftex.def Info: ./imagenes/introduccion/tiposRetrasos.png used on inpu
 t line 39.
-(pdftex.def)             Requested size: 364.19667pt x 312.74648pt.
+(pdftex.def)             Requested size: 341.43437pt x 293.19705pt.
 LaTeX Info: Redefining \. on input line 44.
 LaTeX Info: Redefining \% on input line 44.
- [8 <./imagenes/introduccion/retrasos.png>]
-<./imagenes/introduccion/retrasosSalida.png, id=363, 920.43875pt x 412.54124pt>
+ [5 <./imagenes/introduccion/retrasos.png>]
+<./imagenes/introduccion/retrasosSalida.png, id=286, 920.43875pt x 412.54124pt>
 File: ./imagenes/introduccion/retrasosSalida.png Graphic file (type png)
 <use ./imagenes/introduccion/retrasosSalida.png>
 Package pdftex.def Info: ./imagenes/introduccion/retrasosSalida.png used on inp
 ut line 54.
-(pdftex.def)             Requested size: 364.19667pt x 163.23842pt.
+(pdftex.def)             Requested size: 341.43437pt x 153.03444pt.
 LaTeX Info: Redefining \. on input line 59.
 LaTeX Info: Redefining \% on input line 59.
- [9 <./imagenes/introduccion/tiposRetrasos.png>]
-<./imagenes/introduccion/rerouting.png, id=370, 615.29875pt x 394.47375pt>
+ [6 <./imagenes/introduccion/tiposRetrasos.png>]
+<./imagenes/introduccion/rerouting.png, id=295, 615.29875pt x 394.47375pt>
 File: ./imagenes/introduccion/rerouting.png Graphic file (type png)
 
 <use ./imagenes/introduccion/rerouting.png>
 Package pdftex.def Info: ./imagenes/introduccion/rerouting.png used on input li
 ne 63.
-(pdftex.def)             Requested size: 364.19667pt x 233.49591pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (23.34698pt too wide) in paragraph at lines 68--69
-[]\T1/ptm/b/n/12 Air Traf-fic Flow Ma-na-ge-ment Re-rou-ting with Flight Can-ce
--lla-tion Pro-blem (ATFMRCP):
- []
-
-LaTeX Info: Redefining \. on input line 78.
-LaTeX Info: Redefining \% on input line 78.
-[10 <./imagenes/introduccion/retrasosSalida.png>]
-LaTeX Info: Redefining \. on input line 90.
-LaTeX Info: Redefining \% on input line 90.
- [11 <./imagenes/introduccion/rerouting.png>]
+(pdftex.def)             Requested size: 341.43437pt x 218.8994pt.
+LaTeX Info: Redefining \. on input line 75.
+LaTeX Info: Redefining \% on input line 75.
+ [7 <./imagenes/introduccion/retrasosSalida.png> <./imagenes/introduccion/rerou
+ting.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 96.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1559,58 +1552,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 96--97
 
  []
 
-) (./descripcion-del-problema.tex
+LaTeX Info: Redefining \. on input line 97.
+LaTeX Info: Redefining \% on input line 97.
+[8]) (./descripcion-del-problema.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [12]
+ [9]
 Cap\'{\i }tulo 2.
 
-<./imagenes/descripcion_problema/sectoresYWaypoints.jpg, id=400, 796.47563pt x 
+<./imagenes/descripcion_problema/sectoresYWaypoints.jpg, id=325, 796.47563pt x 
 597.73312pt>
 File: ./imagenes/descripcion_problema/sectoresYWaypoints.jpg Graphic file (type
  jpg)
  <use ./imagenes/descripcion_problema/sectoresYWaypoints.jpg>
 Package pdftex.def Info: ./imagenes/descripcion_problema/sectoresYWaypoints.jpg
- used on input line 20.
-(pdftex.def)             Requested size: 409.71692pt x 307.47572pt.
+ used on input line 19.
+(pdftex.def)             Requested size: 384.1096pt x 288.2585pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 2671) has occurred while \output is active []
-
- [13
+[10
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 34.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 33.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
-LaTeX Info: Redefining \. on input line 39.
-LaTeX Info: Redefining \% on input line 39.
- [14 <./imagenes/descripcion_problema/sectoresYWaypoints.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
+LaTeX Info: Redefining \. on input line 43.
+LaTeX Info: Redefining \% on input line 43.
+ [11 <./imagenes/descripcion_problema/sectoresYWaypoints.jpg>]
 
- []
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 51.
+LaTeX Warning: Command \' invalid in math mode on input line 50.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 51.
+LaTeX Warning: Command \' invalid in math mode on input line 50.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 54.
+LaTeX Warning: Command \' invalid in math mode on input line 53.
 
 
-LaTeX Warning: Command \' invalid in math mode on input line 54.
+LaTeX Warning: Command \' invalid in math mode on input line 53.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
@@ -1627,56 +1614,53 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 1.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
-
- []
-
-LaTeX Info: Redefining \. on input line 69.
-LaTeX Info: Redefining \% on input line 69.
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 70--72
-
- []
-
+LaTeX Info: Redefining \. on input line 70.
+LaTeX Info: Redefining \% on input line 70.
+ [12]
 (./diagramas/descripcion_del_problema/ejemplo1rutaexpandida.tex)
 (./diagramas/descripcion_del_problema/ejemplo2rutas.tex)
-LaTeX Info: Redefining \. on input line 89.
-LaTeX Info: Redefining \% on input line 89.
- [16]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 91.
 
 (./diagramas/descripcion_del_problema/ejemplo2rutasexpandidas.tex)
 
-LaTeX Warning: Float too large for page by 38.36128pt on input line 96.
+LaTeX Warning: Float too large for page by 22.3129pt on input line 96.
 
-<./imagenes/descripcion_problema/bbdd.png, id=432, 1752.5475pt x 1256.695pt>
+LaTeX Info: Redefining \. on input line 103.
+LaTeX Info: Redefining \% on input line 103.
+[13]
+LaTeX Info: Redefining \. on input line 112.
+LaTeX Info: Redefining \% on input line 112.
+ [14]
+LaTeX Info: Redefining \. on input line 112.
+LaTeX Info: Redefining \% on input line 112.
+ [15]
+<./imagenes/descripcion_problema/bbdd.png, id=373, 1752.5475pt x 1256.695pt>
 File: ./imagenes/descripcion_problema/bbdd.png Graphic file (type png)
 
 <use ./imagenes/descripcion_problema/bbdd.png>
 Package pdftex.def Info: ./imagenes/descripcion_problema/bbdd.png used on input
  line 118.
-(pdftex.def)             Requested size: 455.24411pt x 326.42618pt.
-LaTeX Info: Redefining \. on input line 122.
-LaTeX Info: Redefining \% on input line 122.
- [17]
-LaTeX Info: Redefining \. on input line 122.
-LaTeX Info: Redefining \% on input line 122.
- [18]) (./tecnologias.tex
+(pdftex.def)             Requested size: 426.79135pt x 306.02335pt.
+) (./tecnologias.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
+ [16
 
-[19 <./imagenes/descripcion_problema/bbdd.png>] [20
-
-]
+ <./imagenes/descripcion_problema/bbdd.png>]
 Cap\'{\i }tulo 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-[21]
+[17
+
+]
 Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
@@ -1686,9 +1670,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--32
 
  []
 
-LaTeX Info: Redefining \. on input line 37.
-LaTeX Info: Redefining \% on input line 37.
-[22]
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
  []
@@ -1696,11 +1680,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--39
 ) (./heuristico.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [23] [24
+ [19]
+Cap\'{\i }tulo 4.
+[20
 
 ]
-Cap\'{\i }tulo 4.
-[25]
 Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
@@ -1713,143 +1697,147 @@ LaTeX Warning: Command \' invalid in math mode on input line 44.
 
 LaTeX Info: Redefining \. on input line 51.
 LaTeX Info: Redefining \% on input line 51.
-[26] (./diagramas/heuristico/ejemplo1vuelolargo.tex)
+[21] (./diagramas/heuristico/ejemplo1vuelolargo.tex)
 (./diagramas/heuristico/ejemplo1vueloCortoA.tex)
-Overfull \hbox (24.13063pt too wide) in paragraph at lines 16--79
+Overfull \hbox (35.51157pt too wide) in paragraph at lines 16--79
 [][] 
  []
 
 (./diagramas/heuristico/ejemplo1vueloCortoB.tex)
-Overfull \hbox (24.13063pt too wide) in paragraph at lines 16--83
+Overfull \hbox (35.51157pt too wide) in paragraph at lines 16--83
 [][] 
  []
 
 LaTeX Info: Redefining \. on input line 93.
 LaTeX Info: Redefining \% on input line 93.
-[27]
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 114--115
 
  []
 
 
-<./imagenes/heuristico/valorSoluciones.jpg, id=507, 494.84875pt x 456.70625pt>
+<./imagenes/heuristico/valorSoluciones.jpg, id=430, 494.84875pt x 456.70625pt>
 File: ./imagenes/heuristico/valorSoluciones.jpg Graphic file (type jpg)
 
 <use ./imagenes/heuristico/valorSoluciones.jpg>
 Package pdftex.def Info: ./imagenes/heuristico/valorSoluciones.jpg used on inpu
 t line 120.
-(pdftex.def)             Requested size: 318.66948pt x 294.10287pt.
-LaTeX Info: Redefining \. on input line 125.
-LaTeX Info: Redefining \% on input line 125.
- [28]
-LaTeX Info: Redefining \. on input line 140.
-LaTeX Info: Redefining \% on input line 140.
- [29 <./imagenes/heuristico/valorSoluciones.jpg>]
+(pdftex.def)             Requested size: 298.75264pt x 275.72623pt.
+LaTeX Info: Redefining \. on input line 124.
+LaTeX Info: Redefining \% on input line 124.
+ [23]
+LaTeX Info: Redefining \. on input line 137.
+LaTeX Info: Redefining \% on input line 137.
+ [24 <./imagenes/heuristico/valorSoluciones.jpg>]
 LaTeX Info: Redefining \. on input line 166.
 LaTeX Info: Redefining \% on input line 166.
- [30]
+ [25]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 175.
+               Default added (so using `tbp') on input line 176.
 
-<./imagenes/heuristico/recorrido.jpg, id=535, 807.015pt x 559.08875pt>
+<./imagenes/heuristico/recorrido.jpg, id=459, 807.015pt x 559.08875pt>
 File: ./imagenes/heuristico/recorrido.jpg Graphic file (type jpg)
 
 <use ./imagenes/heuristico/recorrido.jpg>
 Package pdftex.def Info: ./imagenes/heuristico/recorrido.jpg used on input line
- 178.
-(pdftex.def)             Requested size: 364.19667pt x 252.31274pt.
+ 179.
+(pdftex.def)             Requested size: 341.43437pt x 236.53893pt.
 LaTeX Info: Redefining \. on input line 191.
 LaTeX Info: Redefining \% on input line 191.
- [31]) (./resultados.tex
+ [26]) (./resultados.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [32 <./imagenes/heuristico/recorrido.jpg>]
+ [27 <./imagenes/heuristico/recorrido.jpg>]
 Cap\'{\i }tulo 5.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 6.
+(hyperref)                removing `math shift' on input line 8.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 6.
+(hyperref)                removing `math shift' on input line 8.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 6.
+(hyperref)                removing `math shift' on input line 8.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 6.
+(hyperref)                removing `math shift' on input line 8.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 11.
-[33
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 13.
+[28
 
 ]
-<./imagenes/resultados/evolucionFuncionObjetivo.png, id=553, 901.11656pt x 417.
+
+LaTeX Warning: Command \' invalid in math mode on input line 30.
+
+
+<./imagenes/resultados/evolucionFuncionObjetivo.png, id=477, 901.11656pt x 417.
 05812pt>
 File: ./imagenes/resultados/evolucionFuncionObjetivo.png Graphic file (type png
 )
  <use ./imagenes/resultados/evolucionFuncionObjetivo.png>
 Package pdftex.def Info: ./imagenes/resultados/evolucionFuncionObjetivo.png use
-d on input line 30.
-(pdftex.def)             Requested size: 455.24411pt x 210.6986pt.
-
-Underfull \vbox (badness 4805) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 51.
-LaTeX Info: Redefining \% on input line 51.
- [34 <./imagenes/resultados/evolucionFuncionObjetivo.png (PNG copy)>]
-<./imagenes/resultados/resumenRepresentaion.png, id=560, 1087.06125pt x 897.352
+d on input line 52.
+(pdftex.def)             Requested size: 426.79135pt x 197.53192pt.
+LaTeX Info: Redefining \. on input line 57.
+LaTeX Info: Redefining \% on input line 57.
+ [29]
+LaTeX Info: Redefining \. on input line 87.
+LaTeX Info: Redefining \% on input line 87.
+ [30 <./imagenes/resultados/evolucionFuncionObjetivo.png (PNG copy)>]
+<./imagenes/resultados/resumenRepresentaion.png, id=492, 1087.06125pt x 897.352
 5pt>
 File: ./imagenes/resultados/resumenRepresentaion.png Graphic file (type png)
  <use ./imagenes/resultados/resumenRepresentaion.png>
 Package pdftex.def Info: ./imagenes/resultados/resumenRepresentaion.png used on
- input line 73.
-(pdftex.def)             Requested size: 455.24411pt x 375.80377pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 78.
-LaTeX Info: Redefining \% on input line 78.
- [35]
-<./imagenes/resultados/representacionGrafica.png, id=567, 1106.1325pt x 928.468
+ input line 95.
+(pdftex.def)             Requested size: 426.79135pt x 352.30748pt.
+LaTeX Info: Redefining \. on input line 102.
+LaTeX Info: Redefining \% on input line 102.
+ [31 <./imagenes/resultados/resumenRepresentaion.png>]
+<./imagenes/resultados/representacionGrafica.png, id=498, 1106.1325pt x 928.468
 75pt>
 File: ./imagenes/resultados/representacionGrafica.png Graphic file (type png)
  <use ./imagenes/resultados/representacionGrafica.png>
 Package pdftex.def Info: ./imagenes/resultados/representacionGrafica.png used o
-n input line 92.
-(pdftex.def)             Requested size: 455.24411pt x 382.11972pt.
-LaTeX Info: Redefining \. on input line 97.
-LaTeX Info: Redefining \% on input line 97.
- [36 <./imagenes/resultados/resumenRepresentaion.png>]
-LaTeX Info: Redefining \. on input line 106.
-LaTeX Info: Redefining \% on input line 106.
- [37 <./imagenes/resultados/representacionGrafica.png>]
+n input line 114.
+(pdftex.def)             Requested size: 426.79135pt x 358.23369pt.
+LaTeX Info: Redefining \. on input line 121.
+LaTeX Info: Redefining \% on input line 121.
+ [32 <./imagenes/resultados/representacionGrafica.png>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 125.
+               Default added (so using `tbp') on input line 147.
 
 
-<./imagenes/resultados/tiemposejecucion.png, id=582, 455.45157pt x 255.95625pt>
+<./imagenes/resultados/tiemposejecucion.png, id=506, 455.45157pt x 255.95625pt>
 File: ./imagenes/resultados/tiemposejecucion.png Graphic file (type png)
 <use ./imagenes/resultados/tiemposejecucion.png>
 Package pdftex.def Info: ./imagenes/resultados/tiemposejecucion.png used on inp
-ut line 128.
-(pdftex.def)             Requested size: 455.24411pt x 255.84625pt.
+ut line 150.
+(pdftex.def)             Requested size: 426.79135pt x 239.85294pt.
 ) (./conclusiones.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [38 <./imagenes/resultados/tiemposejecucion.png (PNG copy)>]
+ [33]
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+
+[34 <./imagenes/resultados/tiemposejecucion.png (PNG copy)>]
 Cap\'{\i }tulo 6.
-[39
+[35
 
 ]) (./anexo1.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [40]
-Cap\'{\i }tulo 7.
+ [36
+
+]
+Ap\'{e}ndice A.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 4.
@@ -1867,7 +1855,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 4.
 
 
-<./imagenes/heuristico/comparativa_parametros_100_vuelos.png, id=599, 881.54344
+<./imagenes/heuristico/comparativa_parametros_100_vuelos.png, id=530, 881.54344
 pt x 495.35063pt>
 File: ./imagenes/heuristico/comparativa_parametros_100_vuelos.png Graphic file 
 (type png)
@@ -1875,38 +1863,65 @@ File: ./imagenes/heuristico/comparativa_parametros_100_vuelos.png Graphic file
 <use ./imagenes/heuristico/comparativa_parametros_100_vuelos.png>
 Package pdftex.def Info: ./imagenes/heuristico/comparativa_parametros_100_vuelo
 s.png used on input line 9.
-(pdftex.def)             Requested size: 455.24411pt x 255.80757pt.
+(pdftex.def)             Requested size: 426.79135pt x 239.82149pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (17.0377pt too wide) in paragraph at lines 20--33
+ [][] 
+ []
 
- [41
+[37
 
  <./imagenes/heuristico/comparativa_parametros_100_vuelos.png (PNG copy)>]
 (./tablas/P1_20vuelos.tex
 Underfull \hbox (badness 10000) in paragraph at lines 4--4
-[]|\T1/ptm/b/n/12 Valor de la
+[]|\T1/ptm/b/n/12 Valor de
  []
 
 
-Underfull \vbox (badness 10000) detected at line 23
- []
-
-LaTeX Info: Redefining \. on input line 35.
-LaTeX Info: Redefining \% on input line 35.
-[42]) (./tablas/P1_100vuelos.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
-[]|\T1/ptm/b/n/12 Valor de la
- []
-
-
-Underfull \vbox (badness 10000) detected at line 22
- []
-
-LaTeX Info: Redefining \. on input line 36.
-LaTeX Info: Redefining \% on input line 36.
-[43]) (./tablas/P2_20vuelos.tex
 Underfull \hbox (badness 10000) in paragraph at lines 4--4
-[]|\T1/ptm/b/n/12 Valor de la
+\T1/ptm/b/n/12 la fun-ción
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 23
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/ptm/m/n/12 Media:
+ []
+
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
+[38]) (./tablas/P1_100vuelos.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+[]|\T1/ptm/b/n/12 Valor de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\T1/ptm/b/n/12 la fun-ción
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 22
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]|\T1/ptm/m/n/12 Media:
+ []
+
+LaTeX Info: Redefining \. on input line 36.
+LaTeX Info: Redefining \% on input line 36.
+[39]) (./tablas/P2_20vuelos.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--4
+[]|\T1/ptm/b/n/12 Valor de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--4
+\T1/ptm/b/n/12 la fun-ción
  []
 
 
@@ -1915,112 +1930,133 @@ Underfull \vbox (badness 10000) detected at line 23
 
 LaTeX Info: Redefining \. on input line 36.
 LaTeX Info: Redefining \% on input line 36.
-[44]) (./tablas/P2_100vuelos.tex
+[40]) (./tablas/P2_100vuelos.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--3
-[]|\T1/ptm/b/n/12 Valor de la
+[]|\T1/ptm/b/n/12 Valor de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\T1/ptm/b/n/12 la fun-ción
  []
 
 
 Underfull \vbox (badness 10000) detected at line 22
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]|\T1/ptm/m/n/12 Media:
+ []
+
 LaTeX Info: Redefining \. on input line 35.
 LaTeX Info: Redefining \% on input line 35.
-[45]) (./tablas/P3_20vuelos.tex
+[41]) (./tablas/P3_20vuelos.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--3
-[]|\T1/ptm/b/n/12 Valor de la
+[]|\T1/ptm/b/n/12 Valor de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\T1/ptm/b/n/12 la fun-ción
  []
 
 
 Underfull \vbox (badness 10000) detected at line 22
  []
 
-LaTeX Info: Redefining \. on input line 35.
-LaTeX Info: Redefining \% on input line 35.
-[46]) (./tablas/P3_100vuelos.tex
+) (./tablas/P3_100vuelos.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--3
-[]|\T1/ptm/b/n/12 Valor de la
+[]|\T1/ptm/b/n/12 Valor de
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\T1/ptm/b/n/12 la fun-ción
  []
 
 
 Underfull \vbox (badness 10000) detected at line 22
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]|\T1/ptm/m/n/12 Media:
+ []
+
 LaTeX Info: Redefining \. on input line 35.
 LaTeX Info: Redefining \% on input line 35.
-[47])) (./anexo2.tex
+[42])) (./anexo2.tex
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [48]
-Cap\'{\i }tulo 8.
-[49
+ [43]
+Ap\'{e}ndice B.
+[44
 
 ]
 LaTeX Info: Redefining \. on input line 49.
 LaTeX Info: Redefining \% on input line 49.
- [50]) (./memoriaTFG.bbl
+ [45]) (./memoriaTFG.bbl
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [51]
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
- [52]
+ [46]
 Underfull \hbox (badness 10000) in paragraph at lines 19--23
 []\T1/ptm/m/n/12 (2017).  Im-ple-men-ta-ción al-go-rit-mo djis-tra en c++.
  []
 
 
-Underfull \hbox (badness 3690) in paragraph at lines 25--29
-[]\T1/ptm/m/n/12 (2017).  Im-ple-men-ta-ción grasp.  http://www.cleveralgorithm
-s.com/nature-
+Underfull \hbox (badness 10000) in paragraph at lines 19--23
+\T1/ptm/m/n/12 http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-s
+hortest-path-
  []
 
-) [53
+) [47
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 83.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 83.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 85.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 85.
  (./memoriaTFG.aux
 LaTeX Info: Redefining \. on input line 24.
 LaTeX Info: Redefining \% on input line 24.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 83.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 83.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 85.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 85.
 Package rerunfilecheck Info: File `memoriaTFG.out' has not changed.
-(rerunfilecheck)             Checksum: DECEEE125DA9459B93C8CFEC1AAC28E0;3477.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 83.
+(rerunfilecheck)             Checksum: D00A0ED9839089104C07CDB90B9327A6;2737.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 85.
  ) 
 Here is how much of TeX's memory you used:
- 26343 strings out of 493029
- 489711 string characters out of 6136234
- 631206 words of memory out of 5000000
- 29026 multiletter control sequences out of 15000+600000
+ 26311 strings out of 493029
+ 489375 string characters out of 6136234
+ 643438 words of memory out of 5000000
+ 29004 multiletter control sequences out of 15000+600000
  88470 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,93p,912b,1058s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{cite.metaheur\355sticas} has been referenced but 
 does not exist, replaced by a fixed one
 
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fo
-nts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{
-/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/publi
-c/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/
-texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/l
-mr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fo
-nts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb>
-</usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type
-1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
-hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
-/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.
-pfb>
-Output written on memoriaTFG.pdf (53 pages, 1462045 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texlive/texmf-di
+st/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.e
+nc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/d
+vips/lm/lm-mathsy.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/
+texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/
+lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/ty
+pe1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
+/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on memoriaTFG.pdf (48 pages, 1464188 bytes).
 PDF statistics:
- 782 PDF objects out of 1000 (max. 8388607)
- 687 compressed objects within 7 object streams
- 202 named destinations out of 1000 (max. 500000)
- 512 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 712 PDF objects out of 1000 (max. 8388607)
+ 621 compressed objects within 7 object streams
+ 193 named destinations out of 1000 (max. 500000)
+ 408 words of extra memory for PDF output out of 10000 (max. 10000000)
 
