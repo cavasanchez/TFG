@@ -1,0 +1,68 @@
+\chapter{Resultados experimentales}
+\label{anexo1}
+
+\section{Comparación parámetros $G$ y $N$}
+A continuación se muestran los resultados de las pruebas que hemos realizados variando los parámetros $G$ y $N$ en los tres escenarios de prueba que disponíamos. En la \autoref{tab: comparativa de parámetros $G$ y $N$} se muestran la media de parámetros obtenidos tras realizar 25 experimentos sobre cada caso de prueba.
+\begin{figure}[H]
+	\begin{center}
+		\centering
+		\includegraphics[width=1\textwidth]{./imagenes/heuristico/comparativa_parametros_100_vuelos.png}
+		\caption{Evolución función objetivo con diferentes parámetros G y N}
+		\label{fig: Evolución función objetivo con diferentes parámetros G y N}
+	\end{center}
+\end{figure}
+
+
+\begin{table}[H]
+	\centering
+	\caption{Comparativa de parámetros $G$ y $N$}
+	\label{tab: comparativa de parámetros $G$ y $N$}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		& \textbf{Problema A} & \textbf{Problema B} & \textbf{Problema C} & \textbf{Media porcentaje éxito} \\ \hline
+		\textbf{N=2, G=10} & \% éxito: 64.1 & \% éxito: 94.2 &\% éxito: 99.5 & 85.93\% \\ \hline
+		\textbf{N=2, G=30} & \% éxito: 65.2 & \% éxito: 95.1 &\% éxito: 99.5  & 86.60\%\\ \hline
+		\textbf{N=2, G=50} & \% éxito: 66.1  & \% éxito: 95.6  &\% éxito: 99.6 & 87.10\%\\ \hline
+		\textbf{N=5, G=10} & \% éxito: 65.2  & \% éxito: 94.3 &\% éxito: 99.4  &86.30\%\\ \hline
+		\textbf{N=5, G=30} & \% éxito: 65.7  &\textcolor{blue}{\% éxito: 95.7 } &\% éxito: 99.8 &87.06\% \\ \hline
+		\textbf{N=5, G=50} & \textcolor{blue}{\% éxito: 66.8} &\% éxito: 95.6  & \textcolor{blue}{\% éxito: 99.8}  &\textcolor{red}{87.40\%} \\ \hline
+		\textbf{N=10, G=10} & \% éxito: 64.2  &\% éxito: 94.1  &\% éxito: 99.3  &85.86\% \\  \hline
+		\textbf{N=10, G=30} & \% éxito: 65.2  &\% éxito: 95.1  &\% éxito: 99.5  &86.60\% \\ \hline
+		\textbf{N=10, G=50} & \% éxito: 65.6  &\% éxito: 95.1  &\% éxito: 99.6  &86.76\% \\ \hline
+	\end{tabular}	
+\end{table}
+
+Las características de las simulaciones corresponden a las siguientes:
+\begin{itemize}
+	\item Las pruebas se han realizado sobre los 3 problemas disponibles.
+	\item En todos los experimentos se considera el peor escenario: la capacidad de los sectores está limitada a 1.
+	\item Se realizan 100 iteraciones sobre cada experimento.
+	\item El parámetro $G$
+\end{itemize}
+
+\section{Resultados simulación}
+\subsection*{Caso de pruebas A}
+Se considera como el peor escenario, ya que tiene un gran número de vuelos con rutas idénticas, lo que implica que una vez saturado todas las trayectorias de un vuelo, el resto que son similares serán cancelados. A continuación se muetran los resultados obtenidos para los casos con 20 y 100 vuelos. 
+
+\input{./tablas/P1_20vuelos.tex}
+
+
+\input{./tablas/P1_100vuelos.tex}
+
+
+\subsection*{Caso de pruebas B}
+Se considera un escenario moderado, hay varios vuelos similares pero parten en momentos de tiempo muy distanciados entre sí, por lo que salvo en contadas ocasiones no habrá conflictos entre vuelos similares. A continuación se muetran los resultados obtenidos para los casos con 20 y 100 vuelos. 
+
+\input{./tablas/P2_20vuelos.tex}
+
+
+\input{./tablas/P2_100vuelos.tex}
+
+
+\subsection*{Caso de pruebas C}
+Se considera el escenario más favorable: vuelos muy diferentes entre sí, con un varias rutas alternativas y con varios aeropuertos de salida. A continuación se muetran los resultados obtenidos para los casos con 20 y 100 vuelos. 
+
+\input{./tablas/P3_20vuelos.tex}
+
+\input{./tablas/P3_100vuelos.tex}
+

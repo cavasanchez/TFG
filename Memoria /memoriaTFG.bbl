@@ -1,0 +1,52 @@
+\begin{thebibliography}{}
+
+\bibitem[c++, 2017]{c++}
+ (2017).
+\newblock Documentación c++.
+\newblock http://www.cplusplus.com/reference/.
+
+\bibitem[vis, 2017]{vis}
+ (2017).
+\newblock Documentación librería vis.js.
+\newblock http://visjs.org/.
+
+\bibitem[mys, 2017]{mysql}
+ (2017).
+\newblock Documentación mysql.
+\newblock https://dev.mysql.com/doc/.
+
+\bibitem[dji, 2017]{djistra}
+ (2017).
+\newblock Implementación algoritmo djistra en c++.
+\newblock
+  http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/.
+
+\bibitem[gra, 2017]{grasp}
+ (2017).
+\newblock Implementación grasp.
+\newblock
+  http://www.cleveralgorithms.com/nature-inspired/stochastic/grasp.html.
+
+\bibitem[Aguado, 2012]{tfg-diego}
+Aguado, D.~R. (2012).
+\newblock Una herramienta informática para la planificación del tráfico
+  aéreo bajo incertidumbre: gestión de la infomración, modelados de vuelos y
+  optimización.
+
+\bibitem[Alonso-ayuso, 2010]{thesis-alba}
+Alonso-ayuso, A. (2010).
+\newblock {Mathematical Optimization in Air Traffic Management}.
+\newblock {\em BEIO (Bolet{\'{i}}n de Estad{\'{i}}stica e Investigaci{\'{o}}n
+  Operativa)}, 26(1):25--41.
+
+\bibitem[García, 2012]{tfg-gonzalo}
+García, G.~Q. (2012).
+\newblock Una herramienta informática para la planificación del tráfico
+  aéreo bajo incertidumbre: construcción y optimización de un modelo
+  matemático.
+
+\bibitem[Muñoz, 2007]{metaheurísticas}
+Muñoz, A.~D. (2007).
+\newblock {\em Metaheurísticas}.
+
+\end{thebibliography}

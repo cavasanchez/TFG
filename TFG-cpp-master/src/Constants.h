@@ -4,7 +4,7 @@ const static int OPTION_ONLY_DELAYS = 2;
 const static int OPTION_ALTERNATIVE_ROUTES = 3;
 const static int OPTION_WITH_UNUSED_WAYPOINT = 4;
 
-const static int MAX_ITERATIONS = 51;
+
 
 const static int FLIGHT_STATUS_ERROR = -10;
 const static int FLIGHT_STATUS_CANCELED = -1;
@@ -13,7 +13,7 @@ const static int FLIGHT_STATUS_IN_TIME = 1;
 const static int FLIGHT_STATUS_DELAYED = 2;
 const static int FLIGHT_STATUS_DEFLECTED = 3;
 const static int FLIGHT_STATUS_DELAYED_AND_DEFLECTED = 4;
-
+const static int CAPACITY_SECTOR = 1;
 
 //N
 const static int NUM_SOULUTIONS_TO_EXAMINE=5;
@@ -21,7 +21,13 @@ const static int NUM_SOULUTIONS_TO_EXAMINE=5;
 //G
 const static int MAX_NUMBER_QUEUE=20;
 
-const static int CAPACITY_SECTOR = 1;
+// Iterations
+const static int MAX_ITERATIONS = 2;
 
-const static std::string RESORCES_FOLDER = "./Resources/BLO3-100flights/";
+// Num simulations
+const static int NUM_SIMULATIONS=1;
+
+
+// Resources
+const static std::string RESORCES_FOLDER = "./Resources/BLO2-20flights/";
 

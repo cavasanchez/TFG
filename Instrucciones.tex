@@ -1,0 +1,46 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+	
+	\section{Importar proyecto}
+	A continuación se enumeran los pasos necesarios para importar el proyecto a ecplise. Si se utilizara un editor diferente (Netbeans, Xcode), los pasos serían análogos
+	\begin{enumerate}
+		\item Si no se dispusiera del código, descargarlo desde aquí \href{https://github.com/cavasanchez/TFG}{https://github.com/cavasanchez/TFG} .
+		\item Para importar el proyecto basta con Import $\rightarrow$ Import from workspace y seleccionar la carpeta TFG/TGG-cpp-master.
+		\item Compilar el proyecto y comprobar que no existen errores. En caso de error comprobar los siguientes parámetros de configuración:
+		\begin{itemize}
+			\item El compilador es GNU make builder.
+			\item Toolchain es Cross GCC.
+		\end{itemize}
+	\end{enumerate}
+	
+	\section{Base de datos}
+	Los 3 modelos de BBDD se pueden encontrar en la carpeta "Originales/BBDD normalizadas". Para importarlas al MySQL workbench basta con crear un nuevo schema e importar el .mysql desde la opción "import from self-contained file".
+	
+	
+	\section{Parámetros y configuración del problema}
+	
+	\subsection{Elegir el modelo para el problema}
+	De los 3 modelos de los que disponemos, tenemos de cada uno de ellos una versión del problema con 20, 100 o todos los vuelos. Para cambiar entre uno y otro, basta con editar el parámetro $RESORCES_FOLDER$ que tenemos en el fichero constants.h. Para elegir la base de datos requierida escribir la ruta de la forma \textit{./Resources/BLO2-20flights/}\textit{./Resources/BLO1-100flights/} . La parte de BLO-XXX indica la base de datos, y la parte -XXXflights indica el número de vuelos. A nivel interno lo que se encarga es de abrir la carpeta adecuada donde se encuentran todos los modelos.
+	
+	\subsection{Parámetros del heurístico}
+	Tal y como se indicaba en la memoria, el algoritmo desarrollado depende de dos parámetros, ambos se pueden cambiar desde el fichero constants.h . El parámetro N se modifica mediante el parámetro \textit{$NUM\_SOULUTIONS\_TO\_EXAMINE$}, y G mediante \textit{$MAX\_NUMBER\_QUEUE$}
+
+	
+	\subsection{Número de simulaciones que ejecuta el algoritmo}
+	 Parámetro que indica el número de veces que relanzamos el multistart. Se puede modificar en Constants.h en la variable \textit{$MAX\_ITERATIONS$}
+
+	\subsection{Número de veces que se ejecuta el algoritmo}
+	Indica el número de veces que se reinicia el problema. Se puede modificar en Constants.h en la variable \textit{$NUM\_SIMULATIONS$}
+	
+	
+	\section{Contacto}
+	Para cualquier duda o consulta, no dudar en escribir a cavasanchez@gmail.com
+
+\end{document}

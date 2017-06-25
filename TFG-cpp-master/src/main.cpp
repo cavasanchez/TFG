@@ -23,7 +23,7 @@ using namespace std;
 int main() {
 	static ofstream log;
 
-	for (int numSimulation = 0; numSimulation < 25; numSimulation++) {
+	for (int numSimulation = 0; numSimulation < NUM_SIMULATIONS; numSimulation++) {
 
 		log.open("log.txt");
 
